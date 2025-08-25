@@ -8,14 +8,14 @@
 </head>
 
 <body>
-    <form action="index.html" method="get">
+    <form action="merci.html" method="get">
         <div class="formulaire">
             <div class="etape1">
                 <p class="position">1/4</p>
                 <h1 class="titreTaille1">Votre don</h1>
                 <div class="typeDeDons">
                     <div>
-                        <input type="radio" name="don" id="donUnique" value="donUnique">
+                        <input type="radio" name="don" id="donUnique" value="donUnique" checked>
                         <label for="donUnique">Don unique</label>
                     </div>
                     <div>
@@ -25,7 +25,8 @@
                 </div>
                 <div class="montantsdeDons">
                     <div>
-                        <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="donVingt">
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="donVingt"
+                            checked>
                         <label for="donVingt">20</label>
                     </div>
                     <div>
@@ -74,7 +75,7 @@
                 </div>
                 <div class="genreDuDonneur">
                     <div>
-                        <input type="radio" class="choixMultiple" name="genre" id="monsieur" value="monsieur">
+                        <input type="radio" class="choixMultiple" name="genre" id="monsieur" value="monsieur" checked>
                         <label for="monsieur">M</label>
                     </div>
                     <div>
@@ -87,30 +88,57 @@
                     </div>
                 </div>
                 <div class="informationsTextuelles">
-                    <label for="nom">Nom</label>
-                    <input type="text" name="nomDonneur" id="nomDonneur">
+                    <div>
+                        <label for="nom">Nom</label>
+                        <input type="text" name="nomDonneur" id="nomDonneur" required>
+                        <p class="erreur texteCache">Veuillez inscrire votre nom !</p>
+                    </div>
 
-                    <label for="nom">Prenom</label>
-                    <input type="text" name="prenomDonneur" id="prenomDonneur">
+                    <div>
+                        <label for="nom">Prenom</label>
+                        <input type="text" name="prenomDonneur" id="prenomDonneur">
+                        <p class="erreur texteCache">Veuillez inscrire votre prenom !</p>
+                    </div>
 
-                    <label for="emailDonneur">Adresse courriel</label>
-                    <input type="email" name="emailDonneur" id="emailDonneur">
+                    <div>
+                        <label for="emailDonneur">Adresse courriel</label>
+                        <input type="email" name="emailDonneur" id="emailDonneur">
+                        <p class="erreur texteCache">Veuillez inscrire votre adresse courriel !</p>
+                        <p class="erreur texteCache invalide">Votre adresse courriel n'est pas conforme !</p>
+                    </div>
 
-                    <label for="telDonneur">Adresse courriel</label>
-                    <input type="tel" name="telDonneur" id="telDonneur">
+                    <div>
+                        <label for="telDonneur">Numéro de téléphone</label>
+                        <input type="tel" name="telDonneur" id="telDonneur">
+                        <p class="erreur texteCache">Veuillez inscrire votre numréro de téléphone !</p>
+                        <p class="erreur texteCache invalid">Votre numréro de téléphone est invalide !</p>
+                    </div>
                     <h2 class="titreTaille2">Informations postales</h2>
 
-                    <label for="adresseDonneur">Adresse courriel</label>
-                    <input type="text" name="adresseDonneur" id="adresseDonneur">
+                    <div>
+                        <label for="adresseDonneur">Adresse</label>
+                        <input type="text" name="adresseDonneur" id="adresseDonneur">
+                        <p class="erreur texteCache">Veuillez inscrire votre adresse !</p>
+                    </div>
 
-                    <label for="codePostalDonneur">Code postal</label>
-                    <input type="text" name="codePostalDonneur" id="codePostalDonneur">
+                    <div>
+                        <label for="codePostalDonneur">Code postal</label>
+                        <input type="text" name="codePostalDonneur" id="codePostalDonneur">
+                        <p class="erreur texteCache">Veuillez inscrire votre code postal !</p>
+                        <p class="erreur texteCache invalide">Votre code postal ne respecte pas le format requis !</p>
+                    </div>
 
-                    <label for="paysDonneur">Pays</label>
-                    <input type="text" name="paysDonneur" id="paysDonneur">
+                    <div>
+                        <label for="paysDonneur">Pays</label>
+                        <input type="text" name="paysDonneur" id="paysDonneur">
+                        <p class="erreur texteCache">Veuillez selectionner votre pays !</p>
+                    </div>
 
-                    <label for="provinceDonneur">Province</label>
-                    <input type="text" name="provinceDonneur" id="provinceDonneur">
+                    <div>
+                        <label for="provinceDonneur">Province</label>
+                        <input type="text" name="provinceDonneur" id="provinceDonneur">
+                        <p class="erreur texteCache">Veuillez selectionner votre province !</p>
+                    </div>
                 </div>
 
                 <div class="boutonsDepage">
@@ -122,17 +150,32 @@
                 <p class="position">3/4</p>
                 <h1 class="titreTaille1">Paiement</h1>
                 <div class="informationsTextuelles">
-                    <label for="titulaireCarte">Titulaire de la carte de crédit</label>
-                    <input type="text" name="titulaireCarte" id="titulaireCarte">
+                    <div>
+                        <label for="titulaireCarte">Titulaire de la carte de crédit</label>
+                        <input type="text" name="titulaireCarte" id="titulaireCarte">
+                        <p class="erreur texteCache">Veuillez inscrire le nom du titulaire !</p>
+                    </div>
 
-                    <label for="numCarteDeCredit">Numéro de la carte de crédit</label>
-                    <input type="text" name="numCarteDeCredit" id="numCarteDeCredit" maxlength="16">
+                    <div>
+                        <label for="numCarteDeCredit">Numéro de la carte de crédit</label>
+                        <input type="text" name="numCarteDeCredit" id="numCarteDeCredit" maxlength="16">
+                        <p class="erreur texteCache">Veuillez inscrire votre numéro de carte de crédit !</p>
+                        <p class="erreur texteCache invalide">Votre numéro de carte de crédit ne respecte pas le format
+                            requis !
+                        </p>
+                    </div>
 
-                    <label for="dateExpiration">Date d'expiration</label>
-                    <input type="date" name="dateExpiration" id="dateExpiration">
+                    <div>
+                        <label for="dateExpiration">Date d'expiration</label>
+                        <input type="date" name="dateExpiration" id="dateExpiration">
+                        <p class="erreur texteCache">Veuillez selectionner une date d'expiration !</p>
+                    </div>
 
-                    <label for="cvv">CVV</label>
-                    <input type="tel" name="cvv" id="cvv">
+                    <div>
+                        <label for="cvv">CVV</label>
+                        <input type="tel" name="cvv" id="cvv" maxlength="3">
+                        <p class="erreur texteCache">Veuillez inscrire votre numréro de CVV !</p>
+                    </div>
 
                 </div>
                 <div class="boutonsDepage">
@@ -145,32 +188,33 @@
                 <h1 class="titreTaille1">Résumé</h1>
                 <h2 class="titreTaille2">Votre don</h2>
                 <div class="resumeTypeDon">
-                    <p></p>
-                    <p></p>
+                    <p>Don unique</p>
+                    <p>20$</p>
                 </div>
-                <p class="texteGrandeTaille">Voulez-vous dédiez votre don ?</p>
-                <p></p>
+                <h3 class="texteTaille3">Voulez-vous dédiez votre don ?</h3>
+                <p>Non</p>
                 <h2 class="titreTaille2">Renseignements sur le donneur</h2>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>Mme</p>
+                <p>20$</p>
+                <p>Dubois</p>
+                <p>Alice</p>
+                <p>alicedubois@hotmail.fr</p>
+                <p>5185354236</p>
                 <h2 class="titreTaille2">Informations postales</h2>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>6573 rue du courchevel</p>
+                <p>V62 S4B</p>
+                <p>Canada</p>
+                <p>Quebec</p>
                 <h2 class="titreTaille2">Paiement</h2>
-                <p></p>
-                <p></p>
+                <p>Alice Dubois</p>
+                <p>435034527564</p>
                 <div class="resumeDonneesCarte">
-                    <p></p>
-                    <p></p>
+                    <p>02/29</p>
+                    <p>402</p>
                 </div>
                 <div class="boutonsDepage">
                     <button class="btn btnRetour">Retour</button>
-                    <a href="merci.html" class="btn btnDonner">Donner</a>
+                    <button type="submit" class="btn btnDonner">Donner</button>
                 </div>
 
             </div>
