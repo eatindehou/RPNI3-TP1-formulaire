@@ -8,7 +8,175 @@
 </head>
 
 <body>
-    
+    <form action="index.html" method="get">
+        <div class="formulaire">
+            <div class="etape1">
+                <p class="position">1/4</p>
+                <h1 class="titreTaille1">Votre don</h1>
+                <div class="typeDeDons">
+                    <div>
+                        <input type="radio" name="don" id="donUnique" value="donUnique">
+                        <label for="donUnique">Don unique</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="don" id="donMensuel" value="donMensuel">
+                        <label for="donMensuel">Don mensuel</label>
+                    </div>
+                </div>
+                <div class="montantsdeDons">
+                    <div>
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="donVingt">
+                        <label for="donVingt">20</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="donCinquante"
+                            value="donCinquante">
+                        <label for="donCinquante">50</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="donQuatreVingtDix"
+                            value="donQuatreVingtDix">
+                        <label for="donQuatreVingtDix">90</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="donCent" value="donCent">
+                        <label for="donCent">100</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="valeurDeuxCent"
+                            value="valeurDeuxCent">
+                        <label for="valeurDeuxCent">200</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="valeurDon" id="donAutre" value="donAutre">
+                        <label for="donAutre">Autre</label>
+                    </div>
+                    <div class="donAutreCache">
+                        <input type="text" name="AutreMontant" id="AutreMontant">
+                        <label for="AutreMontant"></label>
+                    </div>
+                </div>
+                <div class="donDedicace">
+                    <input type="checkbox" name="donADedicace" id="donADedicace">
+                    <label for="donADedicace">Je désire dédicacer mon don</label>
+                </div>
+                <div class="boutonsDepage">
+                    <button class="btn btnRetour">Retour</button>
+                    <button class="btn btnSuivant">Suivant</button>
+                </div>
+            </div>
+            <div class="etape2">
+                <p class="position">2/4</p>
+                <h1 class="titreTaille1">Informations sur le donneur</h1>
+                <div class="donEntreprise">
+                    <input type="checkbox" name="donPourEntreprise" id="donPourEntreprise">
+                    <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
+                </div>
+                <div class="genreDuDonneur">
+                    <div>
+                        <input type="radio" class="choixMultiple" name="genre" id="monsieur" value="monsieur">
+                        <label for="monsieur">M</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="genre" id="madame" value="madame">
+                        <label for="madame">Mme</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="choixMultiple" name="genre" id="mademoiselle" value="mademoiselle">
+                        <label for="mademoiselle">Miss</label>
+                    </div>
+                </div>
+                <div class="informationsTextuelles">
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nomDonneur" id="nomDonneur">
+
+                    <label for="nom">Prenom</label>
+                    <input type="text" name="prenomDonneur" id="prenomDonneur">
+
+                    <label for="emailDonneur">Adresse courriel</label>
+                    <input type="email" name="emailDonneur" id="emailDonneur">
+
+                    <label for="telDonneur">Adresse courriel</label>
+                    <input type="tel" name="telDonneur" id="telDonneur">
+                    <h2 class="titreTaille2">Informations postales</h2>
+
+                    <label for="adresseDonneur">Adresse courriel</label>
+                    <input type="text" name="adresseDonneur" id="adresseDonneur">
+
+                    <label for="codePostalDonneur">Code postal</label>
+                    <input type="text" name="codePostalDonneur" id="codePostalDonneur">
+
+                    <label for="paysDonneur">Pays</label>
+                    <input type="text" name="paysDonneur" id="paysDonneur">
+
+                    <label for="provinceDonneur">Province</label>
+                    <input type="text" name="provinceDonneur" id="provinceDonneur">
+                </div>
+
+                <div class="boutonsDepage">
+                    <button class="btn btnRetour">Retour</button>
+                    <button class="btn btnSuivant">Suivant</button>
+                </div>
+            </div>
+            <div class="etape3">
+                <p class="position">3/4</p>
+                <h1 class="titreTaille1">Paiement</h1>
+                <div class="informationsTextuelles">
+                    <label for="titulaireCarte">Titulaire de la carte de crédit</label>
+                    <input type="text" name="titulaireCarte" id="titulaireCarte">
+
+                    <label for="numCarteDeCredit">Numéro de la carte de crédit</label>
+                    <input type="text" name="numCarteDeCredit" id="numCarteDeCredit" maxlength="16">
+
+                    <label for="dateExpiration">Date d'expiration</label>
+                    <input type="date" name="dateExpiration" id="dateExpiration">
+
+                    <label for="cvv">CVV</label>
+                    <input type="tel" name="cvv" id="cvv">
+
+                </div>
+                <div class="boutonsDepage">
+                    <button class="btn btnRetour">Retour</button>
+                    <button class="btn btnSuivant">Suivant</button>
+                </div>
+            </div>
+            <div class="etape4">
+                <p class="position">4/4</p>
+                <h1 class="titreTaille1">Résumé</h1>
+                <h2 class="titreTaille2">Votre don</h2>
+                <div class="resumeTypeDon">
+                    <p></p>
+                    <p></p>
+                </div>
+                <p class="texteGrandeTaille">Voulez-vous dédiez votre don ?</p>
+                <p></p>
+                <h2 class="titreTaille2">Renseignements sur le donneur</h2>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <h2 class="titreTaille2">Informations postales</h2>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <h2 class="titreTaille2">Paiement</h2>
+                <p></p>
+                <p></p>
+                <div class="resumeDonneesCarte">
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="boutonsDepage">
+                    <button class="btn btnRetour">Retour</button>
+                    <a href="merci.html" class="btn btnDonner">Donner</a>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
 </body>
 
 </html>
