@@ -60,6 +60,10 @@
                 <div class="donDedicace">
                     <input type="checkbox" name="donADedicace" id="donADedicace">
                     <label for="donADedicace">Je désire dédicacer mon don</label>
+                    <div class="cache inputTexteFerme">
+                        <input type="text" name="nomDedicace" id="nomDedicace">
+                        <label for="nomDedicace">Don en l'honneur de :</label>
+                    </div>
                 </div>
                 <div class="boutonsDepage">
                     <button class="btn btnRetour">Retour</button>
@@ -72,6 +76,10 @@
                 <div class="donEntreprise">
                     <input type="checkbox" name="donPourEntreprise" id="donPourEntreprise">
                     <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
+                    <div class="cache inputTexteFerme">
+                        <input type="text" name="nomEntreprise" id="nomEntreprise">
+                        <label for="nomEntreprise">Nom de l'entreprise :</label>
+                    </div>
                 </div>
                 <div class="genreDuDonneur">
                     <div>
@@ -91,53 +99,53 @@
                     <div>
                         <label for="nom">Nom</label>
                         <input type="text" name="nomDonneur" id="nomDonneur" required>
-                        <p class="erreur texteCache">Veuillez inscrire votre nom !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre nom !</p>
                     </div>
 
                     <div>
                         <label for="nom">Prenom</label>
                         <input type="text" name="prenomDonneur" id="prenomDonneur">
-                        <p class="erreur texteCache">Veuillez inscrire votre prenom !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre prenom !</p>
                     </div>
 
                     <div>
                         <label for="emailDonneur">Adresse courriel</label>
                         <input type="email" name="emailDonneur" id="emailDonneur">
-                        <p class="erreur texteCache">Veuillez inscrire votre adresse courriel !</p>
-                        <p class="erreur texteCache invalide">Votre adresse courriel n'est pas conforme !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre adresse courriel !</p>
+                        <p class="cache erreur texteCache invalide">Votre adresse courriel n'est pas conforme !</p>
                     </div>
 
                     <div>
                         <label for="telDonneur">Numéro de téléphone</label>
                         <input type="tel" name="telDonneur" id="telDonneur">
-                        <p class="erreur texteCache">Veuillez inscrire votre numréro de téléphone !</p>
-                        <p class="erreur texteCache invalid">Votre numréro de téléphone est invalide !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre numréro de téléphone !</p>
+                        <p class="cache erreur texteCache invalid">Votre numréro de téléphone est invalide !</p>
                     </div>
                     <h2 class="titreTaille2">Informations postales</h2>
 
                     <div>
                         <label for="adresseDonneur">Adresse</label>
                         <input type="text" name="adresseDonneur" id="adresseDonneur">
-                        <p class="erreur texteCache">Veuillez inscrire votre adresse !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre adresse !</p>
                     </div>
 
                     <div>
                         <label for="codePostalDonneur">Code postal</label>
                         <input type="text" name="codePostalDonneur" id="codePostalDonneur">
-                        <p class="erreur texteCache">Veuillez inscrire votre code postal !</p>
-                        <p class="erreur texteCache invalide">Votre code postal ne respecte pas le format requis !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre code postal !</p>
+                        <p class="cache erreur texteCache invalide">Votre code postal ne respecte pas le format requis !</p>
                     </div>
 
                     <div>
                         <label for="paysDonneur">Pays</label>
                         <input type="text" name="paysDonneur" id="paysDonneur">
-                        <p class="erreur texteCache">Veuillez selectionner votre pays !</p>
+                        <p class="cache erreur texteCache">Veuillez selectionner votre pays !</p>
                     </div>
 
                     <div>
                         <label for="provinceDonneur">Province</label>
                         <input type="text" name="provinceDonneur" id="provinceDonneur">
-                        <p class="erreur texteCache">Veuillez selectionner votre province !</p>
+                        <p class="cache erreur texteCache">Veuillez selectionner votre province !</p>
                     </div>
                 </div>
 
@@ -153,14 +161,14 @@
                     <div>
                         <label for="titulaireCarte">Titulaire de la carte de crédit</label>
                         <input type="text" name="titulaireCarte" id="titulaireCarte">
-                        <p class="erreur texteCache">Veuillez inscrire le nom du titulaire !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire le nom du titulaire !</p>
                     </div>
 
                     <div>
                         <label for="numCarteDeCredit">Numéro de la carte de crédit</label>
                         <input type="text" name="numCarteDeCredit" id="numCarteDeCredit" maxlength="16">
-                        <p class="erreur texteCache">Veuillez inscrire votre numéro de carte de crédit !</p>
-                        <p class="erreur texteCache invalide">Votre numéro de carte de crédit ne respecte pas le format
+                        <p class="cache erreur texteCache">Veuillez inscrire votre numéro de carte de crédit !</p>
+                        <p class="cache erreur texteCache invalide">Votre numéro de carte de crédit ne respecte pas le format
                             requis !
                         </p>
                     </div>
@@ -168,13 +176,13 @@
                     <div>
                         <label for="dateExpiration">Date d'expiration</label>
                         <input type="date" name="dateExpiration" id="dateExpiration">
-                        <p class="erreur texteCache">Veuillez selectionner une date d'expiration !</p>
+                        <p class="cache erreur texteCache">Veuillez selectionner une date d'expiration !</p>
                     </div>
 
                     <div>
                         <label for="cvv">CVV</label>
                         <input type="tel" name="cvv" id="cvv" maxlength="3">
-                        <p class="erreur texteCache">Veuillez inscrire votre numréro de CVV !</p>
+                        <p class="cache erreur texteCache">Veuillez inscrire votre numréro de CVV !</p>
                     </div>
 
                 </div>
