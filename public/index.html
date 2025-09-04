@@ -5,10 +5,18 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/scripts.js"></script>
 </head>
 
 <body>
-    <h1> Formulare à remplir </h1>
+    <header>
+        <h1> Formulare à remplir </h1>
+        <div>
+            <span id="etat_etape1" class="evidence etat-etape">Informations personnelles </span>
+            <span id="etat_etape2" class="etat-etape">Informations protales </span>
+            <span id="etat_etape3" class="etat-etape">Preference </span>
+        </div>
+    </header>
     <form action="merci.html" method="get">
         <div class="formulaire">
             <section class="etape1">
@@ -66,24 +74,19 @@
                         <label for="nomDedicace">Don en l'honneur de :</label>
                     </div>
                 </div>
-                <div class="boutonsDepage">
-                    <button type="button" class="btn btnRetour">Retour</button>
-                    <button type="button" class="btn btnSuivant">Suivant</button>
-                </div>
             </section>
             <section class="etape2">
                 <p class="position">2/4</p>
                 <h2 class="titreTaille1">Informations sur le donneur</h2>
                 <fieldset>
                     <legend>Information personnelles</legend>
-
-
                     <div class="donEntreprise">
                         <input type="checkbox" name="donPourEntreprise" id="donPourEntreprise">
                         <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
+
                         <div class="cache inputTexteFerme">
-                            <input type="text" name="nomEntreprise" id="nomEntreprise">
                             <label for="nomEntreprise">Nom de l'entreprise :</label>
+                            <input type="text" name="nomEntreprise" id="nomEntreprise">
                         </div>
                     </div>
 
@@ -106,28 +109,28 @@
                     <div class="informationsTextuelles">
                         <div>
                             <label for="nom">Nom</label>
-                            <input type="text" name="nomDonneur" id="nomDonneur" required>
-                            <p class="cache erreur texteCache">Veuillez inscrire votre nom !</p>
+                            <input type="text" name="nom" id="nom" required>
+                            <p id="erreur_nom" class="erreur_nom texteCache"></p>
                         </div>
 
                         <div>
                             <label for="nom">Prenom</label>
-                            <input type="text" name="prenomDonneur" id="prenomDonneur">
-                            <p class="cache erreur texteCache">Veuillez inscrire votre prenom !</p>
+                            <input type="text" name="prenom" id="prenom" required>
+                            <p id="erreur_prenom" class="erreur_prenom texteCache"></p>
                         </div>
 
                         <div>
-                            <label for="emailDonneur">Adresse courriel</label>
-                            <input type="email" name="emailDonneur" id="emailDonneur">
-                            <p class="cache erreur texteCache">Veuillez inscrire votre adresse courriel !</p>
-                            <p class="cache erreur texteCache invalide">Votre adresse courriel n'est pas conforme !</p>
+                            <label for="email">Adresse courriel</label>
+                            <input type="email" name="email" id="email" required>
+                            <p id="erreur_email" class="erreur_email texteCache"></p>
+                            <p id="erreur_email" class="erreur_email texteCache email_invalide"></p>
                         </div>
 
                         <div>
-                            <label for="telDonneur">Numéro de téléphone</label>
-                            <input type="text" inputmode="numeric" name="telDonneur" id="telDonneur" maxlength="10">
-                            <p class="cache erreur texteCache">Veuillez inscrire votre numréro de téléphone !</p>
-                            <p class="cache erreur texteCache invalid">Votre numréro de téléphone est invalide !</p>
+                            <label for="tel">Numéro de téléphone</label>
+                            <input type="text" inputmode="numeric" name="telephone" id="telephone" maxlength="10" required>
+                            <p id="erreur_telephone" class="erreur_telephone texteCache"></p>
+                            <p id="erreur_telephone" class="erreur_telephone texteCache telephone_invalide"></p>
                         </div>
                 </fieldset>
 
@@ -137,36 +140,31 @@
                     <h2 class="titreTaille2">Informations postales</h2>
 
                     <div>
-                        <label for="adresseDonneur">Adresse</label>
-                        <input type="text" name="adresseDonneur" id="adresseDonneur">
-                        <p class="cache erreur texteCache">Veuillez inscrire votre adresse !</p>
+                        <label for="adresse">Adresse</label>
+                        <input type="text" name="adresse" id="adresse">
+                        <p id="erreur_adresse" class="erreur_adresse texteCache"></p>
                     </div>
 
                     <div>
-                        <label for="codePostalDonneur">Code postal</label>
-                        <input type="text" name="codePostalDonneur" id="codePostalDonneur">
-                        <p class="cache erreur texteCache">Veuillez inscrire votre code postal !</p>
-                        <p class="cache erreur texteCache invalide">Votre code postal ne respecte pas le format requis !
-                        </p>
+                        <label for="codePostal">Code postal</label>
+                        <input type="text" name="codePostal" id="codePostal">
+                        <p id="erreur_codePostal" class="erreur_codePostal texteCache"></p>
+                        <p id="erreur_codePostal" class="erreur_codePostal texteCache codePostal_invalide"></p>
                     </div>
 
                     <div>
-                        <label for="paysDonneur">Pays</label>
-                        <input type="text" name="paysDonneur" id="paysDonneur">
-                        <p class="cache erreur texteCache">Veuillez selectionner votre pays !</p>
+                        <label for="pays">Pays</label>
+                        <input type="text" name="pays" id="pays">
+                        <p id="erreur_pays" class="erreur_pays texteCache"></p>
                     </div>
 
                     <div>
-                        <label for="provinceDonneur">Province</label>
-                        <input type="text" name="provinceDonneur" id="provinceDonneur">
-                        <p class="cache erreur texteCache">Veuillez selectionner votre province !</p>
+                        <label for="province">Province</label>
+                        <input type="text" name="province" id="province">
+                        <p id="erreur_province" class="erreur_province texteCache"></p>
                     </div>
         </div>
 
-        <div class="boutonsDepage">
-            <button type="button" class="btn btnRetour">Retour</button>
-            <button type="button" class="btn btnSuivant">Suivant</button>
-        </div>
         </fieldset>
         </section>
 
@@ -177,35 +175,27 @@
                 <div>
                     <label for="titulaireCarte">Titulaire de la carte de crédit</label>
                     <input type="text" name="titulaireCarte" id="titulaireCarte">
-                    <p class="cache erreur texteCache">Veuillez inscrire le nom du titulaire !</p>
+                    <p id="erreur_titulaireCarte" class="erreur_titulaireCarte texteCache"></p>
                 </div>
 
                 <div>
-                    <label for="numCarteDeCredit">Numéro de la carte de crédit</label>
-                    <input type="text" inputmode="numeric" name="numCarteDeCredit" id="numCarteDeCredit" maxlength="19">
-                    <p class="cache erreur texteCache">Veuillez inscrire votre numéro de carte de crédit !</p>
-                    <p class="cache erreur texteCache invalide">Votre numéro de carte de crédit ne respecte pas le
-                        format
-                        requis !
-                    </p>
+                    <label for="numCarteCredit">Numéro de la carte de crédit</label>
+                    <input type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit" maxlength="19">
+                    <p id="erreur_numCarteCredit" class="erreur_numCarteCredit texteCache numCarteCredit_invalide"></p>
                 </div>
 
                 <div>
                     <label for="dateExpiration">Date d'expiration</label>
                     <input type="date" name="dateExpiration" id="dateExpiration">
-                    <p class="cache erreur texteCache">Veuillez selectionner une date d'expiration !</p>
+                    <p id="erreur_dateExpiration" class="erreur_dateExpiration texteCache"></p>
                 </div>
 
                 <div>
                     <label for="cvv">CVV</label>
                     <input type="tel" name="cvv" id="cvv" maxlength="4">
-                    <p class="cache erreur texteCache">Veuillez inscrire votre numréro de CVV !</p>
+                    <p id="erreur_cvv" class="erreur_cvv texteCache"></p>
                 </div>
 
-            </div>
-            <div class="boutonsDepage">
-                <button type="button" class="btn btnRetour">Retour</button>
-                <button type="button" class="btn btnSuivant">Suivant</button>
             </div>
         </section>
 
@@ -248,12 +238,13 @@
                     <p>402</p>
                 </div>
             </fieldset>
-            <div class="boutonsDepage">
-                <button type="button" class="btn btnRetour">Retour</button>
-                <button type="submit" class="btn btnDonner">Donner</button>
-            </div>
 
         </section>
+        <div class="boutonsDepage">
+            <button type="button" class="btn btnRetour" id="btnRetour">Retour</button>
+            <button type="button" class="btn btnSuivant" id="btnSuivant">Suivant</button>
+            <button type="submit" class="btn btnDonner" id="btnDonner">Donner</button>
+        </div>
         </div>
     </form>
 

@@ -1,0 +1,42 @@
+{
+    "prenom": {
+        "vide": "Vous devez entrer votre prénom.",
+        "pattern": "Pour le prénom, les accents français, les espaces, les tirets et les apostrophes sont permis."
+    },
+    "nom": {
+        "vide": "Vous devez entrer votre nom de famille.",
+        "pattern": "Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis."
+    },
+    "email": {
+        "vide": "Vous devez entrer votre adresse courriel.",
+        "pattern": "Votre adresse courriel n'est pas conforme !."
+    },
+    "codepostal": {
+        "vide": "Veuillez inscrire votre code postal !",
+        "pattern": "Votre code postal ne respecte pas le format requis !"
+    },
+    "pays": {
+        "vide": "Veuillez selectionner votre pays !"
+    },
+    "province": {
+        "vide": "Veuillez selectionner votre province !"
+    },
+    "telephone": {
+        "vide": "Veuillez inscrire votre numréro de téléphone !",
+        "pattern": "Votre numréro de téléphone est invalide !"
+    },
+    "cartedecredit": {
+        "vide": "Veuillez inscrire votre numéro de carte de crédit !",
+        "pattern": "Votre numéro de carte de crédit ne respecte pas le format requis !"
+    },
+    "dateexpiration": {
+        "vide": "Veuillez selectionner une date d'expiration !"
+    },
+    "cvv": {
+        "vide": "Veuillez inscrire votre numréro de CVV !"
+    },
+    "adresse": {
+        "vide": "Veuillez inscrire votre adresse !",
+        "pattern": "Votre adresse n'est pas conforme !"
+    }
+}
