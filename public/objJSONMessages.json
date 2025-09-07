@@ -25,15 +25,30 @@
         "vide": "Veuillez inscrire votre numréro de téléphone !",
         "pattern": "Votre numréro de téléphone est invalide !"
     },
-    "cartedecredit": {
+    "titulaireCarte": {
+        "vide": "Vous devez entrer le nom du titulaire de la carte !"
+    },
+    "numCarteCredit": {
         "vide": "Veuillez inscrire votre numéro de carte de crédit !",
         "pattern": "Votre numéro de carte de crédit ne respecte pas le format requis !"
     },
-    "dateexpiration": {
+    "dateExpiration": {
         "vide": "Veuillez selectionner une date d'expiration !"
     },
     "cvv": {
-        "vide": "Veuillez inscrire votre numréro de CVV !"
+        "vide": "Veuillez inscrire votre numéro de CVV !"
+    },
+    "autreMontant": {
+        "vide": "Veuillez inscrire un montant !",
+        "pattern": "Veuillez entrez uniquement des chiffres !"
+    },
+    "ouiDedicace": {
+        "vide": "Veuillez inscrire le nom de la dédicace!",
+        "pattern": "Veuillez entrez uniquement des chiffres !"
+    },
+    "ouiNomEntreprise": {
+        "vide": "Veuillez inscrire le nom de l'entreprise !",
+        "pattern": "Veuillez entrez uniquement des chiffres !"
     },
     "adresse": {
         "vide": "Veuillez inscrire votre adresse !",

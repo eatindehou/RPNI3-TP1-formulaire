@@ -61,19 +61,22 @@
                         <input type="radio" class="choixMultiple" name="valeurDon" id="donAutre" value="donAutre">
                         <label for="donAutre">Autre</label>
                     </div>
-                    <div class="donAutreCache">
-                        <input type="text" name="AutreMontant" id="AutreMontant">
+                    <div class="donAutreCache cache">
+                        <input type="number" name="valeurDon" id="autreMontant" value="" required>
                         <label for="AutreMontant"></label>
+                        <p id="erreur_autreMontant" class="erreur_autreMontant texteCache"></p>
                     </div>
                 </div>
                 <div class="donDedicace">
-                    <input type="checkbox" name="donADedicace" id="donADedicace">
+                    <input type="checkbox" name="donADedicace" id="donADedicace" value="ouiDedicace">
                     <label for="donADedicace">Je désire dédicacer mon don</label>
-                    <div class="cache inputTexteFerme">
-                        <input type="text" name="nomDedicace" id="nomDedicace">
-                        <label for="nomDedicace">Don en l'honneur de :</label>
+                    <div class="cache inputTexteFerme div_ouiDedicace">
+                        <input type="text" name="ouiDedicace" id="ouiDedicace" required>
+                        <label for="ouiDedicace">Don en l'honneur de :</label>
+                        <p id="erreur_ouiDedicace" class="erreur_ouiDedicace texteCache"></p>
                     </div>
                 </div>
+
             </section>
             <section class="etape2">
                 <p class="position">2/4</p>
@@ -81,12 +84,13 @@
                 <fieldset>
                     <legend>Information personnelles</legend>
                     <div class="donEntreprise">
-                        <input type="checkbox" name="donPourEntreprise" id="donPourEntreprise">
+                        <input type="checkbox" name="donPourEntreprise" id="donPourEntreprise" value="ouiNomEntreprise">
                         <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
-
-                        <div class="cache inputTexteFerme">
-                            <label for="nomEntreprise">Nom de l'entreprise :</label>
-                            <input type="text" name="nomEntreprise" id="nomEntreprise">
+                        
+                        <div class="cache inputTexteFerme div_ouiNomEntreprise">
+                            <input type="text" name="ouiNomEntreprise" id="ouiNomEntreprise" required>
+                            <label for="ouiNomEntreprise">Nom de l'entreprise :</label>
+                            <p id="erreur_ouiNomEntreprise" class="erreur_ouiNomEntreprise texteCache"></p>
                         </div>
                     </div>
 
@@ -127,7 +131,7 @@
                         </div>
 
                         <div>
-                            <label for="tel">Numéro de téléphone</label>
+                            <label for="telephone">Numéro de téléphone</label>
                             <input type="text" inputmode="numeric" name="telephone" id="telephone" maxlength="10" required>
                             <p id="erreur_telephone" class="erreur_telephone texteCache"></p>
                             <p id="erreur_telephone" class="erreur_telephone texteCache telephone_invalide"></p>

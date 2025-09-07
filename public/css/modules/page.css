@@ -2,10 +2,6 @@
   display: none;
 }
 
-input {
-  border: 3px dashed red;
-}
-
 p[class*=erreur] {
   color: red;
 }
