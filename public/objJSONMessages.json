@@ -9,17 +9,22 @@
     },
     "email": {
         "vide": "Vous devez entrer votre adresse courriel.",
-        "pattern": "Votre adresse courriel n'est pas conforme !."
+        "pattern": "Votre adresse courriel n'est pas conforme !.",
+        "tldSuspicieux": "Attention ! Certains domaines sont interdits !.",
+        "erreursCommunes": "Voulez-vous dire {domaine} !."
     },
-    "codepostal": {
+    "codePostal": {
         "vide": "Veuillez inscrire votre code postal !",
         "pattern": "Votre code postal ne respecte pas le format requis !"
     },
-    "pays": {
+    "listePays": {
         "vide": "Veuillez selectionner votre pays !"
     },
-    "province": {
+    "listeProvince": {
         "vide": "Veuillez selectionner votre province !"
+    },
+    "listeEtat": {
+        "vide": "Veuillez selectionner votre état !"
     },
     "telephone": {
         "vide": "Veuillez inscrire votre numréro de téléphone !",
