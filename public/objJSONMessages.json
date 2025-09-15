@@ -38,10 +38,14 @@
         "pattern": "Votre numéro de carte de crédit ne respecte pas le format requis !"
     },
     "dateExpiration": {
-        "vide": "Veuillez selectionner une date d'expiration !"
+        "vide": "Veuillez selectionner une date d'expiration !",
+        "pattern": "La date d'expiration ne respecte pas le format requis !",
+        "duree": "La date que vous avez entrée est expirée ! Veuillez entrer une date valide",
+        "dureeExedee": "La date que vous avez entrée n'exite pas !"
     },
     "cvv": {
-        "vide": "Veuillez inscrire votre numéro de CVV !"
+        "vide": "Veuillez inscrire votre numéro de CVV !",
+        "pattern": "Veuillez entrez une numéro de cvv valide !"
     },
     "autreMontant": {
         "vide": "Veuillez inscrire un montant !",
@@ -49,11 +53,11 @@
     },
     "ouiDedicace": {
         "vide": "Veuillez inscrire le nom de la dédicace!",
-        "pattern": "Veuillez entrez uniquement des chiffres !"
+        "pattern": "Pour le nom, les accents français, les espaces, les tirets et les apostrophes sont permis !"
     },
     "ouiNomEntreprise": {
         "vide": "Veuillez inscrire le nom de l'entreprise !",
-        "pattern": "Veuillez entrez uniquement des chiffres !"
+        "pattern": "Pour le nom de l'entreprise, les accents français, les espaces, les tirets et les apostrophes sont permis "
     },
     "adresse": {
         "vide": "Veuillez inscrire votre adresse !",

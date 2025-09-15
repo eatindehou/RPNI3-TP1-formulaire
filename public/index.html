@@ -94,7 +94,7 @@
                             <label for="donAutre">Autre</label>
                         </div>
                         <div class="donAutreCache cache">
-                            <input type="number" name="valeurDon" id="autreMontant" value="" required>
+                            <input type="number" name="valeurDon" id="autreMontant" value="">
                             <label for="AutreMontant"></label>
                             <p id="erreur_autreMontant" class="erreur_autreMontant texteCache"></p>
                         </div>
@@ -103,7 +103,7 @@
                         <input type="checkbox" name="donADedicace" id="donADedicace" value="ouiDedicace">
                         <label for="donADedicace">Je désire dédicacer mon don</label>
                         <div class="cache inputTexteFerme div_ouiDedicace">
-                            <input type="text" name="ouiDedicace" id="ouiDedicace" required>
+                            <input type="text" name="ouiDedicace" id="ouiDedicace">
                             <label for="ouiDedicace">Don en l'honneur de :</label>
                             <p id="erreur_ouiDedicace" class="erreur_ouiDedicace texteCache"></p>
                         </div>
@@ -121,7 +121,7 @@
                             <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
 
                             <div class="cache inputTexteFerme div_ouiNomEntreprise">
-                                <input type="text" name="ouiNomEntreprise" id="ouiNomEntreprise" required>
+                                <input type="text" name="ouiNomEntreprise" id="ouiNomEntreprise">
                                 <label for="ouiNomEntreprise">Nom de l'entreprise :</label>
                                 <p id="erreur_ouiNomEntreprise" class="erreur_ouiNomEntreprise texteCache"></p>
                             </div>
@@ -222,26 +222,26 @@
                 <div class="informationsTextuelles">
                     <div>
                         <label for="titulaireCarte">Titulaire de la carte de crédit</label>
-                        <input type="text" name="titulaireCarte" id="titulaireCarte">
+                        <input type="text" name="titulaireCarte" id="titulaireCarte" required>
                         <p id="erreur_titulaireCarte" class="erreur_titulaireCarte texteCache"></p>
                     </div>
 
                     <div>
                         <label for="numCarteCredit">Numéro de la carte de crédit</label>
-                        <input type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit" maxlength="19">
+                        <input type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit" maxlength="19" required>
                         <p id="erreur_numCarteCredit" class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
                         </p>
                     </div>
 
                     <div>
                         <label for="dateExpiration">Date d'expiration</label>
-                        <input type="date" name="dateExpiration" id="dateExpiration">
+                        <input type="texte" name="dateExpiration" id="dateExpiration" required placeholder="MM/AAAA" maxlength="7">
                         <p id="erreur_dateExpiration" class="erreur_dateExpiration texteCache"></p>
                     </div>
 
                     <div>
                         <label for="cvv">CVV</label>
-                        <input type="tel" name="cvv" id="cvv" maxlength="4">
+                        <input type="text" name="cvv" id="cvv" maxlength="4" required>
                         <p id="erreur_cvv" class="erreur_cvv texteCache"></p>
                     </div>
 

@@ -20,7 +20,9 @@ interface messageErreur {
     vide?: string;
     pattern?: string;
     tldSuspicieux?: string;
-    erreursCommunes?: string
+    erreursCommunes?: string;
+    duree?: string;
+    dureeExedee?: string
 }
 interface erreursJSON {
     [fieldName: string]: messageErreur;
@@ -51,7 +53,7 @@ function initaliser() {
     obtenirMessage();
     boutonSuivant.addEventListener('click', naviguerSuivant);
     boutonPrecedent.addEventListener('click', naviguerRetour);
-    // boutonDonner?.addEventListener('click', naviguerBouton)
+    // boutonDonner.addEventListener('click', naviguerSuivant);
 
     /*
     ÉTAPE 1 --> VOTRE DON
@@ -187,15 +189,16 @@ function validerChamp(champ: HTMLInputElement): boolean {
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^[a-zA-ZÀ-ÿ]+$/
     const leTexte = champ.value
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
+        console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
         console.log('valider champ: ' + id);
     }
     else if (expresRegex.test(leTexte) == false && messagesErreur[id].pattern) {
+        console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
@@ -367,6 +370,117 @@ function validerListeDeSelection(champ: HTMLInputElement) {
     }
     return valide
 }
+
+//VALIDATION DU CHAMP CODE POSTAL
+function validerCarteCredit(champ: HTMLInputElement) {
+    let valide = false;
+    const id = champ.id;
+    const idMessageErreur = "erreur_" + id;
+    const erreurElement = document.getElementById(idMessageErreur);
+    const expresRegex = /^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$/
+    const leNumDeCarte = champ.value
+    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leNumDeCarte))
+    // Vérifie chaque type d'erreur de validation
+    if (champ.validity.valueMissing && messagesErreur[id].vide) {
+        // Champ obligatoire vide (attribut required)
+        valide = false;
+        erreurElement.innerText = messagesErreur[id].vide;
+    }
+    else if (expresRegex.test(leNumDeCarte) == false && messagesErreur[id].pattern) {
+        // Ne correspond pas au pattern regex défini
+        erreurElement.innerText = messagesErreur[id].pattern;
+        valide = false;
+    }
+    else {
+        valide = true;
+        erreurElement.innerText = "";
+    }
+    return valide
+}
+
+// VALIDATION DU CHAMP DE DATE D'EXPIRATION
+function validerChampDate(champ: HTMLInputElement) {
+    let valide = false;
+    const id = champ.id;
+    const idMessageErreur = "erreur_" + id;
+    const erreurElement = document.getElementById(idMessageErreur);
+    const expresRegex = /^(0[1-9]|1[0-2])\/?([0-9]{4})$/
+    const laDate = champ.value
+    const dateAujourdhui = new Date();
+    let leMoisActuelle = dateAujourdhui.getMonth() + 1;
+    let lAnneeActuelle = dateAujourdhui.getFullYear();
+    let mois: any;
+    let annee: any;
+    const nbMoisMaximum: number = 12;
+
+    if (laDate.length == 7) {
+        mois = parseInt(laDate.substring(0, 2));
+        annee = parseInt(laDate.substring(3, 7));
+    }
+    else if (laDate.length == 6) {
+        mois = parseInt(laDate.substring(0, 2));
+        annee = parseInt(laDate.substring(2, 6));
+    }
+    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(laDate))
+    // Vérifie chaque type d'erreur de validation
+    if (champ.validity.valueMissing && messagesErreur[id].vide) {
+        // Champ obligatoire vide (attribut required)
+        valide = false;
+        erreurElement.innerText = messagesErreur[id].vide;
+    }
+    else if (expresRegex.test(laDate) == false && messagesErreur[id].pattern) {
+        // Ne correspond pas au pattern regex défini
+        if (mois > nbMoisMaximum) {
+            erreurElement.innerText = messagesErreur[id].dureeExedee;
+        }
+        else {
+            erreurElement.innerText = messagesErreur[id].pattern;
+        }
+        valide = false;
+    }
+    else {
+        if (annee < lAnneeActuelle) {
+
+            erreurElement.innerText = messagesErreur[id].duree;
+            valide = false;
+        }
+        else if (annee == lAnneeActuelle && mois <= leMoisActuelle) {
+            erreurElement.innerText = messagesErreur[id].duree;
+            valide = false;
+        }
+        else {
+            valide = true;
+            erreurElement.innerText = "";
+        }
+    }
+    return valide
+}
+
+function validerChampCvv(champ: HTMLInputElement) {
+    let valide = false;
+    const id = champ.id;
+    const idMessageErreur = "erreur_" + id;
+    const erreurElement = document.getElementById(idMessageErreur);
+    const expresRegex = /^[0-9]{3,4}$/
+    const leNumDeCvv = champ.value
+    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leNumDeCvv))
+    // Vérifie chaque type d'erreur de validation
+    if (champ.validity.valueMissing && messagesErreur[id].vide) {
+        // Champ obligatoire vide (attribut required)
+        valide = false;
+        erreurElement.innerText = messagesErreur[id].vide;
+    }
+    else if (expresRegex.test(leNumDeCvv) == false && messagesErreur[id].pattern) {
+        // Ne correspond pas au pattern regex défini
+        erreurElement.innerText = messagesErreur[id].pattern;
+        valide = false;
+    }
+    else {
+        valide = true;
+        erreurElement.innerText = "";
+    }
+    return valide
+}
 //AFFICHAGE DES CHAMPS CACHÉ
 function afficherLesChampsCache(): boolean {
     btnRadiosValeurDon.forEach((btnChoisi: any) => {
@@ -375,12 +489,12 @@ function afficherLesChampsCache(): boolean {
             if (btnChoisi.value !== 'donAutre') {
                 champAffiche = false;
                 divAutreMontant.classList.add("cache");
+
             }
             else {
                 champAffiche = true;
                 divAutreMontant.classList.remove("cache");
             }
-
         }
     })
     return champAffiche;
@@ -411,9 +525,10 @@ function validerEtape(etape: number): boolean {
     switch (etape) {
         case 0:
             if (champAffiche || estCheck) {
+                const montantElement = document.getElementById('autreMontant') as HTMLInputElement;
                 if (champAffiche) {
 
-                    const montantElement = document.getElementById('autreMontant') as HTMLInputElement;
+                    montantElement.required = true;
                     const montantValide = validerChamp(montantElement);
 
                     if (!montantValide) {
@@ -423,8 +538,14 @@ function validerEtape(etape: number): boolean {
                         etapeValide = true;
                     }
                 }
+                else {
+                    montantElement.required = false;
+
+                }
+
+                const nomDedicaceElement = document.getElementById('ouiDedicace') as HTMLInputElement;
                 if (estCheck) {
-                    const nomDedicaceElement = document.getElementById('ouiDedicace') as HTMLInputElement;
+                    nomDedicaceElement.required = true;
                     const nomDedicaceValide = validerChamp(nomDedicaceElement);
 
                     if (!nomDedicaceValide) {
@@ -434,7 +555,10 @@ function validerEtape(etape: number): boolean {
                         etapeValide = true;
                     }
                 }
+                else {
 
+                    nomDedicaceElement.required = false;
+                }
             }
             else {
                 etapeValide = true;
@@ -480,6 +604,28 @@ function validerEtape(etape: number): boolean {
                 etapeValide = true;
             }
             break;
+
+        case 2:
+            const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
+            const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
+            const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
+            const cvvElement = document.getElementById('cvv') as HTMLInputElement;
+
+            const titulaireCarteValide = validerChamp(titulaireCarteElement);
+            const numCarteValide = validerCarteCredit(numCarteElement);
+            const dateExpValide = validerChampDate(dateExpElement);
+            const cvvValide = validerChampCvv(cvvElement);
+
+            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+
+            if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
+                etapeValide = false;
+            }
+            else {
+                etapeValide = true;
+            }
+            break;
+
     }
     return etapeValide
 }
@@ -504,16 +650,14 @@ function afficherEtape(lesEtapes: number) {
     }
     else if (lesEtapes == 2) {
         boutonPrecedent.classList.remove('cache');
+        boutonSuivant.classList.remove('cache');
+        boutonDonner.classList.add('cache');
+    }
+    else if (lesEtapes == 3) {
+        boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.add('cache');
         boutonDonner.classList.remove('cache');
     }
-    const elementsEtat: any = document.querySelectorAll('etat-etape',)
-    const etatElement: any = document.getElementById('etat_etape' + (lesEtapes + 1));
-    etatElement.classList.add('evidence')
-
-    elementsEtat.forEach((element: any) => {
-        element.classList.remove("evidence")
-    });
 }
 // CACHE LES SECTIONS QUI NE S0NT PAS ENCORE ACTIVÉE
 function cacherSections() {
