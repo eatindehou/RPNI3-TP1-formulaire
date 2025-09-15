@@ -4,10 +4,13 @@ let sections;
 let boutonSuivant;
 let boutonPrecedent;
 let boutonDonner;
+let lienBtnSuivant;
+let touslesBoutonsRadios;
 let btnRadiosValeurDon;
 let btnRadiosDon;
 let checkboxDons;
 let divCheckboxCache;
+let leTypeDeDon;
 let estCheck = false;
 ;
 let divAutreMontant;
@@ -23,6 +26,7 @@ function initaliser() {
     boutonSuivant = document.getElementById('btnSuivant');
     boutonPrecedent = document.getElementById('btnRetour');
     boutonDonner = document.getElementById('btnDonner');
+    lienBtnSuivant = document.getElementById('lienBtnSuivant');
     cacherSections();
     afficherEtape(numEtape);
     obtenirMessage();
@@ -37,6 +41,18 @@ function initaliser() {
     ***Selection des checkbox + le champ caché décdicae
     */
     btnRadiosDon = document.querySelectorAll("input[name='don']");
+    btnRadiosDon.forEach((btnDonChoisi) => {
+        connaitreValeur(btnDonChoisi);
+    });
+    touslesBoutonsRadios = document.querySelectorAll("input[type='radio']");
+    touslesBoutonsRadios.forEach((unBtnRadio) => {
+        /**** Debut du code provenant de Gemini */
+        unBtnRadio.addEventListener('click', (event) => {
+            const leBtnClique = event.currentTarget;
+            connaitreValeur(leBtnClique);
+        });
+    });
+    // ***** Fin du code provenant de Gemini
     btnRadiosValeurDon = document.querySelectorAll("input[name='valeurDon']");
     btnRadiosValeurDon.forEach((btnChoisi) => {
         btnChoisi.addEventListener('click', afficherLesChampsCache);
@@ -136,6 +152,13 @@ async function obtenirPays() {
             leInputProvince.disabled = true;
         }
     });
+}
+// CONNAITRE LA VALEUR DES BOUTON RADIOS CLIQUÉS
+function connaitreValeur(leBoutonClique) {
+    if (leBoutonClique.checked == true) {
+        console.log(leBoutonClique.value);
+        return leBoutonClique.value;
+    }
 }
 // APPELER VALIDATION DU CHAMP EMAIL
 function faireValiderEmail(event) {
@@ -474,6 +497,9 @@ function validerEtape(etape) {
     let etapeValide = false;
     switch (etape) {
         case 0:
+            const leTypeDeDonChecked = document.querySelector("input[name='don']:checked");
+            leTypeDeDon = leTypeDeDonChecked.value;
+            console.log('Voici le type de don  ' + leTypeDeDon);
             if (champAffiche || estCheck) {
                 const montantElement = document.getElementById('autreMontant');
                 if (champAffiche) {
@@ -507,59 +533,65 @@ function validerEtape(etape) {
             else {
                 etapeValide = true;
             }
+            lienBtnSuivant.href += `ChoixDeDon=${leTypeDeDon}`;
+            console.log(lienBtnSuivant.href);
             break;
         case 1:
-            const nomElement = document.getElementById('nom');
-            const prenomElement = document.getElementById('prenom');
-            const emailElement = document.getElementById('email');
-            const telephoneElement = document.getElementById('telephone');
-            const adresseElement = document.getElementById('adresse');
-            const codePostalElement = document.getElementById('codePostal');
-            const listePaysElement = document.getElementById('listePays');
-            const listeProvinceElement = document.getElementById('listeProvince');
-            // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
-            const nomValide = validerChamp(nomElement);
-            const prenomValide = validerChamp(prenomElement);
-            const emailValide = validerEmail(emailElement);
-            const telephoneValide = validerTelephone(telephoneElement);
-            const adresseValide = validerAdresse(adresseElement);
-            const codePostalValide = validerCodePostal(codePostalElement);
-            const listePaysValide = validerListeDeSelection(listePaysElement);
-            const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
-            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
-            if (estCheck) {
-                const nomEntrepriseElement = document.getElementById('ouiNomEntreprise');
-                const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
-                if (!nomEntrepriseValide) {
-                    etapeValide = false;
-                }
-                else {
-                    etapeValide = true;
-                }
-            }
-            if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
-                etapeValide = false;
-            }
-            else {
-                etapeValide = true;
-            }
+            // const nomElement = document.getElementById('nom') as HTMLInputElement;
+            // const prenomElement = document.getElementById('prenom') as HTMLInputElement;
+            // const emailElement = document.getElementById('email') as HTMLInputElement;
+            // const telephoneElement = document.getElementById('telephone') as HTMLInputElement;
+            // const adresseElement = document.getElementById('adresse') as HTMLInputElement;
+            // const codePostalElement = document.getElementById('codePostal') as HTMLInputElement;
+            // const listePaysElement = document.getElementById('listePays') as HTMLInputElement;
+            // const listeProvinceElement = document.getElementById('listeProvince') as HTMLInputElement;
+            // // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
+            // const nomValide = validerChamp(nomElement);
+            // const prenomValide = validerChamp(prenomElement);
+            // const emailValide = validerEmail(emailElement);
+            // const telephoneValide = validerTelephone(telephoneElement);
+            // const adresseValide = validerAdresse(adresseElement);
+            // const codePostalValide = validerCodePostal(codePostalElement);
+            // const listePaysValide = validerListeDeSelection(listePaysElement);
+            // const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
+            // // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            // if (estCheck) {
+            //     const nomEntrepriseElement = document.getElementById('ouiNomEntreprise') as HTMLInputElement;
+            //     const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
+            //     if (!nomEntrepriseValide) {
+            //         etapeValide = false;
+            //     }
+            //     else {
+            //         etapeValide = true;
+            //     }
+            // }
+            // if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
+            //     etapeValide = false;
+            // }
+            // else {
+            //     etapeValide = true;
+            // }
+            etapeValide = true;
             break;
         case 2:
-            const titulaireCarteElement = document.getElementById('titulaireCarte');
-            const numCarteElement = document.getElementById('numCarteCredit');
-            const dateExpElement = document.getElementById('dateExpiration');
-            const cvvElement = document.getElementById('cvv');
-            const titulaireCarteValide = validerChamp(titulaireCarteElement);
-            const numCarteValide = validerCarteCredit(numCarteElement);
-            const dateExpValide = validerChampDate(dateExpElement);
-            const cvvValide = validerChampCvv(cvvElement);
-            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
-            if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
-                etapeValide = false;
-            }
-            else {
-                etapeValide = true;
-            }
+            // const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
+            // const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
+            // const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
+            // const cvvElement = document.getElementById('cvv') as HTMLInputElement;
+            // const titulaireCarteValide = validerChamp(titulaireCarteElement);
+            // const numCarteValide = validerCarteCredit(numCarteElement);
+            // const dateExpValide = validerChampDate(dateExpElement);
+            // const cvvValide = validerChampCvv(cvvElement);
+            // // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            // if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
+            //     etapeValide = false;
+            // }
+            // else {
+            //     etapeValide = true;
+            // }
+            etapeValide = true;
+            break;
+        case 3:
             break;
     }
     return etapeValide;

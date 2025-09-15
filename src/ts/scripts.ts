@@ -5,10 +5,14 @@ let sections: NodeListOf<HTMLElement>;
 let boutonSuivant: HTMLButtonElement;
 let boutonPrecedent: HTMLButtonElement;
 let boutonDonner: HTMLButtonElement;
+let lienBtnSuivant: HTMLLinkElement;
+let touslesBoutonsRadios: any;
 let btnRadiosValeurDon: any;
 let btnRadiosDon: any;
 let checkboxDons: any;
 let divCheckboxCache: any;
+
+let leTypeDeDon: any;
 
 let estCheck: boolean = false;;
 let divAutreMontant: any;
@@ -48,6 +52,7 @@ function initaliser() {
     boutonSuivant = document.getElementById('btnSuivant') as HTMLButtonElement;
     boutonPrecedent = document.getElementById('btnRetour') as HTMLButtonElement;
     boutonDonner = document.getElementById('btnDonner') as HTMLButtonElement;
+    lienBtnSuivant = document.getElementById('lienBtnSuivant') as HTMLLinkElement;
     cacherSections();
     afficherEtape(numEtape);
     obtenirMessage();
@@ -63,6 +68,20 @@ function initaliser() {
     ***Selection des checkbox + le champ caché décdicae
     */
     btnRadiosDon = document.querySelectorAll("input[name='don']");
+
+    btnRadiosDon.forEach((btnDonChoisi: any) => {
+        connaitreValeur(btnDonChoisi);
+    });
+    touslesBoutonsRadios = document.querySelectorAll("input[type='radio']");
+
+    touslesBoutonsRadios.forEach((unBtnRadio: any) => {
+        /**** Debut du code provenant de Gemini */
+        unBtnRadio.addEventListener('click', (event: Event) => {
+            const leBtnClique = event.currentTarget as HTMLInputElement
+            connaitreValeur(leBtnClique);
+        });
+    });
+    // ***** Fin du code provenant de Gemini
     btnRadiosValeurDon = document.querySelectorAll("input[name='valeurDon']");
     btnRadiosValeurDon.forEach((btnChoisi: any) => {
         btnChoisi.addEventListener('click', afficherLesChampsCache);
@@ -175,6 +194,13 @@ async function obtenirPays(): Promise<void> {
 
     })
 
+}
+// CONNAITRE LA VALEUR DES BOUTON RADIOS CLIQUÉS
+function connaitreValeur(leBoutonClique: any) {
+    if (leBoutonClique.checked == true) {
+        console.log(leBoutonClique.value)
+        return leBoutonClique.value
+    }
 }
 // APPELER VALIDATION DU CHAMP EMAIL
 function faireValiderEmail(event: Event) {
@@ -521,9 +547,14 @@ function afficherChampCheckbox(): boolean {
 }
 // VALIDATION DES ÉTAPES
 function validerEtape(etape: number): boolean {
-    let etapeValide = false;
+
+    let etapeValide: boolean = false;
     switch (etape) {
         case 0:
+            const leTypeDeDonChecked = document.querySelector("input[name='don']:checked") as HTMLInputElement;
+            leTypeDeDon = leTypeDeDonChecked.value;
+            console.log('Voici le type de don  ' + leTypeDeDon);
+
             if (champAffiche || estCheck) {
                 const montantElement = document.getElementById('autreMontant') as HTMLInputElement;
                 if (champAffiche) {
@@ -542,7 +573,6 @@ function validerEtape(etape: number): boolean {
                     montantElement.required = false;
 
                 }
-
                 const nomDedicaceElement = document.getElementById('ouiDedicace') as HTMLInputElement;
                 if (estCheck) {
                     nomDedicaceElement.required = true;
@@ -563,67 +593,77 @@ function validerEtape(etape: number): boolean {
             else {
                 etapeValide = true;
             }
+
+            lienBtnSuivant.href += `ChoixDeDon=${leTypeDeDon}`;
+            console.log(lienBtnSuivant.href)
+
             break;
         case 1:
-            const nomElement = document.getElementById('nom') as HTMLInputElement;
-            const prenomElement = document.getElementById('prenom') as HTMLInputElement;
-            const emailElement = document.getElementById('email') as HTMLInputElement;
-            const telephoneElement = document.getElementById('telephone') as HTMLInputElement;
-            const adresseElement = document.getElementById('adresse') as HTMLInputElement;
-            const codePostalElement = document.getElementById('codePostal') as HTMLInputElement;
-            const listePaysElement = document.getElementById('listePays') as HTMLInputElement;
-            const listeProvinceElement = document.getElementById('listeProvince') as HTMLInputElement;
-            // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
+            // const nomElement = document.getElementById('nom') as HTMLInputElement;
+            // const prenomElement = document.getElementById('prenom') as HTMLInputElement;
+            // const emailElement = document.getElementById('email') as HTMLInputElement;
+            // const telephoneElement = document.getElementById('telephone') as HTMLInputElement;
+            // const adresseElement = document.getElementById('adresse') as HTMLInputElement;
+            // const codePostalElement = document.getElementById('codePostal') as HTMLInputElement;
+            // const listePaysElement = document.getElementById('listePays') as HTMLInputElement;
+            // const listeProvinceElement = document.getElementById('listeProvince') as HTMLInputElement;
+            // // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
 
-            const nomValide = validerChamp(nomElement);
-            const prenomValide = validerChamp(prenomElement);
-            const emailValide = validerEmail(emailElement);
-            const telephoneValide = validerTelephone(telephoneElement);
-            const adresseValide = validerAdresse(adresseElement);
-            const codePostalValide = validerCodePostal(codePostalElement);
-            const listePaysValide = validerListeDeSelection(listePaysElement);
-            const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
-            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            // const nomValide = validerChamp(nomElement);
+            // const prenomValide = validerChamp(prenomElement);
+            // const emailValide = validerEmail(emailElement);
+            // const telephoneValide = validerTelephone(telephoneElement);
+            // const adresseValide = validerAdresse(adresseElement);
+            // const codePostalValide = validerCodePostal(codePostalElement);
+            // const listePaysValide = validerListeDeSelection(listePaysElement);
+            // const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
+            // // const listeEtatValide = validerListeDeSelection(listeEtatElement);
 
-            if (estCheck) {
-                const nomEntrepriseElement = document.getElementById('ouiNomEntreprise') as HTMLInputElement;
-                const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
+            // if (estCheck) {
+            //     const nomEntrepriseElement = document.getElementById('ouiNomEntreprise') as HTMLInputElement;
+            //     const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
 
-                if (!nomEntrepriseValide) {
-                    etapeValide = false;
-                }
-                else {
-                    etapeValide = true;
-                }
-            }
+            //     if (!nomEntrepriseValide) {
+            //         etapeValide = false;
+            //     }
+            //     else {
+            //         etapeValide = true;
+            //     }
+            // }
 
-            if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
-                etapeValide = false;
-            }
-            else {
-                etapeValide = true;
-            }
+            // if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
+            //     etapeValide = false;
+            // }
+            // else {
+            //     etapeValide = true;
+            // }
+
+            etapeValide = true;
             break;
 
         case 2:
-            const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
-            const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
-            const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
-            const cvvElement = document.getElementById('cvv') as HTMLInputElement;
+            // const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
+            // const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
+            // const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
+            // const cvvElement = document.getElementById('cvv') as HTMLInputElement;
 
-            const titulaireCarteValide = validerChamp(titulaireCarteElement);
-            const numCarteValide = validerCarteCredit(numCarteElement);
-            const dateExpValide = validerChampDate(dateExpElement);
-            const cvvValide = validerChampCvv(cvvElement);
+            // const titulaireCarteValide = validerChamp(titulaireCarteElement);
+            // const numCarteValide = validerCarteCredit(numCarteElement);
+            // const dateExpValide = validerChampDate(dateExpElement);
+            // const cvvValide = validerChampCvv(cvvElement);
 
-            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            // // const listeEtatValide = validerListeDeSelection(listeEtatElement);
 
-            if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
-                etapeValide = false;
-            }
-            else {
-                etapeValide = true;
-            }
+            // if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
+            //     etapeValide = false;
+            // }
+            // else {
+            //     etapeValide = true;
+            // }
+            etapeValide = true;
+            break;
+        case 3:
+
             break;
 
     }
