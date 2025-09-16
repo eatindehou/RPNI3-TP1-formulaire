@@ -4,18 +4,54 @@ let sections;
 let boutonSuivant;
 let boutonPrecedent;
 let boutonDonner;
-let lienBtnSuivant;
 let touslesBoutonsRadios;
 let btnRadiosValeurDon;
 let btnRadiosDon;
 let checkboxDons;
 let divCheckboxCache;
-let leTypeDeDon;
 let estCheck = false;
 ;
 let divAutreMontant;
 let champAffiche = false;
 let champEmail;
+/*** RECUPÉRATION DES DONNÉES ENTRÉES PAR L'UTILISATEUR */
+// Étape don
+let typeDeDonEntree;
+let valeurDeDonEntree;
+let estDedicaceEntree;
+let nomDedicaceEntree;
+let typeDonAEntree = document.getElementById('typeDeDon');
+let valeurDonAEntree = document.getElementById('valeurDuDon');
+let estDedicaceAEntree = document.getElementById('reponseDon');
+let nomDedicaceAEntree = document.getElementById('nomDedicace');
+// Étape donneur
+let estEntrepriseEntree;
+let nomEntrepriseEntree;
+let genreEntree;
+let nomEntree;
+let prenomEntree;
+let courrielEntree;
+let telephoneEntree;
+let adresseEntree;
+let codepostalEntree;
+let paysEntree;
+let provinceEntree;
+let estEntrepriseAEntree = document.getElementById('typeDeDon');
+let nomEntrepriseAEntree = document.getElementById('valeurDuDon');
+let genreAEntree = document.getElementById('reponseDon');
+let nomAEntree = document.getElementById('nomDedicace');
+let prenomAEntree = document.getElementById('nomDedicace');
+let courrielAEntree = document.getElementById('nomDedicace');
+let telephoneAEntree = document.getElementById('nomDedicace');
+let adresseAEntree = document.getElementById('nomDedicace');
+let codepostalAEntree = document.getElementById('nomDedicace');
+let paysAEntree = document.getElementById('nomDedicace');
+let provinceAEntree = document.getElementById('nomDedicace');
+// Étape paiement
+let nomTitulaireEntree;
+let numCarteEntree;
+let dateExpEntree;
+let cvvEntree;
 let paysProvinceJSON;
 let messagesErreur;
 initaliser();
@@ -26,7 +62,6 @@ function initaliser() {
     boutonSuivant = document.getElementById('btnSuivant');
     boutonPrecedent = document.getElementById('btnRetour');
     boutonDonner = document.getElementById('btnDonner');
-    lienBtnSuivant = document.getElementById('lienBtnSuivant');
     cacherSections();
     afficherEtape(numEtape);
     obtenirMessage();
@@ -171,7 +206,7 @@ function validerChamp(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
-    const expresRegex = /^[a-zA-ZÀ-ÿ]+$/;
+    const expresRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
     const leTexte = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
@@ -456,6 +491,31 @@ function validerChampCvv(champ) {
     }
     return valide;
 }
+function validerChampNumerique(champ) {
+    let valide = false;
+    const id = champ.id;
+    const idMessageErreur = "erreur_" + id;
+    const erreurElement = document.getElementById(idMessageErreur);
+    const expresRegex = /^\d+$/;
+    const leMontantEntre = champ.value;
+    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leMontantEntre));
+    // Vérifie chaque type d'erreur de validation
+    if (champ.validity.valueMissing && messagesErreur[id].vide) {
+        // Champ obligatoire vide (attribut required)
+        valide = false;
+        erreurElement.innerText = messagesErreur[id].vide;
+    }
+    else if (expresRegex.test(leMontantEntre) == false && messagesErreur[id].pattern) {
+        // Ne correspond pas au pattern regex défini
+        erreurElement.innerText = messagesErreur[id].pattern;
+        valide = false;
+    }
+    else {
+        valide = true;
+        erreurElement.innerText = "";
+    }
+    return valide;
+}
 //AFFICHAGE DES CHAMPS CACHÉ
 function afficherLesChampsCache() {
     btnRadiosValeurDon.forEach((btnChoisi) => {
@@ -498,25 +558,30 @@ function validerEtape(etape) {
     switch (etape) {
         case 0:
             const leTypeDeDonChecked = document.querySelector("input[name='don']:checked");
-            leTypeDeDon = leTypeDeDonChecked.value;
-            console.log('Voici le type de don  ' + leTypeDeDon);
+            const laValeurDeDonChecked = document.querySelector("input[name='valeurDon']:checked");
+            // attribution du type de don
+            typeDeDonEntree = leTypeDeDonChecked.value;
+            valeurDeDonEntree = laValeurDeDonChecked.value;
             if (champAffiche || estCheck) {
                 const montantElement = document.getElementById('autreMontant');
+                const nomDedicaceElement = document.getElementById('ouiDedicace');
                 if (champAffiche) {
                     montantElement.required = true;
-                    const montantValide = validerChamp(montantElement);
+                    const montantValide = validerChampNumerique(montantElement);
                     if (!montantValide) {
                         etapeValide = false;
                     }
                     else {
+                        // attribution de la valeur de don
+                        valeurDeDonEntree = montantElement.value;
                         etapeValide = true;
                     }
                 }
                 else {
                     montantElement.required = false;
                 }
-                const nomDedicaceElement = document.getElementById('ouiDedicace');
                 if (estCheck) {
+                    estDedicaceEntree = "oui";
                     nomDedicaceElement.required = true;
                     const nomDedicaceValide = validerChamp(nomDedicaceElement);
                     if (!nomDedicaceValide) {
@@ -524,54 +589,58 @@ function validerEtape(etape) {
                     }
                     else {
                         etapeValide = true;
+                        nomDedicaceEntree = nomDedicaceElement.value;
+                        nomDedicaceAEntree.classList.remove('cache');
                     }
                 }
                 else {
+                    estDedicaceEntree = "non";
                     nomDedicaceElement.required = false;
+                    nomDedicaceAEntree.classList.add('cache');
                 }
+            }
+            else {
+                estDedicaceEntree = "non";
+                nomDedicaceAEntree.classList.add('cache');
+                etapeValide = true;
+            }
+            break;
+        case 1:
+            console.log(estDedicaceEntree);
+            const nomElement = document.getElementById('nom');
+            const prenomElement = document.getElementById('prenom');
+            const emailElement = document.getElementById('email');
+            const telephoneElement = document.getElementById('telephone');
+            const adresseElement = document.getElementById('adresse');
+            const codePostalElement = document.getElementById('codePostal');
+            const listePaysElement = document.getElementById('listePays');
+            const listeProvinceElement = document.getElementById('listeProvince');
+            // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
+            const nomValide = validerChamp(nomElement);
+            const prenomValide = validerChamp(prenomElement);
+            const emailValide = validerEmail(emailElement);
+            const telephoneValide = validerTelephone(telephoneElement);
+            const adresseValide = validerAdresse(adresseElement);
+            const codePostalValide = validerCodePostal(codePostalElement);
+            const listePaysValide = validerListeDeSelection(listePaysElement);
+            const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
+            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            if (estCheck) {
+                const nomEntrepriseElement = document.getElementById('ouiNomEntreprise');
+                const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
+                if (!nomEntrepriseValide) {
+                    etapeValide = false;
+                }
+                else {
+                    etapeValide = true;
+                }
+            }
+            if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
+                etapeValide = false;
             }
             else {
                 etapeValide = true;
             }
-            lienBtnSuivant.href += `ChoixDeDon=${leTypeDeDon}`;
-            console.log(lienBtnSuivant.href);
-            break;
-        case 1:
-            // const nomElement = document.getElementById('nom') as HTMLInputElement;
-            // const prenomElement = document.getElementById('prenom') as HTMLInputElement;
-            // const emailElement = document.getElementById('email') as HTMLInputElement;
-            // const telephoneElement = document.getElementById('telephone') as HTMLInputElement;
-            // const adresseElement = document.getElementById('adresse') as HTMLInputElement;
-            // const codePostalElement = document.getElementById('codePostal') as HTMLInputElement;
-            // const listePaysElement = document.getElementById('listePays') as HTMLInputElement;
-            // const listeProvinceElement = document.getElementById('listeProvince') as HTMLInputElement;
-            // // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
-            // const nomValide = validerChamp(nomElement);
-            // const prenomValide = validerChamp(prenomElement);
-            // const emailValide = validerEmail(emailElement);
-            // const telephoneValide = validerTelephone(telephoneElement);
-            // const adresseValide = validerAdresse(adresseElement);
-            // const codePostalValide = validerCodePostal(codePostalElement);
-            // const listePaysValide = validerListeDeSelection(listePaysElement);
-            // const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
-            // // const listeEtatValide = validerListeDeSelection(listeEtatElement);
-            // if (estCheck) {
-            //     const nomEntrepriseElement = document.getElementById('ouiNomEntreprise') as HTMLInputElement;
-            //     const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
-            //     if (!nomEntrepriseValide) {
-            //         etapeValide = false;
-            //     }
-            //     else {
-            //         etapeValide = true;
-            //     }
-            // }
-            // if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
-            //     etapeValide = false;
-            // }
-            // else {
-            //     etapeValide = true;
-            // }
-            etapeValide = true;
             break;
         case 2:
             // const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
@@ -590,8 +659,15 @@ function validerEtape(etape) {
             //     etapeValide = true;
             // }
             etapeValide = true;
+            console.log('gyuhdgsuysgdgds');
+            typeDonAEntree.innerText = typeDeDonEntree;
+            valeurDonAEntree.innerText = valeurDeDonEntree;
+            estDedicaceAEntree.innerText = estDedicaceEntree;
+            nomDedicaceAEntree.innerText += nomDedicaceEntree;
+            console.log("ahhhhhhhhhhhh" + typeDonAEntree);
             break;
         case 3:
+            // divDonneesEntreprise.appendChild(nomDedicaceAEntree); 
             break;
     }
     return etapeValide;

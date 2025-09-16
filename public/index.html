@@ -2,8 +2,8 @@
 <html lang="fr-CA">
 
 <head>
-    <meta charset="utf-8">;
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">;
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Mantura est un organisme dédié à la protection et à la préservation des mantes religieuses en voie de disparition. À travers la sensibilisation, la recherche et des actions concrètes sur le terrain, nous œuvrons pour sauvegarder la biodiversité et soutenir un avenir durable.">
     <meta name="keywords"
@@ -17,7 +17,7 @@
 <body>
     <a href="#main" class="lien_cache">Aller au contenu</a>
     <header role="banner">
-        <h1> Formulare à remplir </h1>
+        <h1> Formulaire à remplir </h1>
         <button aria-label="Afficher le menu" aria-expanded="false"></button>
 
         <nav class="navigation" aria-label="Etapes du formulaire de don" role="navigation">
@@ -73,13 +73,11 @@
                     </div>
                     <div class="montantsdeDons">
                         <div>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="20"
-                                checked>
+                            <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="20" checked>
                             <label for="valeurDon">20</label>
                         </div>
                         <div>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donCinquante"
-                                value="50">
+                            <input type="radio" class="choixMultiple" name="valeurDon" id="donCinquante" value="50">
                             <label for="valeurDon">50</label>
                         </div>
                         <div>
@@ -92,12 +90,12 @@
                             <label for="valeurDon">100</label>
                         </div>
                         <div>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="valeurDeuxCent"
-                                value="valeurDeuxCent">
+                            <input type="radio" class="choixMultiple" name="valeurDon" id="valeurDeuxCent" value="200">
                             <label for="valeurDon">200</label>
                         </div>
                         <div>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donAutre" value="donAutre">
+                            <input type="radio" class="choixMultiple donAutre" name="valeurDon" id="donAutre"
+                                value="donAutre">
                             <label for="valeurDon">Autre</label>
                         </div>
                         <div class="donAutreCache cache">
@@ -259,45 +257,43 @@
                 <h2 class="titreTaille1">Résumé</h2>
                 <fieldset class="resumeDon">
                     <legend>Votre don</legend>
-                    <div class="resumeTypeDon">
-                        <p>Don unique</p>
-                        <p>20$</p>
+                    <div class="donneesTypeDon">
+                        <p id="typeDeDon"></p>
+                        <p id="valeurDuDon"></p>
                     </div>
                     <h3 class="texteTaille3">Voulez-vous dédiez votre don ?</h3>
-                    <p>Non</p>
+                    <div class="donneesADedicacer">
+                        <p id="reponseDon"></p>
+                        <p id="nomDedicace">En l'honneur de </p>
+                    </div>
                 </fieldset>
                 <fieldset>
                     <legend>Renseignements sur le donneur</legend>
-                    <p>Mme</p>
-                    <p>20$</p>
-                    <p>Dubois</p>
-                    <p>Alice</p>
-                    <p>alicedubois@hotmail.fr</p>
-                    <p>5185354236</p>
+                    <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
+                    <div class="donneesEntreprise">
+                        <p id="reponseEntreprise"></p>
+                        <p id="nomEntreprise">Nom de l'entreprise</p>
+                        <p id="infosGenre"></p>
+                        <p id=""></p>
+                    </div>
                 </fieldset>
-
                 <fieldset>
                     <legend>Informations postales</legend>
-                    <p>6573 rue du courchevel</p>
-                    <p>V62 S4B</p>
-                    <p>Canada</p>
-                    <p>Quebec</p>
+                    <div class="donneesPostales">
+
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Paiement</legend>
-                    <p>Alice Dubois</p>
-                    <p>435034527564</p>
                     <div class="resumeDonneesCarte">
-                        <p>02/29</p>
-                        <p>402</p>
                     </div>
                 </fieldset>
 
             </section>
             <div class="boutonsDepage">
                 <button type="button" class="btn btnRetour" id="btnRetour">Retour</button>
-                <button type="button" class="btn btnSuivant" id="btnSuivant"><a id="lienBtnSuivant" href="#">Suivant</a></button>
+                <button type="button" class="btn btnSuivant" id="btnSuivant">Suivant</button>
                 <button type="submit" class="btn btnDonner" id="btnDonner">Donner</button>
             </div>
             </div>
