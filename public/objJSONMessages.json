@@ -61,6 +61,10 @@
     },
     "adresse": {
         "vide": "Veuillez inscrire votre adresse !",
-        "pattern": "Votre adresse n'est pas conforme !"
+        "pattern": "Votre adresse n'est pas conforme ! Celle-ci doit au moins contenir le numéro de porte."
+    },
+    "numApp": {
+        "vide": " ",
+        "pattern": "Votre numéro ne contenir que des chiffres !"
     }
 }

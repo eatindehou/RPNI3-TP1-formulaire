@@ -22,25 +22,25 @@
 
         <nav class="navigation" aria-label="Etapes du formulaire de don" role="navigation">
             <ul class="menu">
-                <li aria-current="page" class="menu__etape">
-                    <a href="#etapeDon" class="menu__lien menu__lien--active">
+                <li aria-current="page" class="menu__etape etat-etape" id="etat_etape1">
+                    <a href="#etapeDon" class="menu__lien menu__lien--active ">
                         <span class="hors_ecran">Don</span>
                         Don
                     </a>
                 </li>
-                <li class="menu__etape">
+                <li class="menu__etape etat-etape" id="etat_etape2">
                     <a href="#etapeDonneur" class="menu__lien menu__lien--inactive" aria-disabled="true">
                         <span class="hors_ecran">Donneur</span>
                         Donneur
                     </a>
                 </li>
-                <li class="menu__etape">
+                <li class="menu__etape etat-etape" id="etat_etape3">
                     <a href="#etapePaiement" class="menu__lien menu__lien--inactive" aria-disabled="true">
                         Paiement
                         <span class="hors_ecran">Paiement</span>
                     </a>
                 </li>
-                <li class="menu__etape">
+                <li class="menu__etape etat-etape"id="etat_etape4">
                     <a href="#etapeResume" class="menu__lien menu__lien--inactive" aria-disabled="true">
                         Résumé
                         <span class="hors_ecran">Résumé</span>
@@ -49,11 +49,6 @@
             </ul>
         </nav>
 
-        <div>
-            <span id="etat_etape1" class="evidence etat-etape">Informations personnelles </span>
-            <span id="etat_etape2" class="etat-etape">Informations protales </span>
-            <span id="etat_etape3" class="etat-etape">Preference </span>
-        </div>
     </header>
     <main id="main" class="contenuPrinciaple" role="main">
 
@@ -108,8 +103,8 @@
                         <input type="checkbox" name="donADedicace" id="donADedicace" value="ouiDedicace">
                         <label for="donADedicace">Je désire dédicacer mon don</label>
                         <div class="cache inputTexteFerme div_ouiDedicace">
-                            <input type="text" name="ouiDedicace" id="ouiDedicace">
                             <label for="ouiDedicace">Don en l'honneur de :</label>
+                            <input type="text" name="ouiDedicace" id="ouiDedicace">
                             <p id="erreur_ouiDedicace" class="erreur_ouiDedicace texteCache"></p>
                         </div>
                     </div>
@@ -124,8 +119,8 @@
                             <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
 
                             <div class="cache inputTexteFerme div_ouiNomEntreprise">
-                                <input type="text" name="ouiNomEntreprise" id="ouiNomEntreprise">
                                 <label for="ouiNomEntreprise">Nom de l'entreprise :</label>
+                                <input type="text" name="ouiNomEntreprise" id="ouiNomEntreprise">
                                 <p id="erreur_ouiNomEntreprise" class="erreur_ouiNomEntreprise texteCache"></p>
                             </div>
                         </div>
@@ -182,6 +177,11 @@
                             <label for="adresse">Adresse</label>
                             <input type="text" name="adresse" id="adresse" required>
                             <p id="erreur_adresse" class="erreur_adresse texteCache"></p>
+                        </div>
+                        <div>
+                            <label for="numApp">Numéro d'appartement</label>
+                            <input type="text" name="numApp" id="numApp">
+                            <p id="erreur_numApp" class="erreur_numApp texteCache"></p>
                         </div>
 
                         <div>
@@ -272,21 +272,32 @@
                     <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
                     <div class="donneesEntreprise">
                         <p id="reponseEntreprise"></p>
-                        <p id="nomEntreprise">Nom de l'entreprise</p>
+                        <p id="nomEntreprise"></p>
                         <p id="infosGenre"></p>
-                        <p id=""></p>
+                        <p id="donneesNom"></p>
+                        <p id="donneesPrenom"></p>
+                        <p id="donneesCourriel"></p>
+                        <p id="donneesTelephone"></p>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Informations postales</legend>
                     <div class="donneesPostales">
-
+                        <p id="donneesAdresse"></p>
+                        <p id="donneesCodePostal"></p>
+                        <p id="donneesNumApp"></p>
+                        <p id="donneesPays"></p>
+                        <p id="donneesProvince"></p>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Paiement</legend>
                     <div class="resumeDonneesCarte">
+                        <p id="donnesTitulaire"></p>
+                        <p id="donnesNumeroCarte"></p>
+                        <p id="donnesExpCarte"></p>
+                        <p id="donnesNumeroCvv"></p>
                     </div>
                 </fieldset>
 

@@ -196,16 +196,18 @@ function validerChamp(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
-    const expresRegex = /^[a-zA-ZÀ-ÿ\s\']+$/;
+    const expresRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
     const leTexte = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
+        console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide);
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
         console.log('valider champ: ' + id);
     }
     else if (expresRegex.test(leTexte) == false && messagesErreur[id].pattern) {
+        console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide);
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
@@ -333,7 +335,7 @@ function validerCodePostal(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
-    const expresRegex = /^[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]$/;
+    const expresRegex = /^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$/;
     const leCodePostal = champ.value;
     console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leCodePostal));
     // Vérifie chaque type d'erreur de validation
@@ -511,17 +513,17 @@ function validerChampNumApp(champ) {
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^\d+$/;
     const leNumApp = champ.value;
-    console.log(" dans le numero app ", erreurElement);
+    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leNumApp));
     // Vérifie chaque type d'erreur de validation
-    if (expresRegex.test(leNumApp) == false && messagesErreur[id].pattern) {
-        // Ne correspond pas au pattern regex défini
-        erreurElement.innerText = messagesErreur[id].pattern;
-        valide = false;
-    }
-    else {
+    if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = true;
         erreurElement.innerText = "";
+    }
+    else if (expresRegex.test(leNumApp) == false && messagesErreur[id].pattern) {
+        // Ne correspond pas au pattern regex défini
+        erreurElement.innerText = messagesErreur[id].pattern;
+        valide = false;
     }
     return valide;
 }
@@ -612,6 +614,7 @@ function validerEtape(etape) {
             }
             break;
         case 1:
+            // 2222222222222222 02/2029
             const nomElement = document.getElementById('nom');
             const prenomElement = document.getElementById('prenom');
             const genreDonneur = document.querySelector("input[name='genre']:checked");
@@ -621,7 +624,7 @@ function validerEtape(etape) {
             const codePostalElement = document.getElementById('codePostal');
             const listePaysElement = document.getElementById('listePays');
             const listeProvinceElement = document.getElementById('listeProvince');
-            const leNumeroDapp = document.getElementById('numApp');
+            const leNumeroDappElement = document.getElementById('numApp');
             // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
             const nomValide = validerChamp(nomElement);
             const prenomValide = validerChamp(prenomElement);
@@ -633,58 +636,71 @@ function validerEtape(etape) {
             const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
             // const listeEtatValide = validerListeDeSelection(listeEtatElement);
             const nomEntrepriseElement = document.getElementById('ouiNomEntreprise');
-            if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
-                etapeValide = false;
-            }
-            else {
-                etapeValide = true;
-                genreAEntree.innerText = genreDonneur.value;
-                nomAEntree.innerText = nomElement.value;
-                prenomAEntree.innerText = prenomElement.value;
-                courrielAEntree.innerText = emailElement.value;
-                telephoneAEntree.innerText = telephoneElement.value;
-                adresseAEntree.innerText = adresseElement.value;
-                codepostalAEntree.innerText = codePostalElement.value;
-                paysAEntree.innerText = listePaysElement.value;
-                provinceAEntree.innerText = listeProvinceElement.value;
-            }
-            if (leNumeroDapp.value.trim() == "") {
-                leNumeroDapp.required = false;
-                numAppAEntre.innerText = "Aucun numéro d'appartement";
-                let champErreur = document.getElementById('erreur_numApp');
-                champErreur.innerText = "";
-            }
-            else {
-                leNumeroDapp.required = true;
-                const numAppValide = validerChampNumApp(leNumeroDapp);
-                if (!numAppValide) {
-                    etapeValide = false;
+            let nomEntrepriseValide = null;
+            let numAppValide = null;
+            if (leNumeroDappElement.value !== "" || estCheck) {
+                console.log('il rentre pareil meme si c\est la value est  ' + leNumeroDappElement.value);
+                if (leNumeroDappElement.value !== "") {
+                    console.log('il rentre pareil meme si c\est ' + leNumeroDappElement.validity.valueMissing);
+                    numAppValide = validerChampNumApp(leNumeroDappElement);
+                    leNumeroDappElement.required = true;
+                    numAppAEntre.innerText = `Votre numéro d'appartement ${leNumeroDappElement.value}`;
                 }
                 else {
-                    numAppAEntre.innerText = `Votre numéro d'appartement ${leNumeroDapp.value}`;
+                    etapeValide = true;
+                    leNumeroDappElement.required = false;
                 }
-            }
-            if (estCheck) {
-                nomEntrepriseElement.required = true;
-                const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
-                estEntrepriseAEntree.innerText = "oui";
-                if (!nomEntrepriseValide) {
-                    etapeValide = false;
-                    console.log('echec encore');
-                }
-                else {
+                if (estCheck) {
+                    nomEntrepriseElement.required = true;
+                    nomEntrepriseValide = validerChamp(nomEntrepriseElement);
+                    estEntrepriseAEntree.innerText = "oui";
                     nomEntrepriseAEntree.classList.remove('cache');
                     nomEntrepriseAEntree.innerText = `Nom de l'entreprise ${nomEntrepriseElement.value}`;
                 }
+                else {
+                    etapeValide = true;
+                    nomEntrepriseElement.required = false;
+                }
+                if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide || !nomEntrepriseValide || !numAppValide) {
+                    etapeValide = false;
+                }
+                else {
+                    etapeValide = true;
+                    genreAEntree.innerText = genreDonneur.value;
+                    nomAEntree.innerText = nomElement.value;
+                    prenomAEntree.innerText = prenomElement.value;
+                    courrielAEntree.innerText = emailElement.value;
+                    telephoneAEntree.innerText = telephoneElement.value;
+                    adresseAEntree.innerText = adresseElement.value;
+                    codepostalAEntree.innerText = codePostalElement.value;
+                    paysAEntree.innerText = listePaysElement.value;
+                    provinceAEntree.innerText = listeProvinceElement.value;
+                }
+                console.log(etapeValide);
             }
             else {
-                nomEntrepriseElement.required = false;
+                leNumeroDappElement.required = false;
+                numAppAEntre.innerText = "Aucun numéro d'appartement";
                 estEntrepriseAEntree.innerText = "non";
                 nomEntrepriseAEntree.classList.add('cache');
+                if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
+                    etapeValide = false;
+                }
+                else {
+                    etapeValide = true;
+                    genreAEntree.innerText = genreDonneur.value;
+                    nomAEntree.innerText = nomElement.value;
+                    prenomAEntree.innerText = prenomElement.value;
+                    courrielAEntree.innerText = emailElement.value;
+                    telephoneAEntree.innerText = telephoneElement.value;
+                    adresseAEntree.innerText = adresseElement.value;
+                    codepostalAEntree.innerText = codePostalElement.value;
+                    paysAEntree.innerText = listePaysElement.value;
+                    provinceAEntree.innerText = listeProvinceElement.value;
+                }
             }
             break;
         case 2:
-            // 2222222222222222  02/2029
             const titulaireCarteElement = document.getElementById('titulaireCarte');
             const numCarteElement = document.getElementById('numCarteCredit');
             const dateExpElement = document.getElementById('dateExpiration');
@@ -699,7 +715,7 @@ function validerEtape(etape) {
             }
             else {
                 etapeValide = true;
-                nomTitulaireAEntree.innerText = titulaireCarteElement.value.toLocaleUpperCase();
+                nomTitulaireAEntree.innerText = titulaireCarteElement.value;
                 numCarteAEntree.innerText = numCarteElement.value;
                 dateExpAEntree.innerText = dateExpElement.value;
                 cvvAEntree.innerText = cvvElement.value;
@@ -739,12 +755,6 @@ function afficherEtape(lesEtapes) {
         boutonSuivant.classList.add('cache');
         boutonDonner.classList.remove('cache');
     }
-    const elementsEtat = document.querySelectorAll('etat-etape');
-    const etatElement = document.getElementById('etat_etape' + (lesEtapes + 1));
-    etatElement.classList.add('evidence');
-    elementsEtat.forEach((element) => {
-        element.classList.remove("evidence");
-    });
 }
 // CACHE LES SECTIONS QUI NE S0NT PAS ENCORE ACTIVÉE
 function cacherSections() {

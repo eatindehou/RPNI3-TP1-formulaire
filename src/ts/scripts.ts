@@ -9,7 +9,7 @@ let touslesBoutonsRadios: any;
 let btnRadiosValeurDon: any;
 let btnRadiosDon: any;
 let checkboxDons: any;
-let divCheckboxCache: any;
+// let divCheckboxCache: any;
 
 let estCheck: boolean = false;;
 let divAutreMontant: any;
@@ -19,45 +19,30 @@ let champEmail: any;
 
 /*** RECUPÉRATION DES DONNÉES ENTRÉES PAR L'UTILISATEUR */
 // Étape don
-let typeDeDonEntree: string;
-let valeurDeDonEntree: string;
-let estDedicaceEntree: string;
-let nomDedicaceEntree: string
-
 let typeDonAEntree = document.getElementById('typeDeDon') as HTMLElement;
 let valeurDonAEntree = document.getElementById('valeurDuDon') as HTMLElement;
 let estDedicaceAEntree = document.getElementById('reponseDon') as HTMLElement;
 let nomDedicaceAEntree = document.getElementById('nomDedicace') as HTMLElement;
 // Étape donneur
-let estEntrepriseEntree: string;
-let nomEntrepriseEntree: string;
-let genreEntree: string;
-let nomEntree: string;
-let prenomEntree: string;
-let courrielEntree: string;
-let telephoneEntree: string;
-let adresseEntree: string;
-let codepostalEntree: string;
-let paysEntree: string;
-let provinceEntree: string;
 
-let estEntrepriseAEntree = document.getElementById('typeDeDon') as HTMLElement;
-let nomEntrepriseAEntree = document.getElementById('valeurDuDon') as HTMLElement;
-let genreAEntree = document.getElementById('reponseDon') as HTMLElement;
-let nomAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let prenomAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let courrielAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let telephoneAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let adresseAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let codepostalAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let paysAEntree = document.getElementById('nomDedicace') as HTMLElement;
-let provinceAEntree = document.getElementById('nomDedicace') as HTMLElement;
+let estEntrepriseAEntree = document.getElementById('reponseEntreprise') as HTMLElement;
+let nomEntrepriseAEntree = document.getElementById('nomEntreprise') as HTMLElement;
+let genreAEntree = document.getElementById('infosGenre') as HTMLElement;
+let nomAEntree = document.getElementById('donneesNom') as HTMLElement;
+let prenomAEntree = document.getElementById('donneesPrenom') as HTMLElement;
+let courrielAEntree = document.getElementById('donneesCourriel') as HTMLElement;
+let telephoneAEntree = document.getElementById('donneesTelephone') as HTMLElement;
+let adresseAEntree = document.getElementById('donneesAdresse') as HTMLElement;
+let codepostalAEntree = document.getElementById('donneesCodePostal') as HTMLElement;
+let numAppAEntre = document.getElementById('donneesNumApp') as HTMLElement
+let paysAEntree = document.getElementById('donneesPays') as HTMLElement;
+let provinceAEntree = document.getElementById('donneesProvince') as HTMLElement;
 
 // Étape paiement
-let nomTitulaireEntree: string;
-let numCarteEntree: string;
-let dateExpEntree: string;
-let cvvEntree: string;
+let nomTitulaireAEntree = document.getElementById('donnesTitulaire') as HTMLElement;
+let numCarteAEntree = document.getElementById('donnesNumeroCarte') as HTMLElement;
+let dateExpAEntree = document.getElementById('donnesExpCarte') as HTMLElement;
+let cvvAEntree = document.getElementById('donnesNumeroCvv') as HTMLElement;
 
 
 
@@ -127,9 +112,16 @@ function initaliser() {
         btnChoisi.addEventListener('click', afficherLesChampsCache);
     });
     divAutreMontant = document.querySelector('.donAutreCache');
+
     checkboxDons = document.querySelectorAll("input[type='checkbox']");
     checkboxDons.forEach((unCheckboxDon: any) => {
-        unCheckboxDon.addEventListener('click', afficherChampCheckbox);
+        unCheckboxDon.addEventListener('click', (event: Event) => {
+            const leCheckboxClique = event.currentTarget as HTMLInputElement;
+            afficherChampCheckbox(leCheckboxClique)
+
+        });
+
+        // afficherChampCheckbox)
     });
     /*
     ÉTAPE 2 --> INFORMATIONS SUR LE DONNEUR
@@ -253,18 +245,16 @@ function validerChamp(champ: HTMLInputElement): boolean {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
-    const expresRegex = /^[a-zA-ZÀ-ÿ\s]+$/
+    const expresRegex = /^[a-zA-ZÀ-ÿ\s\']+$/
     const leTexte = champ.value
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
-        console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
         console.log('valider champ: ' + id);
     }
     else if (expresRegex.test(leTexte) == false && messagesErreur[id].pattern) {
-        console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
@@ -396,7 +386,7 @@ function validerCodePostal(champ: HTMLInputElement) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
-    const expresRegex = /^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$/
+    const expresRegex = /^[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]$/
     const leCodePostal = champ.value
     console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leCodePostal))
     // Vérifie chaque type d'erreur de validation
@@ -573,6 +563,27 @@ function validerChampNumerique(champ: HTMLInputElement) {
     }
     return valide
 }
+function validerChampNumApp(champ: HTMLInputElement) {
+    let valide = false;
+    const id = champ.id;
+    const idMessageErreur = "erreur_" + id;
+    const erreurElement = document.getElementById(idMessageErreur);
+    const expresRegex = /^\d+$/
+    const leNumApp = champ.value
+    console.log(" dans le numero app ", erreurElement)
+    // Vérifie chaque type d'erreur de validation
+    if (expresRegex.test(leNumApp) == false && messagesErreur[id].pattern) {
+        // Ne correspond pas au pattern regex défini
+        erreurElement.innerText = messagesErreur[id].pattern;
+        valide = false;
+    }
+    else {
+        // Champ obligatoire vide (attribut required)
+        valide = true;
+        erreurElement.innerText = "";
+    }
+    return valide
+}
 //AFFICHAGE DES CHAMPS CACHÉ
 function afficherLesChampsCache(): boolean {
     btnRadiosValeurDon.forEach((btnChoisi: any) => {
@@ -592,24 +603,22 @@ function afficherLesChampsCache(): boolean {
     return champAffiche;
 }
 // AFFICHAGE DES CHAMPS SI CHECKBOX EST ACTIVE
-function afficherChampCheckbox(): boolean {
-    estCheck = false;
-    checkboxDons.forEach((unCheckboxDon: any) => {
-        if (unCheckboxDon.checked) {
-            divCheckboxCache = document.querySelector('.div_' + unCheckboxDon.value);
-            if (unCheckboxDon.value == "ouiDedicace" || unCheckboxDon.value == "ouiNomEntreprise") {
-                estCheck = true;
-            }
-        }
-        if (estCheck) {
-            divCheckboxCache.classList.remove('cache');
-        }
-        else {
-            estCheck = false;
-            divCheckboxCache.classList.add('cache');
-        }
-    })
-    return estCheck
+function afficherChampCheckbox(checkBoxCheck: any): boolean {
+    let laDivCache: any = document.querySelector('.div_' + checkBoxCheck.value);
+    if (checkBoxCheck.checked == true) {
+        console.log(checkBoxCheck.value)
+        estCheck = true;
+        laDivCache.classList.remove('cache')
+        console.log(estCheck)
+    }
+    else {
+        estCheck = false;
+        console.log(estCheck)
+        laDivCache.classList.add('cache');
+        console.log(laDivCache)
+
+    }
+    return laDivCache
 }
 
 // VALIDATION DES ÉTAPES
@@ -621,8 +630,8 @@ function validerEtape(etape: number): boolean {
             const leTypeDeDonChecked = document.querySelector("input[name='don']:checked") as HTMLInputElement;
             const laValeurDeDonChecked = document.querySelector("input[name='valeurDon']:checked") as HTMLInputElement;
             // attribution du type de don
-            typeDeDonEntree = leTypeDeDonChecked.value;
-            valeurDeDonEntree = laValeurDeDonChecked.value;
+            typeDonAEntree.innerHTML = leTypeDeDonChecked.value;
+            valeurDonAEntree.innerText = laValeurDeDonChecked.value;
 
             if (champAffiche || estCheck) {
                 const montantElement = document.getElementById('autreMontant') as HTMLInputElement;
@@ -637,7 +646,7 @@ function validerEtape(etape: number): boolean {
                     }
                     else {
                         // attribution de la valeur de don
-                        valeurDeDonEntree = montantElement.value;
+                        valeurDonAEntree.innerText = montantElement.value;
                         etapeValide = true;
                     }
                 }
@@ -645,7 +654,7 @@ function validerEtape(etape: number): boolean {
                     montantElement.required = false;
                 }
                 if (estCheck) {
-                    estDedicaceEntree = "oui";
+                    estDedicaceAEntree.innerText = "oui";
                     nomDedicaceElement.required = true;
                     const nomDedicaceValide = validerChamp(nomDedicaceElement);
 
@@ -654,33 +663,37 @@ function validerEtape(etape: number): boolean {
                     }
                     else {
                         etapeValide = true;
-                        nomDedicaceEntree = nomDedicaceElement.value
+                        nomDedicaceAEntree.innerText = `En l'honneur de ${nomDedicaceElement.value}`
                         nomDedicaceAEntree.classList.remove('cache');
                     }
                 }
                 else {
-                    estDedicaceEntree = "non";
+                    estDedicaceAEntree.innerText = "non";
                     nomDedicaceElement.required = false;
                     nomDedicaceAEntree.classList.add('cache');
                 }
             }
             else {
-                estDedicaceEntree = "non";
-                nomDedicaceAEntree.classList.add('cache');
                 etapeValide = true;
+                estDedicaceAEntree.innerText = "non";
+                nomDedicaceAEntree.classList.add('cache');
+
             }
 
             break;
         case 1:
-            console.log(estDedicaceEntree);
             const nomElement = document.getElementById('nom') as HTMLInputElement;
             const prenomElement = document.getElementById('prenom') as HTMLInputElement;
+            const genreDonneur = document.querySelector("input[name='genre']:checked") as HTMLInputElement
             const emailElement = document.getElementById('email') as HTMLInputElement;
             const telephoneElement = document.getElementById('telephone') as HTMLInputElement;
             const adresseElement = document.getElementById('adresse') as HTMLInputElement;
             const codePostalElement = document.getElementById('codePostal') as HTMLInputElement;
             const listePaysElement = document.getElementById('listePays') as HTMLInputElement;
             const listeProvinceElement = document.getElementById('listeProvince') as HTMLInputElement;
+            const leNumeroDapp = document.getElementById('numApp') as HTMLInputElement;
+
+
             // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
 
             const nomValide = validerChamp(nomElement);
@@ -692,58 +705,89 @@ function validerEtape(etape: number): boolean {
             const listePaysValide = validerListeDeSelection(listePaysElement);
             const listeProvinceValide = validerListeDeSelection(listeProvinceElement);
             // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            const nomEntrepriseElement = document.getElementById('ouiNomEntreprise') as HTMLInputElement;
 
-            if (estCheck) {
-                const nomEntrepriseElement = document.getElementById('ouiNomEntreprise') as HTMLInputElement;
-                const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
-
-                if (!nomEntrepriseValide) {
-                    etapeValide = false;
-                }
-                else {
-                    etapeValide = true;
-                }
-            }
 
             if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
                 etapeValide = false;
             }
             else {
                 etapeValide = true;
+                genreAEntree.innerText = genreDonneur.value;
+                nomAEntree.innerText = nomElement.value;
+                prenomAEntree.innerText = prenomElement.value;
+                courrielAEntree.innerText = emailElement.value;
+                telephoneAEntree.innerText = telephoneElement.value;
+                adresseAEntree.innerText = adresseElement.value;
+                codepostalAEntree.innerText = codePostalElement.value;
+                paysAEntree.innerText = listePaysElement.value;
+                provinceAEntree.innerText = listeProvinceElement.value;
+
+            }
+            if (leNumeroDapp.value.trim() == "") {
+                leNumeroDapp.required = false
+                numAppAEntre.innerText = "Aucun numéro d'appartement";
+                let champErreur = document.getElementById('erreur_numApp') as HTMLInputElement;
+                champErreur.innerText = "";
+            }
+            else {
+                leNumeroDapp.required = true;
+                const numAppValide = validerChampNumApp(leNumeroDapp)
+                if (!numAppValide) {
+                    etapeValide = false;
+                }
+                else {
+                    numAppAEntre.innerText = `Votre numéro d'appartement ${leNumeroDapp.value}`
+                }
+            }
+
+            if (estCheck) {
+                nomEntrepriseElement.required = true;
+                const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
+                estEntrepriseAEntree.innerText = "oui";
+
+                if (!nomEntrepriseValide) {
+                    etapeValide = false;
+                    console.log('echec encore')
+                }
+                else {
+                    nomEntrepriseAEntree.classList.remove('cache');
+                    nomEntrepriseAEntree.innerText = `Nom de l'entreprise ${nomEntrepriseElement.value}`;
+                }
+            }
+            else {
+                nomEntrepriseElement.required = false;
+                estEntrepriseAEntree.innerText = "non";
+                nomEntrepriseAEntree.classList.add('cache');
             }
             break;
 
         case 2:
-            // const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
-            // const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
-            // const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
-            // const cvvElement = document.getElementById('cvv') as HTMLInputElement;
+            // 2222222222222222  02/2029
+            const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
+            const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
+            const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
+            const cvvElement = document.getElementById('cvv') as HTMLInputElement;
 
-            // const titulaireCarteValide = validerChamp(titulaireCarteElement);
-            // const numCarteValide = validerCarteCredit(numCarteElement);
-            // const dateExpValide = validerChampDate(dateExpElement);
-            // const cvvValide = validerChampCvv(cvvElement);
+            const titulaireCarteValide = validerChamp(titulaireCarteElement);
+            const numCarteValide = validerCarteCredit(numCarteElement);
+            const dateExpValide = validerChampDate(dateExpElement);
+            const cvvValide = validerChampCvv(cvvElement);
 
-            // // const listeEtatValide = validerListeDeSelection(listeEtatElement);
+            // const listeEtatValide = validerListeDeSelection(listeEtatElement);
 
-            // if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
-            //     etapeValide = false;
-            // }
-            // else {
-            //     etapeValide = true;
-            // }
-            etapeValide = true;
-            console.log('gyuhdgsuysgdgds')
-
-            typeDonAEntree.innerText = typeDeDonEntree;
-            valeurDonAEntree.innerText = valeurDeDonEntree;
-            estDedicaceAEntree.innerText = estDedicaceEntree;
-            nomDedicaceAEntree.innerText += nomDedicaceEntree;
-
-            console.log("ahhhhhhhhhhhh" + typeDonAEntree);
+            if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
+                etapeValide = false;
+            }
+            else {
+                etapeValide = true;
+                nomTitulaireAEntree.innerText = titulaireCarteElement.value.toLocaleUpperCase();
+                numCarteAEntree.innerText = numCarteElement.value;
+                dateExpAEntree.innerText = dateExpElement.value;
+                cvvAEntree.innerText = cvvElement.value;
+            }
             break;
         case 3:
-            // divDonneesEntreprise.appendChild(nomDedicaceAEntree); 
 
 
             break;
@@ -756,6 +800,7 @@ function afficherEtape(lesEtapes: number) {
     console.log("Voici l'étape : " + lesEtapes);
     const etapes: NodeListOf<HTMLElement> = document.querySelectorAll('section');
     cacherSections();
+
     if (lesEtapes >= 0 && lesEtapes < etapes.length) {
         etapes[lesEtapes].classList.remove('cache');
     }
@@ -780,6 +825,16 @@ function afficherEtape(lesEtapes: number) {
         boutonSuivant.classList.add('cache');
         boutonDonner.classList.remove('cache');
     }
+
+    const elementsEtat: any = document.querySelectorAll('etat-etape')
+    const etatElement: any = document.getElementById('etat_etape' + (lesEtapes + 1));
+    etatElement.classList.add('evidence');
+
+    elementsEtat.forEach((element: any) => {
+        element.classList.remove("evidence");
+    });
+
+
 }
 // CACHE LES SECTIONS QUI NE S0NT PAS ENCORE ACTIVÉE
 function cacherSections() {
