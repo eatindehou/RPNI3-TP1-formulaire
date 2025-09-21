@@ -22,26 +22,26 @@
 
         <nav class="navigation" aria-label="Etapes du formulaire de don" role="navigation">
             <ul class="menu">
-                <li aria-current="page" class="menu__etape etat-etape" id="etat_etape1">
-                    <a href="#etapeDon" class="menu__lien menu__lien--active ">
+                <li aria-current="page" class="menu__etape etat-etape" id="etat_etape0" data-etape="0">
+                    <a href="#" class="menu__lien menu__lien--active ">
                         <span class="hors_ecran">Don</span>
                         Don
                     </a>
                 </li>
-                <li class="menu__etape etat-etape" id="etat_etape2">
-                    <a href="#etapeDonneur" class="menu__lien menu__lien--inactive" aria-disabled="true">
+                <li class="menu__etape etat-etape" id="etat_etape1" data-etape="1">
+                    <a href="#" class="menu__lien menu__lien--inactive" aria-disabled="true">
                         <span class="hors_ecran">Donneur</span>
                         Donneur
                     </a>
                 </li>
-                <li class="menu__etape etat-etape" id="etat_etape3">
-                    <a href="#etapePaiement" class="menu__lien menu__lien--inactive" aria-disabled="true">
+                <li class="menu__etape etat-etape" id="etat_etape2" data-etape="2">
+                    <a href="#" class="menu__lien menu__lien--inactive" aria-disabled="true">
                         Paiement
                         <span class="hors_ecran">Paiement</span>
                     </a>
                 </li>
-                <li class="menu__etape etat-etape"id="etat_etape4">
-                    <a href="#etapeResume" class="menu__lien menu__lien--inactive" aria-disabled="true">
+                <li class="menu__etape etat-etape" id="etat_etape3" data-etape="3">
+                    <a href="#" class="menu__lien menu__lien--inactive" aria-disabled="true">
                         Résumé
                         <span class="hors_ecran">Résumé</span>
                     </a>
@@ -56,49 +56,50 @@
             <div class="formulaire">
                 <section class="etapeDon" id="etapeDon">
                     <h2 class="titreTaille1">Votre don</h2>
-                    <div class="typeDeDons">
-                        <div>
+                    <ul class="typeDeDons">
+                        <li>
                             <input type="radio" name="don" id="donUnique" value="Don unique" checked>
                             <label for="donUnique">Don unique</label>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <input type="radio" name="don" id="donMensuel" value="Don mensuel">
-                            <label for="don">Don mensuel</label>
-                        </div>
-                    </div>
-                    <div class="montantsdeDons">
-                        <div>
+                            <label for="donMensuel">Don mensuel</label>
+                        </li>
+                    </ul>
+                    <ul class="montantsdeDons">
+                        <li>
                             <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="20" checked>
-                            <label for="valeurDon">20</label>
-                        </div>
-                        <div>
+                            <label for="donVingt">20</label>
+                        </li>
+                        <li>
                             <input type="radio" class="choixMultiple" name="valeurDon" id="donCinquante" value="50">
-                            <label for="valeurDon">50</label>
-                        </div>
-                        <div>
+                            <label for="donCinquante">50</label>
+                        </li>
+                        <li>
                             <input type="radio" class="choixMultiple" name="valeurDon" id="donQuatreVingtDix"
                                 value="90">
-                            <label for="valeurDon">90</label>
-                        </div>
-                        <div>
+                            <label for="donQuatreVingtDix">90</label>
+                        </li>
+                        <li>
                             <input type="radio" class="choixMultiple" name="valeurDon" id="donCent" value="100">
-                            <label for="valeurDon">100</label>
-                        </div>
-                        <div>
+                            <label for="donCent">100</label>
+                        </li>
+                        <li>
                             <input type="radio" class="choixMultiple" name="valeurDon" id="valeurDeuxCent" value="200">
-                            <label for="valeurDon">200</label>
-                        </div>
-                        <div>
+                            <label for="valeurDeuxCent">200</label>
+                        </li>
+                        <li>
                             <input type="radio" class="choixMultiple donAutre" name="valeurDon" id="donAutre"
                                 value="donAutre">
-                            <label for="valeurDon">Autre</label>
-                        </div>
-                        <div class="donAutreCache cache">
-                            <input type="number" name="valeurDon" id="autreMontant" value="">
-                            <label for="valeurDon"></label>
-                            <p id="erreur_autreMontant" class="erreur_autreMontant texteCache"></p>
-                        </div>
-                    </div>
+                            <label for="donAutre">Autre</label>
+                            <div class="donAutreCache cache">
+                                <input type="number" name="valeurDon" id="autreMontant" value="" maxlength="4">
+                                <label for="autreMontant"></label>
+                                <p id="erreur_autreMontant" class="erreur_autreMontant texteCache"></p>
+                            </div>
+                        </li>
+                    </ul>
+
                     <div class="donDedicace">
                         <input type="checkbox" name="donADedicace" id="donADedicace" value="ouiDedicace">
                         <label for="donADedicace">Je désire dédicacer mon don</label>
@@ -129,16 +130,16 @@
                             <div>
                                 <input type="radio" class="choixMultiple" name="genre" id="monsieur" value="monsieur"
                                     checked>
-                                <label for="genre">M</label>
+                                <label for="monsieur">M</label>
                             </div>
                             <div>
                                 <input type="radio" class="choixMultiple" name="genre" id="madame" value="madame">
-                                <label for="genre">Mme</label>
+                                <label for="madame">Mme</label>
                             </div>
                             <div>
                                 <input type="radio" class="choixMultiple" name="genre" id="mademoiselle"
                                     value="mademoiselle">
-                                <label for="genre">Miss</label>
+                                <label for="mademoiselle">Miss</label>
                             </div>
                         </div>
                         <div class="informationsTextuelles">
@@ -156,16 +157,19 @@
 
                             <div>
                                 <label for="email">Adresse courriel</label>
+                                <span class="texteExemple">EX:abcde@gmail.com</span>
                                 <input type="email" name="email" id="email" required>
                                 <p id="erreur_email" class="erreur_email texteCache"></p>
                             </div>
 
                             <div>
                                 <label for="telephone">Numéro de téléphone</label>
+                                <span class="texteExemple">Ex:4444444444</span>
                                 <input type="text" inputmode="numeric" name="telephone" id="telephone" maxlength="10"
                                     autocomplete="tel" required>
                                 <p id="erreur_telephone" class="erreur_telephone texteCache"></p>
                             </div>
+                        </div>
                     </fieldset>
 
                     <fieldset>
@@ -175,138 +179,142 @@
 
                         <div>
                             <label for="adresse">Adresse</label>
+                            <span class="texteExemple">Ex:0101 rue de la prairie</span>
                             <input type="text" name="adresse" id="adresse" required>
                             <p id="erreur_adresse" class="erreur_adresse texteCache"></p>
                         </div>
                         <div>
                             <label for="numApp">Numéro d'appartement</label>
-                            <input type="text" name="numApp" id="numApp">
+                            <input type="text" name="numApp" id="numApp" maxlength="4">
                             <p id="erreur_numApp" class="erreur_numApp texteCache"></p>
                         </div>
 
                         <div>
                             <label for="codePostal">Code postal</label>
+                            <span class="texteExemple">EX: A1A1A1 / A1A 1A1</span>
                             <input type="text" name="codePostal" id="codePostal" required>
                             <p id="erreur_codePostal" class="erreur_codePostal texteCache"></p>
                         </div>
 
                         <div id="pays_conteneur">
-                            <label for="pays">Pays</label>
+                            <label for="listePays">Pays</label>
                             <input list="pays" id="listePays" name="pays" placeholder="Choisisez un pays" required>
-                            <datalist name="pays" id="pays">
+                            <datalist id="pays">
                             </datalist>
                             <p id="erreur_listePays" class="erreur_listePays texteCache"></p>
                         </div>
 
                         <div id="province_conteneur">
-                            <label for="province">Province</label>
+                            <label for="listeProvince">Province</label>
                             <input list="province" id="listeProvince" name="province"
                                 placeholder="Choisisez une province" required>
-                            <datalist name="province" id="province">
+                            <datalist id="province">
                             </datalist>
                             <p id="erreur_listeProvince" class="erreur_listeProvince texteCache"></p>
                         </div>
                         <div id="etat_conteneur">
-                            <label for="etat">Etat</label>
+                            <label for="listeEtat">Etat</label>
                             <input list="etat" id="listeEtat" name="etat" placeholder="Choisisez un état" required>
-                            <datalist name="etat" id="etat">
+                            <datalist id="etat">
                             </datalist>
                             <p id="erreur_listeEtat" class="erreur_listeEtat texteCache"></p>
                         </div>
 
-            </div>
 
-            </fieldset>
-            </section>
+                    </fieldset>
+                </section>
 
-            <section class="etape3" id="etapePaiement">
-                <h2 class="titreTaille1">Paiement</h2>
-                <div class="informationsTextuelles">
-                    <div>
-                        <label for="titulaireCarte">Titulaire de la carte de crédit</label>
-                        <input type="text" name="titulaireCarte" id="titulaireCarte" required>
-                        <p id="erreur_titulaireCarte" class="erreur_titulaireCarte texteCache"></p>
+                <section class="etape3" id="etapePaiement">
+                    <h2 class="titreTaille1">Paiement</h2>
+                    <div class="informationsTextuelles">
+                        <div>
+                            <label for="titulaireCarte">Titulaire de la carte de crédit</label>
+                            <input type="text" name="titulaireCarte" id="titulaireCarte" required>
+                            <p id="erreur_titulaireCarte" class="erreur_titulaireCarte texteCache"></p>
+                        </div>
+
+                        <div>
+                            <label for="numCarteCredit">Numéro de la carte de crédit</label>
+                            <span class="texteExemple">Ex: 4444444444444444</span>
+                            <input type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit"
+                                maxlength="19" required>
+                            <p id="erreur_numCarteCredit"
+                                class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
+                            </p>
+                        </div>
+
+                        <div>
+                            <label for="dateExpiration">Date d'expiration</label>
+                            <span class="texteExemple">Ex:MM/AA</span>
+                            <input type="text" name="dateExpiration" id="dateExpiration" required placeholder="MM/AAAA"
+                                maxlength="7">
+                            <p id="erreur_dateExpiration" class="erreur_dateExpiration texteCache"></p>
+                        </div>
+
+                        <div>
+                            <label for="cvv">CVV/CVC</label>
+                            <input type="text" name="cvv" id="cvv" maxlength="4" required>
+                            <p id="erreur_cvv" class="erreur_cvv texteCache"></p>
+                        </div>
+
                     </div>
+                </section>
 
-                    <div>
-                        <label for="numCarteCredit">Numéro de la carte de crédit</label>
-                        <input type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit" maxlength="19"
-                            required>
-                        <p id="erreur_numCarteCredit" class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
-                        </p>
-                    </div>
+                <section class="etape4" id="etapeResume">
+                    <p class="position">4/4</p>
+                    <h2 class="titreTaille1">Résumé</h2>
+                    <fieldset class="resumeDon">
+                        <legend>Votre don</legend>
+                        <div class="donneesTypeDon">
+                            <p id="typeDeDon"></p>
+                            <p id="valeurDuDon"></p>
+                        </div>
+                        <h3 class="texteTaille3">Voulez-vous dédiez votre don ?</h3>
+                        <div class="donneesADedicacer">
+                            <p id="reponseDon"></p>
+                            <p id="nomDedicace">En l'honneur de </p>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Renseignements sur le donneur</legend>
+                        <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
+                        <div class="donneesEntreprise">
+                            <p id="reponseEntreprise"></p>
+                            <p id="nomEntreprise"></p>
+                            <p id="infosGenre"></p>
+                            <p id="donneesNom"></p>
+                            <p id="donneesPrenom"></p>
+                            <p id="donneesCourriel"></p>
+                            <p id="donneesTelephone"></p>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Informations postales</legend>
+                        <div class="donneesPostales">
+                            <p id="donneesAdresse"></p>
+                            <p id="donneesCodePostal"></p>
+                            <p id="donneesNumApp"></p>
+                            <p id="donneesPays"></p>
+                            <p id="donneesProvince"></p>
+                        </div>
+                    </fieldset>
 
-                    <div>
-                        <label for="dateExpiration">Date d'expiration</label>
-                        <input type="texte" name="dateExpiration" id="dateExpiration" required placeholder="MM/AAAA"
-                            maxlength="7">
-                        <p id="erreur_dateExpiration" class="erreur_dateExpiration texteCache"></p>
-                    </div>
+                    <fieldset>
+                        <legend>Paiement</legend>
+                        <div class="resumeDonneesCarte">
+                            <p id="donnesTitulaire"></p>
+                            <p id="donnesNumeroCarte"></p>
+                            <p id="donnesExpCarte"></p>
+                            <p id="donnesNumeroCvv"></p>
+                        </div>
+                    </fieldset>
 
-                    <div>
-                        <label for="cvv">CVV</label>
-                        <input type="text" name="cvv" id="cvv" maxlength="4" required>
-                        <p id="erreur_cvv" class="erreur_cvv texteCache"></p>
-                    </div>
-
+                </section>
+                <div class="boutonsDepage">
+                    <button type="button" class="btn btnRetour" id="btnRetour">Retour</button>
+                    <button type="button" class="btn btnSuivant" id="btnSuivant">Suivant</button>
+                    <button type="submit" class="btn btnDonner" id="btnDonner">Donner</button>
                 </div>
-            </section>
-
-            <section class="etape4" id="etapeResume">
-                <p class="position">4/4</p>
-                <h2 class="titreTaille1">Résumé</h2>
-                <fieldset class="resumeDon">
-                    <legend>Votre don</legend>
-                    <div class="donneesTypeDon">
-                        <p id="typeDeDon"></p>
-                        <p id="valeurDuDon"></p>
-                    </div>
-                    <h3 class="texteTaille3">Voulez-vous dédiez votre don ?</h3>
-                    <div class="donneesADedicacer">
-                        <p id="reponseDon"></p>
-                        <p id="nomDedicace">En l'honneur de </p>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Renseignements sur le donneur</legend>
-                    <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
-                    <div class="donneesEntreprise">
-                        <p id="reponseEntreprise"></p>
-                        <p id="nomEntreprise"></p>
-                        <p id="infosGenre"></p>
-                        <p id="donneesNom"></p>
-                        <p id="donneesPrenom"></p>
-                        <p id="donneesCourriel"></p>
-                        <p id="donneesTelephone"></p>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Informations postales</legend>
-                    <div class="donneesPostales">
-                        <p id="donneesAdresse"></p>
-                        <p id="donneesCodePostal"></p>
-                        <p id="donneesNumApp"></p>
-                        <p id="donneesPays"></p>
-                        <p id="donneesProvince"></p>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Paiement</legend>
-                    <div class="resumeDonneesCarte">
-                        <p id="donnesTitulaire"></p>
-                        <p id="donnesNumeroCarte"></p>
-                        <p id="donnesExpCarte"></p>
-                        <p id="donnesNumeroCvv"></p>
-                    </div>
-                </fieldset>
-
-            </section>
-            <div class="boutonsDepage">
-                <button type="button" class="btn btnRetour" id="btnRetour">Retour</button>
-                <button type="button" class="btn btnSuivant" id="btnSuivant">Suivant</button>
-                <button type="submit" class="btn btnDonner" id="btnDonner">Donner</button>
-            </div>
             </div>
         </form>
     </main>

@@ -1,13 +1,37 @@
-.cache{
-    display:none;
-};
-p[class*="erreur"]{
-    color:red;
+.cache {
+    display: none;
 }
-.evidence{
-    color:green;
+
+;
+
+p[class*="erreur"] {
+    color: red;
+}
+
+.evidence {
+    color: green;
     background: rgb(255, 178, 170);
 }
+
+.enCours {
+    background: rgb(252, 214, 0);
+}
+
+.lienDesactive {
+    cursor: not-allowed;
+    color: black;
+}
+
+.lienDesactive:hover {
+    cursor: not-allowed;
+    color: rgb(247, 0, 0);
+}
+
+.lienDesactive:active {
+    cursor: not-allowed;
+    color: black;
+}
+
 // .menu{
 //     &__lien{
 //         color

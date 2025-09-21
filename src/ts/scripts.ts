@@ -9,13 +9,16 @@ let touslesBoutonsRadios: any;
 let btnRadiosValeurDon: any;
 let btnRadiosDon: any;
 let checkboxDons: any;
-// let divCheckboxCache: any;
+let liensNavigation: any;
 
-let estCheck: boolean = false;;
+let dedicaceEstCheck: boolean = false;
+let entrepriseEstCheck: boolean = false;
 let divAutreMontant: any;
 let champAffiche: boolean = false;
 
 let champEmail: any;
+
+let champNumeroCarte: any;
 
 /*** RECUPÉRATION DES DONNÉES ENTRÉES PAR L'UTILISATEUR */
 // Étape don
@@ -84,6 +87,13 @@ function initaliser() {
     boutonSuivant.addEventListener('click', naviguerSuivant);
     boutonPrecedent.addEventListener('click', naviguerRetour);
     // boutonDonner.addEventListener('click', naviguerSuivant);
+    liensNavigation = document.querySelectorAll('.etat-etape');
+    liensNavigation.forEach((leLien: any) => {
+        leLien.addEventListener('click', (event: Event) => {
+            const leNumDeLienClique = parseInt(leLien.dataset.etape);
+            naviguerParLiensNav(event, leNumDeLienClique)
+        })
+    })
 
     /*
     ÉTAPE 1 --> VOTRE DON
@@ -134,6 +144,7 @@ function initaliser() {
     ***Entrée de l'adresse courriel du donneur
     ***Entrée du telephone du donneur
     ***Entrée de l'adresse du donneur
+    ***Entrée du numéro d'appartement du donneur
     ***Entrée du code postal du donneur
     ***Entrée du pays du donneur
     ***Entrée de la province du donneur
@@ -141,15 +152,23 @@ function initaliser() {
     champEmail = document.getElementById('email');
     champEmail.addEventListener('change', faireValiderEmail);
     obtenirPays();
-    // console.log(obtenirMessage());
-    // console.log(obtenirPays());
+
+    /*
+    ÉTAPE 3 --> PAIEMENT
+    ***Entrée du nom du titulaire de la carte
+    ***Entrée du numéro de carte
+    ***Entrée de la date d'expiration
+    ***Entrée du numéro de cvv
+    */
+    const champNumeroCarte = document.getElementById('numCarteCredit') as HTMLInputElement;
+    champNumeroCarte.addEventListener('change', faireValiderNumCarte);
+
+
 }
 
 async function obtenirMessage(): Promise<void> {
     const reponse = await fetch('objJSONMessages.json');
-    // console.log(reponse)
     messagesErreur = await reponse.json()
-    // console.log(messagesErreur)
 
 }
 // OBTENIR LE PAYS DU DONNEUR
@@ -161,7 +180,6 @@ async function obtenirPays(): Promise<void> {
     const reponse = await fetch('pays_prov_etats.json');
     // console.log(reponse)
     paysProvinceJSON = await reponse.json()
-    console.log(paysProvinceJSON)
     // créer les élémemts options pour les inputs de la balise selct
     const listePays = document.getElementById('pays') as HTMLInputElement;
     const leInputPays = document.getElementById('listePays') as HTMLInputElement;
@@ -202,7 +220,6 @@ async function obtenirPays(): Promise<void> {
     leInputProvince.disabled = true;
 
     leInputPays.addEventListener('change', () => {
-        console.log('VOICI LA VALEUR DE NOTRE PATRIE ' + listePays.value);
         if (leInputPays.value == 'Canada') {
             leInputProvince.disabled = false;
             inputEtats.disabled = true;
@@ -228,16 +245,20 @@ async function obtenirPays(): Promise<void> {
 
 }
 // CONNAITRE LA VALEUR DES BOUTON RADIOS CLIQUÉS
-function connaitreValeur(leBoutonClique: any) {
+function connaitreValeur(leBoutonClique: any): void {
     if (leBoutonClique.checked == true) {
-        console.log(leBoutonClique.value)
         return leBoutonClique.value
     }
 }
 // APPELER VALIDATION DU CHAMP EMAIL
-function faireValiderEmail(event: Event) {
+function faireValiderEmail(event: Event): void {
     const monInput = event.currentTarget as HTMLInputElement;
     validerEmail(monInput);
+}
+// APPELER VALIDATION DU CHAMP DU NUMÉRO DE LA CARTE BANCAIRE
+function faireValiderNumCarte(event: Event): void {
+    const monInput = event.currentTarget as HTMLInputElement;
+    validerCarteCredit(monInput);
 }
 // VALIDATION D'UN CHAMP
 function validerChamp(champ: HTMLInputElement): boolean {
@@ -252,7 +273,6 @@ function validerChamp(champ: HTMLInputElement): boolean {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
-        console.log('valider champ: ' + id);
     }
     else if (expresRegex.test(leTexte) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
@@ -293,7 +313,6 @@ function validerEmail(champ: HTMLInputElement): boolean {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
-        console.log('valider champ: ' + id);
     }
     else if (expresRegex.test(leEmail) == false && messagesErreur[id].pattern) {
         erreurElement.innerText = messagesErreur[id].pattern;
@@ -328,7 +347,7 @@ function validerEmail(champ: HTMLInputElement): boolean {
     return valide
 }
 //VALIDATION DU CHAMP TELEPHONE
-function validerTelephone(champ: HTMLInputElement) {
+function validerTelephone(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
@@ -340,10 +359,8 @@ function validerTelephone(champ: HTMLInputElement) {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
-        console.log('valider champ: ' + id);
     }
     else if (expresRegex.test(leTelephone) == false && messagesErreur[id].pattern) {
-        console.log('erreur de pattern');
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
     }
@@ -354,20 +371,18 @@ function validerTelephone(champ: HTMLInputElement) {
     return valide;
 }
 //VALIDATION DU CHAMP ADRESSE
-function validerAdresse(champ: HTMLInputElement) {
+function validerAdresse(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$/
     const lAdresse = champ.value
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
-        console.log('valider champ vide: ' + id);
     }
     else if (expresRegex.test(lAdresse) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
@@ -381,14 +396,13 @@ function validerAdresse(champ: HTMLInputElement) {
     return valide
 }
 //VALIDATION DU CHAMP CODE POSTAL
-function validerCodePostal(champ: HTMLInputElement) {
+function validerCodePostal(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]$/
     const leCodePostal = champ.value
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leCodePostal))
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
@@ -407,16 +421,14 @@ function validerCodePostal(champ: HTMLInputElement) {
     return valide
 }
 //VALIDATION DU CHAMP DATALIST
-function validerListeDeSelection(champ: HTMLInputElement) {
+function validerListeDeSelection(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide)
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
-        console.log(idMessageErreur)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
     }
@@ -428,14 +440,13 @@ function validerListeDeSelection(champ: HTMLInputElement) {
 }
 
 //VALIDATION DU CHAMP CODE POSTAL
-function validerCarteCredit(champ: HTMLInputElement) {
+function validerCarteCredit(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$/
     const leNumDeCarte = champ.value
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leNumDeCarte))
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
@@ -455,7 +466,7 @@ function validerCarteCredit(champ: HTMLInputElement) {
 }
 
 // VALIDATION DU CHAMP DE DATE D'EXPIRATION
-function validerChampDate(champ: HTMLInputElement) {
+function validerChampDate(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
@@ -477,7 +488,6 @@ function validerChampDate(champ: HTMLInputElement) {
         mois = parseInt(laDate.substring(0, 2));
         annee = parseInt(laDate.substring(2, 6));
     }
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(laDate))
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
@@ -512,14 +522,13 @@ function validerChampDate(champ: HTMLInputElement) {
     return valide
 }
 
-function validerChampCvv(champ: HTMLInputElement) {
+function validerChampCvv(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^[0-9]{3,4}$/
     const leNumDeCvv = champ.value
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leNumDeCvv))
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
@@ -538,14 +547,13 @@ function validerChampCvv(champ: HTMLInputElement) {
     return valide
 }
 
-function validerChampNumerique(champ: HTMLInputElement) {
+function validerChampNumerique(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^\d+$/
     const leMontantEntre = champ.value
-    console.log('dans validerChamp voici là où l\'erreur se trouve  ' + messagesErreur[id].vide, expresRegex.test(leMontantEntre))
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
@@ -563,14 +571,13 @@ function validerChampNumerique(champ: HTMLInputElement) {
     }
     return valide
 }
-function validerChampNumApp(champ: HTMLInputElement) {
+function validerChampNumApp(champ: HTMLInputElement): boolean {
     let valide = false;
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
     const expresRegex = /^\d+$/
     const leNumApp = champ.value
-    console.log(" dans le numero app ", erreurElement)
     // Vérifie chaque type d'erreur de validation
     if (expresRegex.test(leNumApp) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
@@ -605,20 +612,21 @@ function afficherLesChampsCache(): boolean {
 // AFFICHAGE DES CHAMPS SI CHECKBOX EST ACTIVE
 function afficherChampCheckbox(checkBoxCheck: any): boolean {
     let laDivCache: any = document.querySelector('.div_' + checkBoxCheck.value);
+    if (checkBoxCheck.value == "ouiDedicace") {
+        dedicaceEstCheck = checkBoxCheck.checked;
+    }
+    else if ((checkBoxCheck.value == "ouiNomEntreprise")) {
+        entrepriseEstCheck = checkBoxCheck.checked;
+    }
+
     if (checkBoxCheck.checked == true) {
-        console.log(checkBoxCheck.value)
-        estCheck = true;
         laDivCache.classList.remove('cache')
-        console.log(estCheck)
     }
     else {
-        estCheck = false;
-        console.log(estCheck)
         laDivCache.classList.add('cache');
-        console.log(laDivCache)
-
     }
     return laDivCache
+    
 }
 
 // VALIDATION DES ÉTAPES
@@ -633,51 +641,53 @@ function validerEtape(etape: number): boolean {
             typeDonAEntree.innerHTML = leTypeDeDonChecked.value;
             valeurDonAEntree.innerText = laValeurDeDonChecked.value;
 
-            if (champAffiche || estCheck) {
-                const montantElement = document.getElementById('autreMontant') as HTMLInputElement;
-                const nomDedicaceElement = document.getElementById('ouiDedicace') as HTMLInputElement;
-                if (champAffiche) {
+            const montantElement = document.getElementById('autreMontant') as HTMLInputElement;
+            const nomDedicaceElement = document.getElementById('ouiDedicace') as HTMLInputElement;
+            let leCheckEstValide = false;
+            let leChampEstValide = false;
 
-                    montantElement.required = true;
-                    const montantValide = validerChampNumerique(montantElement);
 
-                    if (!montantValide) {
-                        etapeValide = false;
-                    }
-                    else {
-                        // attribution de la valeur de don
-                        valeurDonAEntree.innerText = montantElement.value;
-                        etapeValide = true;
-                    }
+            if (champAffiche) {
+                montantElement.required = true;
+                const montantValide = validerChampNumerique(montantElement);
+
+                if (!montantValide) {
+                    etapeValide = false;
                 }
                 else {
-                    montantElement.required = false;
-                }
-                if (estCheck) {
-                    estDedicaceAEntree.innerText = "oui";
-                    nomDedicaceElement.required = true;
-                    const nomDedicaceValide = validerChamp(nomDedicaceElement);
-
-                    if (!nomDedicaceValide) {
-                        etapeValide = false;
-                    }
-                    else {
-                        etapeValide = true;
-                        nomDedicaceAEntree.innerText = `En l'honneur de ${nomDedicaceElement.value}`
-                        nomDedicaceAEntree.classList.remove('cache');
-                    }
-                }
-                else {
-                    estDedicaceAEntree.innerText = "non";
-                    nomDedicaceElement.required = false;
-                    nomDedicaceAEntree.classList.add('cache');
+                    // attribution de la valeur de don
+                    leChampEstValide = true;
+                    valeurDonAEntree.innerText = montantElement.value;
                 }
             }
             else {
-                etapeValide = true;
+                leChampEstValide = true;
+                montantElement.required = false;
+            }
+
+            if (dedicaceEstCheck) {
+                nomDedicaceElement.required = true;
+                const nomDedicaceValide = validerChamp(nomDedicaceElement);
+                estDedicaceAEntree.innerText = "oui";
+
+                if (!nomDedicaceValide) {
+                    etapeValide = false;
+                }
+                else {
+                    leCheckEstValide = true;
+                    nomDedicaceAEntree.classList.remove('cache');
+                    nomDedicaceAEntree.innerText = `En l'honneur de ${nomDedicaceElement.value}`
+                }
+            }
+            else {
+                leCheckEstValide = true;
+                nomDedicaceElement.required = false;
                 estDedicaceAEntree.innerText = "non";
                 nomDedicaceAEntree.classList.add('cache');
+            }
 
+            if (leCheckEstValide && leChampEstValide) {
+                etapeValide = true;
             }
 
             break;
@@ -692,8 +702,6 @@ function validerEtape(etape: number): boolean {
             const listePaysElement = document.getElementById('listePays') as HTMLInputElement;
             const listeProvinceElement = document.getElementById('listeProvince') as HTMLInputElement;
             const leNumeroDapp = document.getElementById('numApp') as HTMLInputElement;
-
-
             // const listeEtatElement = document.getElementById('listeEtat') as HTMLInputElement;
 
             const nomValide = validerChamp(nomElement);
@@ -741,7 +749,7 @@ function validerEtape(etape: number): boolean {
                 }
             }
 
-            if (estCheck) {
+            if (entrepriseEstCheck == true) {
                 nomEntrepriseElement.required = true;
                 const nomEntrepriseValide = validerChamp(nomEntrepriseElement);
                 estEntrepriseAEntree.innerText = "oui";
@@ -763,7 +771,6 @@ function validerEtape(etape: number): boolean {
             break;
 
         case 2:
-            // 2222222222222222  02/2029
             const titulaireCarteElement = document.getElementById('titulaireCarte') as HTMLInputElement;
             const numCarteElement = document.getElementById('numCarteCredit') as HTMLInputElement;
             const dateExpElement = document.getElementById('dateExpiration') as HTMLInputElement;
@@ -773,7 +780,6 @@ function validerEtape(etape: number): boolean {
             const numCarteValide = validerCarteCredit(numCarteElement);
             const dateExpValide = validerChampDate(dateExpElement);
             const cvvValide = validerChampCvv(cvvElement);
-
             // const listeEtatValide = validerListeDeSelection(listeEtatElement);
 
             if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
@@ -782,23 +788,46 @@ function validerEtape(etape: number): boolean {
             else {
                 etapeValide = true;
                 nomTitulaireAEntree.innerText = titulaireCarteElement.value.toLocaleUpperCase();
-                numCarteAEntree.innerText = numCarteElement.value;
+                let leNumeroAAfficher = numCarteElement.value.substring(12, 16);
+                let leNumeroACacher = numCarteElement.value.substring(0, 11).replace(numCarteElement.value.substring(0, 11), "************");
+                numCarteAEntree.innerText = leNumeroACacher + leNumeroAAfficher;
                 dateExpAEntree.innerText = dateExpElement.value;
                 cvvAEntree.innerText = cvvElement.value;
             }
             break;
         case 3:
-
-
             break;
 
     }
     return etapeValide
 }
+// FAIRE LA NAVIGATION DES ÉTAPES PAR LES LIENS DE NAVIGATION
+function naviguerParLiensNav(event: Event, leNumeroDEtape: number) {
+    event.preventDefault();
+    if (leNumeroDEtape <= numEtape) {
+        numEtape = leNumeroDEtape;
+        afficherEtape(numEtape);
+    }
+    else {
+        console.log('Ne peux pas avancer !');
+    }
+
+}
 // AFFICHAGE DES ÉTAPES
-function afficherEtape(lesEtapes: number) {
+function afficherEtape(lesEtapes: number): void {
     console.log("Voici l'étape : " + lesEtapes);
     const etapes: NodeListOf<HTMLElement> = document.querySelectorAll('section');
+    const etatElement0: any = document.getElementById('etat_etape0');
+    const etatElement1: any = document.getElementById('etat_etape1');
+    const etatElement2: any = document.getElementById('etat_etape2');
+    const etatElement3: any = document.getElementById('etat_etape3');
+
+    const etatLiensElement0: any = document.querySelector('#etat_etape0 > a');
+    const etatLiensElement1: any = document.querySelector('#etat_etape1 > a ');
+    const etatLiensElement2: any = document.querySelector('#etat_etape2 > a');
+    const etatLiensElement3: any = document.querySelector('#etat_etape3 > a');
+
+
     cacherSections();
 
     if (lesEtapes >= 0 && lesEtapes < etapes.length) {
@@ -808,36 +837,78 @@ function afficherEtape(lesEtapes: number) {
         boutonPrecedent.classList.add('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
+
+        etatElement0.classList.add('enCours');
+
+        etatElement1.classList.remove('enCours');
+        etatElement1.classList.remove('evidence');
+        etatLiensElement1.classList.add('lienDesactive')
+
+        etatElement2.classList.remove('enCours');
+        etatElement2.classList.remove('evidence');
+        etatLiensElement2.classList.add('lienDesactive')
+
+        etatElement3.classList.remove('enCours');
+        etatLiensElement3.classList.add('lienDesactive')
     }
     else if (lesEtapes == 1) {
-        console.log(lesEtapes)
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
+
+        etatElement0.classList.remove('enCours');
+        etatElement0.classList.add('evidence');
+
+        etatElement1.classList.add('enCours');
+        etatLiensElement1.classList.remove('lienDesactive')
+        etatLiensElement1.setAttribute('aria-disabled', 'false');
+
+        etatElement2.classList.remove('enCours');
+        etatElement2.classList.remove('evidence');
+        etatLiensElement2.classList.add('lienDesactive');
+
+        etatElement3.classList.remove('enCours');
+        etatLiensElement3.classList.add('lienDesactive');
+
+
     }
     else if (lesEtapes == 2) {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
+
+        etatElement1.classList.remove('enCours');
+        etatElement1.classList.add('evidence');
+        etatLiensElement1.classList.remove('lienDesactive')
+
+        etatElement2.classList.add('enCours');
+        etatLiensElement2.classList.remove('lienDesactive');
+
+        etatElement3.classList.remove('enCours');
+        etatLiensElement3.classList.add('lienDesactive');
+
+
     }
     else if (lesEtapes == 3) {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.add('cache');
         boutonDonner.classList.remove('cache');
+
+        etatLiensElement1.classList.remove('lienDesactive');
+
+        etatElement2.classList.remove('enCours');
+        etatElement2.classList.add('evidence');
+        etatLiensElement2.classList.remove('lienDesactive');
+
+        etatElement3.classList.add('enCours');
+        etatLiensElement3.classList.remove('lienDesactive');
+
+
     }
-
-    const elementsEtat: any = document.querySelectorAll('etat-etape')
-    const etatElement: any = document.getElementById('etat_etape' + (lesEtapes + 1));
-    etatElement.classList.add('evidence');
-
-    elementsEtat.forEach((element: any) => {
-        element.classList.remove("evidence");
-    });
-
 
 }
 // CACHE LES SECTIONS QUI NE S0NT PAS ENCORE ACTIVÉE
-function cacherSections() {
+function cacherSections(): void {
     sections.forEach((uneSection: any) => {
         uneSection.classList.add("cache")
     });
@@ -845,7 +916,7 @@ function cacherSections() {
 }
 
 // NAVIAGATION ENTRE LES ÉTAPES
-function naviguerSuivant(event: any) {
+function naviguerSuivant(event: any): void {
     const etapeValider = validerEtape(numEtape);
     if (etapeValider) {
         if (numEtape < sections.length - 1) {
@@ -854,12 +925,15 @@ function naviguerSuivant(event: any) {
         }
     }
     else {
-        event.preventDefault()
+        event.preventDefault();
     }
 }
-function naviguerRetour(event: any) {
+function naviguerRetour(event: any): void {
     if (numEtape > 0) {
         numEtape--
         afficherEtape(numEtape)
+    }
+    else {
+        event.preventDefault();
     }
 }
