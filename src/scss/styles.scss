@@ -31,17 +31,23 @@
 /** LIBRAIRIES **/
 
 /* Normalize */
+@use "layout/normalize";
 
 /** UTILITAIRES **/
 @use "utilitaires/variables";
 @use "utilitaires/mixins";
+@use "utilitaires/utilitaires";
 
 /** BASE **/
 @use "base/bouton";
 @use "base/hyperlien";
 @use "base/typo";
 @use "base/grille";
+@use "base/menu.scss";
 
 /** MODULES **/
 @use"modules/page.scss";
+@use "modules/formulaire.scss";
 
+/** LAYOUT **/
+@use "layout/general.scss"

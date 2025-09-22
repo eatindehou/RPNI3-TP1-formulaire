@@ -16,3 +16,6 @@ node_modules/
 
 # Dossier de compilation des ressources (change constamment et donc prompt à générer des conflits)
 public/css
+
+#Dossiers normalize.css
+normalize.css

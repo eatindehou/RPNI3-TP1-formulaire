@@ -1,0 +1,39 @@
+   /* Personnalisez vos couleurs et vos noms de classes CSS, ceci n'est qu'un exemple! */
+    .etapes__item {
+        color: black;
+        text-decoration: underline; /* L'ancre est soulignée par défaut */
+        cursor: pointer; /* C'est la valeur par défaut */
+    }
+    .etapes__item--inactive {
+        color: black;
+        pointer-events: none; /* Les événements de pointeurs et de curseurs ne seront pas honorés */
+        cursor: not-allowed; /* Autre option - cursor: default; */
+        text-decoration: none; /* On désactive l'effet surligné */
+    }
+    .etapes__item--active {
+        color: green;
+    }
+
+    /* 
+     * HORS-ÉCRAN - cacher un élément tout en le gardant accessible 
+     *
+     * Vous pouvez copier cette classe dans votre code 
+     * C'est une classe CSS commune mais assez complexe qui permet
+     * de cacher visuellement un élément sans le désactiver au niveau
+     * de l'arbre HTML et donc préserve son accessibilité. 
+     * 
+     * On n'oublie pas! display:none; enlève l'élément de l'arbre
+     * d'accessibilité alors il ne faut PAS l'utiliser  pour cacher
+     * un élément qui devrait être accessible. Utilisez plutôt cette classe
+     */
+    .hors-ecran{
+        position: absolute; /* Position absolue pour l'enlver du "flow" commun du document */
+        width: 1px; /* 1px de large parce que zéro l'enlève de l'arbre d'accessibilité */
+        height: 1px; /* 1px de haut parce que zéro l'enlève de l'arbre d'accessibilité */
+        padding: 0; /* Aucun padding pour éviter que l'élément soit visible malgré sa largeur et son hauteur */
+        margin: -1px; /* Marge négative de 1px pour annuler le 1px de haut et de large */
+        overflow: hidden; /* Le contenu de l'élément doit ne pas dépasser du modèle de boîte (box model) pour qu'il reste invisible */
+        clip-path: inset(50%); /* Un masque clip-path qui force encore plus l'invisibilité de l'élément */
+        white-space: nowrap; /* Empêche les bris de ligne pour éviter que le texte de l'élément ne pousse d'autre contenu */
+        border-width: 0; /* On annule aussi les bordures */
+    }

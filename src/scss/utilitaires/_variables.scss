@@ -23,16 +23,21 @@ $fonteSecondaire : Arial, sans-serif;
 // Permettez-vous d'utiliser un nom de variable plus explicite si la suggestion de name-that-color est trop étrange
 
 /* Couleurs de base */
-$bleuMoyen: #358ae0;
-$bleuPale: #68a8e8;
-$vertLime: #bbd531;
-$bleuMinuit: #012d61;
-$bleuMarin: #2678B5;
+$vert-fonce : #263628;
+$vert : #017626;
+$vert-clair : #44A301;
+$vert-pale : #FEFFF7;
+$turquoise-pale : #BFDDC3;
+$vert-lime-pale : #F3F7F0;
+$rouge-erreur : #AF0323;
 
-$bleuMoyenTransparent : color.adjust($bleuMoyen, $alpha: -0.50);
+$ombreEffetFormulaire :  3px -12px 19.7px -15px $turquoise-pale, 0 10px 41.5px -23px $turquoise-pale; 
+$ombreEffetHeader:  0 -4px 11.2px 0 $turquoise-pale; 
+
+// $bleuMoyenTransparent : color.adjust($bleuMoyen, $alpha: -0.50);
 
 /* Autres couleurs */
-$hyperlien: $bleuMarin;
+// $hyperlien: $bleuMarin;
 
 /** Points de rupture **/
 $desktop : 601px;
