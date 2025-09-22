@@ -10,6 +10,7 @@ Icon?
 .sass-cache/
 
 # Dossiers de dépendances (ex.: node_modules)
+# 
 # C'est très lourd! Vraiment important de ne pas archiver sur aucun serveur
 # On archive uniquement le fichier de configuration package.json et package-lock.json
 node_modules/
