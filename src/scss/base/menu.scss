@@ -9,6 +9,9 @@
 body{
     background-color: variables.$vert-lime-pale ;
 }
+.entete{
+    box-shadow: variables.$ombreEffetHeader;
+}
 .navigationPrincipale {
     display: block;
     margin: 0 auto;
@@ -47,7 +50,7 @@ body{
     margin-top: 0;
     transform: translateX(320px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg, #FC466B 0%, #3F5EFB 100%);
+    background: variables.$vert-pale;
 }
 
 .menuSurCoteUl {
@@ -57,13 +60,10 @@ body{
 }
 
 .menuSurCoteUl li {
-    list-style: none;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
+    color: variables.$vert-fonce;
     padding: 20px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    border-top: 3px solid variables.$vert-lime-pale;
 }
 
 .menuSurCoteUl li span {
@@ -73,18 +73,15 @@ body{
 }
 
 .menuSurCoteUl li a {
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
+    color: variables.$vert-fonce;
     cursor: pointer;
-    text-decoration: none;
 }
 
 input[type="checkbox"]:checked~#menuSurCote {
     transform: translateX(0);
 }
 
-input[type=checkbox] {
+.menuOuvert {
     transition: all 0.3s;
     box-sizing: border-box;
     display: none;

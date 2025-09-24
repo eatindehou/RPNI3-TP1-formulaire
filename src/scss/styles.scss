@@ -44,10 +44,11 @@
 @use "base/typo";
 @use "base/grille";
 @use "base/menu.scss";
+@use "base/navigationSecondaire";
 
 /** MODULES **/
-@use"modules/page.scss";
-@use "modules/formulaire.scss";
+@use"modules/page";
+@use "modules/formulaire";
 
 /** LAYOUT **/
-@use "layout/general.scss"
+@use "layout/general"

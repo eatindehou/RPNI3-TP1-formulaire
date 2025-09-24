@@ -42,30 +42,34 @@
 
         </nav>
     </header>
-    <nav class="navigation" aria-label="Etapes du formulaire de don" role="navigation">
+    <nav class="navigationEtapes" aria-label="Etapes du formulaire de don" role="navigation">
         <ul class="menu">
-            <li aria-current="page" class="menu__etape etat-etape" id="etat_etape0" data-etape="0">
-                <a href="#" class="menu__lien menu__lien--active ">
-                    <span class="hors_ecran">Don</span>
+            <li aria-current="page" class="menu__etape etat-etape"  data-etape="0">
+                <span class="menu__lien__span" id="etat_etape0"></span>
+                <a href="#" class="menu__lien ">
+                    <span class="hors-ecran">Don</span>
                     Don
                 </a>
             </li>
-            <li class="menu__etape etat-etape" id="etat_etape1" data-etape="1">
-                <a href="#" class="menu__lien menu__lien--inactive" aria-disabled="true">
-                    <span class="hors_ecran">Donneur</span>
+            <li class="menu__etape etat-etape" data-etape="1">
+                <span class="menu__lien__span menu__lien--inactive"  id="etat_etape1"></span>
+                <a href="#" class="menu__lien " aria-disabled="true">
+                    <span class="hors-ecran">Donneur</span>
                     Donneur
                 </a>
             </li>
-            <li class="menu__etape etat-etape" id="etat_etape2" data-etape="2">
-                <a href="#" class="menu__lien menu__lien--inactive" aria-disabled="true">
+            <li class="menu__etape etat-etape" data-etape="2">
+                <span class="menu__lien__span menu__lien--inactive"  id="etat_etape2"></span>
+                <a href="#" class="menu__lien " aria-disabled="true">
                     Paiement
-                    <span class="hors_ecran">Paiement</span>
+                    <span class="hors-ecran">Paiement</span>
                 </a>
             </li>
-            <li class="menu__etape etat-etape" id="etat_etape3" data-etape="3">
-                <a href="#" class="menu__lien menu__lien--inactive" aria-disabled="true">
+            <li class="menu__etape etat-etape" data-etape="3">
+                <span class="menu__lien__span menu__lien--inactive"  id="etat_etape3"></span>
+                <a href="#" class="menu__lien " aria-disabled="true">
                     Résumé
-                    <span class="hors_ecran">Résumé</span>
+                    <span class="hors-ecran">Résumé</span>
                 </a>
             </li>
         </ul>
@@ -78,12 +82,16 @@
                     <h2 class="titreTaille1">Votre don</h2>
                     <ul class="typeDeDons">
                         <li>
-                            <input type="radio" name="don" id="donUnique" value="Don unique" checked>
-                            <label for="donUnique">Don unique</label>
+                            <label for="donUnique">
+                                <input class="hors-ecran" type="radio" name="don" id="donUnique" value="Don unique" checked>
+                                <span>Don unique</span>
+                            </label>
                         </li>
                         <li>
-                            <input type="radio" name="don" id="donMensuel" value="Don mensuel">
-                            <label for="donMensuel">Don mensuel</label>
+                            <label for="donMensuel">
+                                <input class="hors-ecran" type="radio" name="don" id="donMensuel" value="Don mensuel">
+                                <span>Don mensuel</span>
+                            </label>
                         </li>
                     </ul>
                     <ul class="montantsdeDons">
@@ -121,7 +129,7 @@
                     </ul>
 
                     <div class="donDedicace">
-                        <input type="checkbox" name="donADedicace" id="donADedicace" value="ouiDedicace">
+                        <input type="checkbox" class="checkboxDons" name="donADedicace" id="donADedicace" value="ouiDedicace">
                         <label for="donADedicace">Je désire dédicacer mon don</label>
                         <div class="cache inputTexteFerme div_ouiDedicace">
                             <label for="ouiDedicace">Don en l'honneur de :</label>
@@ -135,7 +143,7 @@
                     <fieldset>
                         <legend>Information personnelles</legend>
                         <div class="donEntreprise">
-                            <input type="checkbox" name="donPourEntreprise" id="donPourEntreprise"
+                            <input type="checkbox" class="checkboxDons" name="donPourEntreprise" id="donPourEntreprise"
                                 value="ouiNomEntreprise">
                             <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
 

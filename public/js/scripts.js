@@ -87,7 +87,8 @@ function initaliser() {
         btnChoisi.addEventListener('click', afficherLesChampsCache);
     });
     divAutreMontant = document.querySelector('.donAutreCache');
-    checkboxDons = document.querySelectorAll("input[type='checkbox']");
+    checkboxDons = document.querySelectorAll(".checkboxDons");
+    console.log(checkboxDons);
     checkboxDons.forEach((unCheckboxDon) => {
         unCheckboxDon.addEventListener('click', (event) => {
             const leCheckboxClique = event.currentTarget;
@@ -732,10 +733,10 @@ function afficherEtape(lesEtapes) {
     const etatElement1 = document.getElementById('etat_etape1');
     const etatElement2 = document.getElementById('etat_etape2');
     const etatElement3 = document.getElementById('etat_etape3');
-    const etatLiensElement0 = document.querySelector('#etat_etape0 > a');
-    const etatLiensElement1 = document.querySelector('#etat_etape1 > a ');
-    const etatLiensElement2 = document.querySelector('#etat_etape2 > a');
-    const etatLiensElement3 = document.querySelector('#etat_etape3 > a');
+    // const etatLiensElement0: any = document.querySelector('#etat_etape0 + a');
+    // const etatLiensElement1: any = document.querySelector('#etat_etape1 + a ');
+    // const etatLiensElement2: any = document.querySelector('#etat_etape2 + a');
+    // const etatLiensElement3: any = document.querySelector('#etat_etape3 + a');
     cacherSections();
     if (lesEtapes >= 0 && lesEtapes < etapes.length) {
         etapes[lesEtapes].classList.remove('cache');
@@ -746,51 +747,51 @@ function afficherEtape(lesEtapes) {
         boutonDonner.classList.add('cache');
         etatElement0.classList.add('enCours');
         etatElement1.classList.remove('enCours');
-        etatElement1.classList.remove('evidence');
-        etatLiensElement1.classList.add('lienDesactive');
+        etatElement1.classList.remove('menu__lien--active');
+        etatElement1.classList.add('menu__lien--inactive');
         etatElement2.classList.remove('enCours');
-        etatElement2.classList.remove('evidence');
-        etatLiensElement2.classList.add('lienDesactive');
+        etatElement2.classList.remove('menu__lien--active');
+        etatElement2.classList.add('menu__lien--inactive');
         etatElement3.classList.remove('enCours');
-        etatLiensElement3.classList.add('lienDesactive');
+        etatElement3.classList.add('menu__lien--inactive');
     }
     else if (lesEtapes == 1) {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
         etatElement0.classList.remove('enCours');
-        etatElement0.classList.add('evidence');
+        etatElement0.classList.add('menu__lien--active');
         etatElement1.classList.add('enCours');
-        etatLiensElement1.classList.remove('lienDesactive');
-        etatLiensElement1.setAttribute('aria-disabled', 'false');
+        etatElement1.classList.remove('menu__lien--inactive');
+        etatElement1.setAttribute('aria-disabled', 'false');
         etatElement2.classList.remove('enCours');
-        etatElement2.classList.remove('evidence');
-        etatLiensElement2.classList.add('lienDesactive');
+        etatElement2.classList.remove('menu__lien--active');
+        etatElement2.classList.add('menu__lien--inactive');
         etatElement3.classList.remove('enCours');
-        etatLiensElement3.classList.add('lienDesactive');
+        etatElement3.classList.add('menu__lien--inactive');
     }
     else if (lesEtapes == 2) {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
         etatElement1.classList.remove('enCours');
-        etatElement1.classList.add('evidence');
-        etatLiensElement1.classList.remove('lienDesactive');
+        etatElement1.classList.add('menu__lien--active');
+        etatLiensElement1.classList.remove('menu__lien--inactive');
         etatElement2.classList.add('enCours');
-        etatLiensElement2.classList.remove('lienDesactive');
+        etatLiensElement2.classList.remove('menu__lien--inactive');
         etatElement3.classList.remove('enCours');
-        etatLiensElement3.classList.add('lienDesactive');
+        etatLiensElement3.classList.add('menu__lien--inactive');
     }
     else if (lesEtapes == 3) {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.add('cache');
         boutonDonner.classList.remove('cache');
-        etatLiensElement1.classList.remove('lienDesactive');
+        etatLiensElement1.classList.remove('menu__lien--inactive');
         etatElement2.classList.remove('enCours');
-        etatElement2.classList.add('evidence');
-        etatLiensElement2.classList.remove('lienDesactive');
+        etatElement2.classList.add('menu__lien--active');
+        etatLiensElement2.classList.remove('menu__lien--inactive');
         etatElement3.classList.add('enCours');
-        etatLiensElement3.classList.remove('lienDesactive');
+        etatLiensElement3.classList.remove('menu__lien--inactive');
     }
 }
 // CACHE LES SECTIONS QUI NE S0NT PAS ENCORE ACTIVÉE

@@ -1,0 +1,75 @@
+@use "../utilitaires/variables";
+
+.menu {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__etape {
+        display: flex;
+        flex-direction: column;
+        flex: 2 0 auto;
+    }
+
+    &__lien {
+
+        &--active {
+            color: green;
+            border-bottom: 1rem solid variables.$vert-clair;
+
+        }
+
+        &--inactive {
+            cursor: not-allowed;
+            color: black;
+            border-bottom: 1rem solid variables.$vert;
+
+        }
+
+        &--inactive:hover {
+            cursor: not-allowed;
+            color: rgb(247, 0, 0);
+
+        }
+
+        &--inactive:active {
+            cursor: not-allowed;
+            color: black;
+
+        }
+
+        &__span {
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+            position: relative;
+            top: 4.8rem;
+            left: -1rem;
+        }
+    }
+}
+
+.enCours {
+    border-bottom: 1rem solid rgb(252, 214, 0);
+}
+
+.navigationEtapes {
+    padding: 0 1rem;
+    border-bottom: 1rem solid variables.$vert;
+}
+
+// .menu__lien--inactive {
+//     cursor: not-allowed;
+//     color: black;
+// }
+
+// .menu__lien--inactive:hover {
+//     cursor: not-allowed;
+//     color: rgb(247, 0, 0);
+// }
+
+// .menu__lien--inactive:active {
+//     cursor: not-allowed;
+//     color: black;
+// }
