@@ -18,18 +18,18 @@
 <body>
     <a href="#main" class="sauter screen-reader-only focusable">Aller au contenu</a>
     <header class="entete" role="banner">
-        <nav class="navigationPrincipale" role="navigation">
-                <picture class="conteneurLogo">
-                    <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
-                    <img class="logo_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
-                </picture>
-                <input type="checkbox" class="menuOuvert" id="menuOuvert" aria-label="Afficher le menu"
-                    aria-expanded="false">
-                <label for="menuOuvert" class="iconeMenu">
-                    <div class="animation diagonale partie-1"></div>
-                    <div class="animation horizontale"></div>
-                    <div class="animation diagonale partie-2"></div>
-                </label>
+        <nav class="navigationPrincipale">
+            <picture class="conteneurLogo">
+                <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
+                <img class="logo_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
+            </picture>
+            <input type="checkbox" class="menuOuvert" id="menuOuvert" aria-label="Afficher le menu"
+                aria-expanded="false">
+            <label for="menuOuvert" class="iconeMenu">
+                <div class="animation diagonale partie-1"></div>
+                <div class="animation horizontale"></div>
+                <div class="animation diagonale partie-2"></div>
+            </label>
             <div id="menuSurCote">
                 <ul class="menuSurCote__liste menuSurCoteUl">
                     <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">À propos</a> </li>
@@ -42,9 +42,9 @@
 
         </nav>
     </header>
-    <nav class="navigationEtapes" aria-label="Etapes du formulaire de don" role="navigation">
+    <nav class="navigationEtapes" aria-label="Etapes du formulaire de don">
         <ul class="menu">
-            <li aria-current="page" class="menu__etape etat-etape"  data-etape="0">
+            <li aria-current="page" class="menu__etape etat-etape" data-etape="0">
                 <span class="menu__lien__span" id="etat_etape0"></span>
                 <a href="#" class="menu__lien ">
                     <span class="hors-ecran">Don</span>
@@ -52,21 +52,21 @@
                 </a>
             </li>
             <li class="menu__etape etat-etape" data-etape="1">
-                <span class="menu__lien__span menu__lien--inactive"  id="etat_etape1"></span>
+                <span class="menu__lien__span menu__lien--inactive" id="etat_etape1"></span>
                 <a href="#" class="menu__lien " aria-disabled="true">
                     <span class="hors-ecran">Donneur</span>
                     Donneur
                 </a>
             </li>
             <li class="menu__etape etat-etape" data-etape="2">
-                <span class="menu__lien__span menu__lien--inactive"  id="etat_etape2"></span>
+                <span class="menu__lien__span menu__lien--inactive" id="etat_etape2"></span>
                 <a href="#" class="menu__lien " aria-disabled="true">
                     Paiement
                     <span class="hors-ecran">Paiement</span>
                 </a>
             </li>
             <li class="menu__etape etat-etape" data-etape="3">
-                <span class="menu__lien__span menu__lien--inactive"  id="etat_etape3"></span>
+                <span class="menu__lien__span menu__lien--inactive" id="etat_etape3"></span>
                 <a href="#" class="menu__lien " aria-disabled="true">
                     Résumé
                     <span class="hors-ecran">Résumé</span>
@@ -83,7 +83,8 @@
                     <ul class="typeDeDons">
                         <li>
                             <label for="donUnique">
-                                <input class="hors-ecran" type="radio" name="don" id="donUnique" value="Don unique" checked>
+                                <input class="hors-ecran" type="radio" name="don" id="donUnique" value="Don unique"
+                                    checked>
                                 <span>Don unique</span>
                             </label>
                         </li>
@@ -96,32 +97,48 @@
                     </ul>
                     <ul class="montantsdeDons">
                         <li>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donVingt" value="20" checked>
-                            <label for="donVingt">20</label>
+                            <label class="labelDon" for="donVingt">
+                                <input class="hors-ecran" type="radio" class="choixMultiple" name="valeurDon"
+                                    id="donVingt" value="20" checked>
+                                <span>20</span>
+                            </label>
                         </li>
                         <li>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donCinquante" value="50">
-                            <label for="donCinquante">50</label>
+                            <label class="labelDon" for="donCinquante">
+                                <input class="hors-ecran" type="radio" class="choixMultiple" name="valeurDon"
+                                    id="donCinquante" value="50">
+                                <span>50</span>
+                            </label>
                         </li>
                         <li>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donQuatreVingtDix"
-                                value="90">
-                            <label for="donQuatreVingtDix">90</label>
+                            <label class="labelDon" for="donQuatreVingtDix">
+                                <input class="hors-ecran" type="radio" class="choixMultiple" name="valeurDon"
+                                    id="donQuatreVingtDix" value="90">
+                                <span>90</span>
+                            </label>
                         </li>
                         <li>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="donCent" value="100">
-                            <label for="donCent">100</label>
+                            <label class="labelDon" for="donCent">
+                                <input class="hors-ecran" type="radio" class="choixMultiple" name="valeurDon"
+                                    id="donCent" value="100">
+                                <span>100</span>
+                            </label>
                         </li>
                         <li>
-                            <input type="radio" class="choixMultiple" name="valeurDon" id="valeurDeuxCent" value="200">
-                            <label for="valeurDeuxCent">200</label>
+                            <label class="labelDon" for="valeurDeuxCent">
+                                <input class="hors-ecran" type="radio" class="choixMultiple" name="valeurDon"
+                                    id="valeurDeuxCent" value="200">
+                                <span>200</span>
+                            </label>
                         </li>
                         <li>
-                            <input type="radio" class="choixMultiple donAutre" name="valeurDon" id="donAutre"
-                                value="donAutre">
-                            <label for="donAutre">Autre</label>
+                            <label class="labelDon" for="donAutre">
+                                <input class="hors-ecran" type="radio" class="choixMultiple donAutre" name="valeurDon"
+                                    id="donAutre" value="donAutre">
+                                <span>Autre</span>
+                            </label>
                             <div class="donAutreCache cache">
-                                <input type="number" name="valeurDon" id="autreMontant" value="" maxlength="4">
+                                <input type="number" name="valeurDon" id="autreMontant" value="" max="9999">
                                 <label for="autreMontant"></label>
                                 <p id="erreur_autreMontant" class="erreur_autreMontant texteCache"></p>
                             </div>
@@ -129,7 +146,8 @@
                     </ul>
 
                     <div class="donDedicace">
-                        <input type="checkbox" class="checkboxDons" name="donADedicace" id="donADedicace" value="ouiDedicace">
+                        <input type="checkbox" class="checkboxDons" name="donADedicace" id="donADedicace"
+                            value="ouiDedicace">
                         <label for="donADedicace">Je désire dédicacer mon don</label>
                         <div class="cache inputTexteFerme div_ouiDedicace">
                             <label for="ouiDedicace">Don en l'honneur de :</label>
@@ -208,7 +226,7 @@
                         <div>
                             <label for="adresse">Adresse</label>
                             <span class="texteExemple">Ex:0101 rue de la prairie</span>
-                            <input type="text" name="adresse" id="adresse" required>
+                            <input type="text" name="adresse" id="adresse" autocomplete="address-line1" required>
                             <p id="erreur_adresse" class="erreur_adresse texteCache"></p>
                         </div>
                         <div>

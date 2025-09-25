@@ -1,5 +1,8 @@
 @use "../utilitaires/variables";
 .formulaire{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width:100%;
     padding: 1.5rem;
     margin: 2.5rem auto;
@@ -7,6 +10,4 @@
     border-radius: 1rem ;
     background-color: variables.$vert-pale;
     box-shadow: variables.$ombreEffetFormulaire;
-    display: flex;
-    flex-direction: column;
 }
