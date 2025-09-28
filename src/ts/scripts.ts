@@ -55,7 +55,8 @@ interface messageErreur {
     tldSuspicieux?: string;
     erreursCommunes?: string;
     duree?: string;
-    dureeExedee?: string
+    dureeExedee?: string;
+    longeur?: string
 }
 interface erreursJSON {
     [fieldName: string]: messageErreur;
@@ -216,7 +217,9 @@ async function obtenirPays(): Promise<void> {
 
 
     provinceContneur.classList.add('cache');
+    provinceContneur.classList.add('cacher');
     etatConteneur.classList.add('cache');
+    etatConteneur.classList.add('cacher');
     inputEtats.disabled = true;
     leInputProvince.disabled = true;
 
@@ -226,7 +229,9 @@ async function obtenirPays(): Promise<void> {
             inputEtats.disabled = true;
 
             etatConteneur.classList.add('cache')
+            etatConteneur.classList.add('cacher')
             provinceContneur.classList.remove('cache');
+            provinceContneur.classList.remove('cacher');
         }
         else if (leInputPays.value == 'United States of America (the)') {
             leInputProvince.disabled = true;
@@ -234,10 +239,14 @@ async function obtenirPays(): Promise<void> {
 
             provinceContneur.classList.add('cache');
             etatConteneur.classList.remove('cache')
+            provinceContneur.classList.add('cacher');
+            etatConteneur.classList.remove('cacher')
         }
         else {
             provinceContneur.classList.add('cache');
             etatConteneur.classList.add('cache');
+            provinceContneur.classList.add('cacher');
+            etatConteneur.classList.add('cacher');
             inputEtats.disabled = true;
             leInputProvince.disabled = true;
         }
@@ -566,10 +575,16 @@ function validerChampNumerique(champ: HTMLInputElement): boolean {
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
     }
+    else if (champ.validity.rangeOverflow && messagesErreur[id].longeur) {
+        // Valeur numérique supérieure à max
+        erreurElement.innerText = messagesErreur[id].longeur
+        valide = false;
+    }
     else {
         valide = true;
         erreurElement.innerText = "";
     }
+    console.log(valide)
     return valide
 }
 function validerChampNumApp(champ: HTMLInputElement): boolean {
@@ -583,6 +598,11 @@ function validerChampNumApp(champ: HTMLInputElement): boolean {
     if (expresRegex.test(leNumApp) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
+        valide = false;
+    }
+    else if (champ.validity.rangeOverflow && messagesErreur[id].longeur) {
+        // Valeur numérique supérieure à max
+        erreurElement.innerText = messagesErreur[id].longeur
         valide = false;
     }
     else {
@@ -600,11 +620,13 @@ function afficherLesChampsCache(): boolean {
             if (btnChoisi.value !== 'donAutre') {
                 champAffiche = false;
                 divAutreMontant.classList.add("cache");
+                divAutreMontant.classList.add("cacher");
 
             }
             else {
                 champAffiche = true;
                 divAutreMontant.classList.remove("cache");
+                divAutreMontant.classList.remove("cacher");
             }
         }
     })
@@ -622,12 +644,14 @@ function afficherChampCheckbox(checkBoxCheck: any): boolean {
 
     if (checkBoxCheck.checked == true) {
         laDivCache.classList.remove('cache')
+        laDivCache.classList.remove('cacher')
     }
     else {
         laDivCache.classList.add('cache');
+        laDivCache.classList.add('cacher');
     }
     return laDivCache
-    
+
 }
 
 // VALIDATION DES ÉTAPES
@@ -677,6 +701,7 @@ function validerEtape(etape: number): boolean {
                 else {
                     leCheckEstValide = true;
                     nomDedicaceAEntree.classList.remove('cache');
+                    nomDedicaceAEntree.classList.remove('cacher');
                     nomDedicaceAEntree.innerText = `En l'honneur de ${nomDedicaceElement.value}`
                 }
             }
@@ -685,6 +710,7 @@ function validerEtape(etape: number): boolean {
                 nomDedicaceElement.required = false;
                 estDedicaceAEntree.innerText = "non";
                 nomDedicaceAEntree.classList.add('cache');
+                nomDedicaceAEntree.classList.add('cacher');
             }
 
             if (leCheckEstValide && leChampEstValide) {
@@ -761,6 +787,7 @@ function validerEtape(etape: number): boolean {
                 }
                 else {
                     nomEntrepriseAEntree.classList.remove('cache');
+                    nomEntrepriseAEntree.classList.remove('cacher');
                     nomEntrepriseAEntree.innerText = `Nom de l'entreprise ${nomEntrepriseElement.value}`;
                 }
             }
@@ -768,6 +795,7 @@ function validerEtape(etape: number): boolean {
                 nomEntrepriseElement.required = false;
                 estEntrepriseAEntree.innerText = "non";
                 nomEntrepriseAEntree.classList.add('cache');
+                nomEntrepriseAEntree.classList.add('cacher');
             }
             break;
 
@@ -833,11 +861,15 @@ function afficherEtape(lesEtapes: number): void {
 
     if (lesEtapes >= 0 && lesEtapes < etapes.length) {
         etapes[lesEtapes].classList.remove('cache');
+        etapes[lesEtapes].classList.remove('cacher');
     }
     if (lesEtapes == 0) {
         boutonPrecedent.classList.add('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
+        boutonPrecedent.classList.add('cacher');
+        boutonSuivant.classList.remove('cacher');
+        boutonDonner.classList.add('cacher');
 
         etatElement0.classList.add('enCours');
 
@@ -856,6 +888,9 @@ function afficherEtape(lesEtapes: number): void {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
+        boutonPrecedent.classList.remove('cacher');
+        boutonSuivant.classList.remove('cacher');
+        boutonDonner.classList.add('cacher');
 
         etatElement0.classList.remove('enCours');
         etatElement0.classList.add('menu__lien--active');
@@ -877,16 +912,19 @@ function afficherEtape(lesEtapes: number): void {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.remove('cache');
         boutonDonner.classList.add('cache');
+        boutonPrecedent.classList.remove('cacher');
+        boutonSuivant.classList.remove('cacher');
+        boutonDonner.classList.add('cacher');
 
         etatElement1.classList.remove('enCours');
         etatElement1.classList.add('menu__lien--active');
-        etatLiensElement1.classList.remove('menu__lien--inactive')
+        etatElement1.classList.remove('menu__lien--inactive')
 
         etatElement2.classList.add('enCours');
-        etatLiensElement2.classList.remove('menu__lien--inactive');
+        etatElement2.classList.remove('menu__lien--inactive');
 
         etatElement3.classList.remove('enCours');
-        etatLiensElement3.classList.add('menu__lien--inactive');
+        etatElement3.classList.add('menu__lien--inactive');
 
 
     }
@@ -894,15 +932,18 @@ function afficherEtape(lesEtapes: number): void {
         boutonPrecedent.classList.remove('cache');
         boutonSuivant.classList.add('cache');
         boutonDonner.classList.remove('cache');
+        boutonPrecedent.classList.remove('cacher');
+        boutonSuivant.classList.add('cacher');
+        boutonDonner.classList.remove('cacher');
 
-        etatLiensElement1.classList.remove('menu__lien--inactive');
+        etatElement1.classList.remove('menu__lien--inactive');
 
         etatElement2.classList.remove('enCours');
         etatElement2.classList.add('menu__lien--active');
-        etatLiensElement2.classList.remove('menu__lien--inactive');
+        etatElement2.classList.remove('menu__lien--inactive');
 
         etatElement3.classList.add('enCours');
-        etatLiensElement3.classList.remove('menu__lien--inactive');
+        etatElement3.classList.remove('menu__lien--inactive');
 
 
     }
@@ -912,6 +953,7 @@ function afficherEtape(lesEtapes: number): void {
 function cacherSections(): void {
     sections.forEach((uneSection: any) => {
         uneSection.classList.add("cache")
+        uneSection.classList.add("cacher")
     });
 
 }

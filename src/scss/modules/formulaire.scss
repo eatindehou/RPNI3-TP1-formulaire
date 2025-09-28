@@ -1,13 +1,77 @@
 @use "../utilitaires/variables";
-.formulaire{
+
+.formulaire {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width:100%;
-    padding: 1.5rem;
+    width: 100%;
+    padding: 1.5rem 1.5rem 3.5rem 1.5rem;
     margin: 2.5rem auto;
-    height: 700px;
-    border-radius: 1rem ;
+    height: 100%;
+    border-radius: 1rem;
     background-color: variables.$vert-pale;
     box-shadow: variables.$ombreEffetFormulaire;
+
+    @media(min-width: 30rem) {
+        width: 80%;
+        margin: 0 auto;
+        padding: 3.5rem 3.5rem 7.5rem 3.5rem;
+    }
+}
+
+.etapeDon {
+    margin-bottom: 1.5rem;
+
+    @media(min-width: 30rem) {
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+.etape2,
+.etape4 {
+
+    & fieldset {
+        border: none;
+        display: block;
+
+        &>legend {
+            width: 100%;
+            padding: 1.5rem 0;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-items: end;
+            gap: 1rem;
+
+            &>span:first-of-type {
+                white-space: nowrap;
+            }
+
+            &>span:last-of-type {
+                width: 100%;
+                flex-grow: 1;
+                height: .4rem;
+                background-color: variables.$vert-fonce;
+                border-radius: 1rem;
+            }
+
+        }
+    }
+
+    @media(min-width: 30rem) {
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+.etape3 {
+    width: 100%;
+    padding: 1.5rem;
+
+    @media(min-width: 30rem) {
+        width: 60%;
+        margin: 0 auto;
+    }
 }

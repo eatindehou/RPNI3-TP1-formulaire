@@ -5,34 +5,7 @@
 * @author Prenom Nom courriel
 * @todo Compléter selon l'énoncé de l'exercice
 */
-
-// .bouton {
-//   background-color: variables.$vertLime;
-//   border-radius: 18px;
-//   color: black;
-//   padding: 0.5em 1em;
-//   text-decoration: none;
-//   &:after {
-//     content: "»";
-//     margin-left: 0.4em;
-//   }
-//   &--hover {
-//     background-color: color.adjust(variables.$vertLime, $alpha: -0.25);
-//   }
-//   &--active {
-//     background-color: color.adjust(variables.$vertLime, $alpha: -0.5);
-//   }
-//   &--inverse {
-//     background-color: white;
-//     border: 2px solid variables.$vertLime;
-//     &--hover {
-//       border-color: color.adjust(variables.$vertLime, $alpha: -0.25);
-//     }
-//     &--active {
-//       border-color: color.adjust(variables.$vertLime, $alpha: -0.5);
-//     }
-//   }
-// }
+/* BOUTONS RADIOS TYPES DE DONS */
 .typeDeDons {
     width: 90%;
     margin: 0 auto;
@@ -50,6 +23,19 @@
         border-top-right-radius: 1.3rem;
         border-bottom-right-radius: 1.3rem;
     }
+
+
+    @media(min-width: 30rem) {
+        width: 90%;
+
+        &>li:first-of-type span {
+            width: 15rem;
+        }
+
+        &>li:last-of-type span {
+            width: 15rem;
+        }
+    }
 }
 
 input[name="don"]+span {
@@ -64,13 +50,14 @@ input[name="don"]+span {
 
 input[name="don"]:checked+span {
     background-color: variables.$vert-clair;
-    border: .4rem solid variables.$vert-contour;
+    border: .35rem solid variables.$vert-contour;
 
 }
 
-.montantsdeDons {
+/* BOUTONS RADIOS VALEURS DE DONS */
+.btnRadios {
     width: 90%;
-    margin: 1.7rem auto 1.7rem auto;
+    margin: 1.7rem auto 0 auto;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -78,15 +65,14 @@ input[name="don"]:checked+span {
     align-content: space-between;
 
     &>li {
-
         width: 60px;
         text-align: center;
         margin: .5rem;
     }
-
-
 }
-input[name="valeurDon"]+span {
+
+input[name="valeurDon"]+span,
+input[name="genre"]+span {
     display: block;
     text-align: center;
     color: white;
@@ -95,19 +81,158 @@ input[name="valeurDon"]+span {
     background-color: variables.$vert;
 }
 
-input[name="valeurDon"]:checked+span {
+input[name="valeurDon"]:checked+span,
+input[name="genre"]:checked+span {
     border: .3rem solid variables.$vert-contour;
     background-color: variables.$vert-clair;
+    color: variables.$vert-fonce
 }
 
-
+/* CHAMP AUTRE MONTANT CACHÉ */
 .donAutreCache {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 20%;
+    margin-top: .7rem;
+    animation: glissement 300ms ease-in-out;
 
     &>#autreMontant {
         width: 100%;
     }
+}
+
+/** CHAMP DE DÉDIACE
+* Styliser le checkbox
+ */
+.donDedicace,
+.donEntreprise {
+    width: 90%;
+    margin: 2rem auto 0 auto;
+
+    &>label {
+        display: flex;
+        align-items: center;
+
+        & .leCheck {
+            display: block;
+            margin-right: .3rem;
+            padding: 1rem;
+            width: 2.375rem;
+            height: 2.375rem;
+            background-color: transparent;
+            border: .3rem solid variables.$vert-clair;
+            border-radius: .33rem;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0.45em;
+                top: 0.15em;
+                width: 0.45em;
+                height: .8em;
+                border: solid white;
+                border-width: 0 0.15em 0.15em 0;
+                transform: rotate(45deg);
+            }
+
+        }
+
+        &>input:checked+span {
+            background-color: variables.$vert-clair;
+
+            &::after {
+                display: block;
+            }
+        }
+    }
+
+    & div {
+        margin-top: 1rem;
+        animation: glissement 300ms ease-in-out;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+/* BOUTONS */
+.boutonsDepage {
+    width: 100%;
+    padding: 0 0.625rem;
+    margin-top: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .8rem;
+    
+    
+    @media(min-width: 30rem) {
+        width: 55%;
+        padding: 0;
+        margin: 2rem auto;
+    }
+}
+
+.btn {
+    text-align: center;
+    border: .2rem solid variables.$vert;
+    border-radius: 0.4375rem;
+}
+
+.btn.btnRetour {
+    padding: 1rem 3rem;
+    background-color: white;
+    color: variables.$vert-fonce;
+    
+    @media(min-width: 30rem) {
+        padding: 1.2rem 3.8rem;
+    }
+}
+
+.btn.btnSuivant,
+.btn.btnDonner {
+    padding: 1rem 3.475rem;
+    background-color: variables.$vert;
+    color: white;
+    
+    @media(min-width: 30rem) {
+        padding: 1.2rem 4.8rem;
+    }
+}
+
+@keyframes glissement {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: translateY(0);
+    }
+}
+
+.etape2 .donEntreprise {
+    width: 100%;
+    margin: 2rem 0 0 2rem;
+
+    &>label {
+        display: flex;
+        align-items: start;
+
+    }
+}
+
+.genreDuDonneur.btnRadios {
+    width: 100%;
+    margin: 0;
+
+}
+
+.informationsTextuelles>div {
+    display: flex;
+    flex-direction: column;
+
+    &>* {
+        margin-top: 1rem;
+    }
+
 }

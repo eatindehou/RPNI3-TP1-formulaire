@@ -7,6 +7,12 @@
     flex-direction: row;
     align-items: center;
 
+    @media(min-width: 30rem) {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
     &__etape {
         display: flex;
         flex-direction: column;
@@ -46,8 +52,13 @@
             position: relative;
             top: 4.8rem;
             left: -1rem;
+
+            @media(min-width: 30rem) {
+            top: 5.2rem;
+            }
         }
     }
+
 }
 
 .enCours {
@@ -57,19 +68,10 @@
 .navigationEtapes {
     padding: 0 1rem;
     border-bottom: 1rem solid variables.$vert;
+
+    @media(min-width: 30rem) {
+        padding: 2rem 1rem 2rem 1rem;
+        width: 70%;
+        margin: 0 auto 4rem auto;
+    }
 }
-
-// .menu__lien--inactive {
-//     cursor: not-allowed;
-//     color: black;
-// }
-
-// .menu__lien--inactive:hover {
-//     cursor: not-allowed;
-//     color: rgb(247, 0, 0);
-// }
-
-// .menu__lien--inactive:active {
-//     cursor: not-allowed;
-//     color: black;
-// }

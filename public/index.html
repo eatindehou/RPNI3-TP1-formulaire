@@ -36,7 +36,7 @@
                     <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Contactez-nous</a></li>
                     <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">Nos évenements</a> </li>
                     <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Nos services</a></li>
-                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Donner</a></li>
+                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien lienEvidence"> Donner</a></li>
                 </ul>
             </div>
 
@@ -95,7 +95,7 @@
                             </label>
                         </li>
                     </ul>
-                    <ul class="montantsdeDons">
+                    <ul class="montantsdeDons btnRadios">
                         <li>
                             <label class="labelDon" for="donVingt">
                                 <input class="hors-ecran" type="radio" class="choixMultiple" name="valeurDon"
@@ -137,8 +137,8 @@
                                     id="donAutre" value="donAutre">
                                 <span>Autre</span>
                             </label>
-                            <div class="donAutreCache cache">
-                                <input type="number" name="valeurDon" id="autreMontant" value="" max="9999">
+                            <div class="donAutreCache cache cacher">
+                                <input type="number" name="valeurDon" id="autreMontant" value="" max="4444">
                                 <label for="autreMontant"></label>
                                 <p id="erreur_autreMontant" class="erreur_autreMontant texteCache"></p>
                             </div>
@@ -146,12 +146,15 @@
                     </ul>
 
                     <div class="donDedicace">
-                        <input type="checkbox" class="checkboxDons" name="donADedicace" id="donADedicace"
-                            value="ouiDedicace">
-                        <label for="donADedicace">Je désire dédicacer mon don</label>
-                        <div class="cache inputTexteFerme div_ouiDedicace">
+                        <label for="donADedicace">
+                            <input type="checkbox" class="checkboxDons hors-ecran" name="donADedicace" id="donADedicace"
+                                value="ouiDedicace">
+                            <span class="leCheck"></span>
+                            Je désire dédicacer mon don
+                        </label>
+                        <div class="cache cacher inputTexteFerme div_ouiDedicace">
                             <label for="ouiDedicace">Don en l'honneur de :</label>
-                            <input type="text" name="ouiDedicace" id="ouiDedicace">
+                            <input class="champMoyen" type="text" name="ouiDedicace" id="ouiDedicace">
                             <p id="erreur_ouiDedicace" class="erreur_ouiDedicace texteCache"></p>
                         </div>
                     </div>
@@ -159,59 +162,74 @@
                 <section class="etape2" id="etapeDonneur">
                     <h2 class="titreTaille1">Informations sur le donneur</h2>
                     <fieldset>
-                        <legend>Information personnelles</legend>
+                        <legend>
+                            <span>Information personnelles</span>
+                            <span></span>
+                        </legend>
                         <div class="donEntreprise">
-                            <input type="checkbox" class="checkboxDons" name="donPourEntreprise" id="donPourEntreprise"
-                                value="ouiNomEntreprise">
-                            <label for="donPourEntreprise">Ce don est fait au nom d’une entreprise</label>
+                            <label for="donPourEntreprise">
+                                <input type="checkbox" class="checkboxDons hors-ecran" name="donPourEntreprise"
+                                    id="donPourEntreprise" value="ouiNomEntreprise">
+                                <span class="leCheck"></span>
+                                Ce don est fait au nom d’une entreprise
+                            </label>
 
-                            <div class="cache inputTexteFerme div_ouiNomEntreprise">
+                            <div class="cache cacher inputTexteFerme div_ouiNomEntreprise">
                                 <label for="ouiNomEntreprise">Nom de l'entreprise :</label>
-                                <input type="text" name="ouiNomEntreprise" id="ouiNomEntreprise">
+                                <input class="champMoyen" type="text" name="ouiNomEntreprise" id="ouiNomEntreprise">
                                 <p id="erreur_ouiNomEntreprise" class="erreur_ouiNomEntreprise texteCache"></p>
                             </div>
                         </div>
 
-                        <div class="genreDuDonneur">
-                            <div>
-                                <input type="radio" class="choixMultiple" name="genre" id="monsieur" value="monsieur"
-                                    checked>
-                                <label for="monsieur">M</label>
-                            </div>
-                            <div>
-                                <input type="radio" class="choixMultiple" name="genre" id="madame" value="madame">
-                                <label for="madame">Mme</label>
-                            </div>
-                            <div>
-                                <input type="radio" class="choixMultiple" name="genre" id="mademoiselle"
-                                    value="mademoiselle">
-                                <label for="mademoiselle">Miss</label>
-                            </div>
-                        </div>
+                        <ul class="genreDuDonneur btnRadios">
+                            <li>
+                                <label for="monsieur">
+                                    <input class="hors-ecran" type="radio" class="choixMultiple" name="genre"
+                                        id="monsieur" value="monsieur" checked>
+                                    <span>M</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="madame">
+                                    <input class="hors-ecran" type="radio" class="choixMultiple" name="genre"
+                                        id="madame" value="madame">
+                                    <span>Mme</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="mademoiselle">
+                                    <input class="hors-ecran" type="radio" class="choixMultiple" name="genre"
+                                        id="mademoiselle" value="mademoiselle">
+                                    <span>Miss</span>
+                                </label>
+                            </li>
+                        </ul>
+
+
                         <div class="informationsTextuelles">
                             <div>
                                 <label for="nom">Nom</label>
-                                <input type="text" name="nom" id="nom" required>
+                                <input class="champMoyen" type="text" name="nom" id="nom" required>
                                 <p id="erreur_nom" class="erreur_nom texteCache"></p>
                             </div>
 
                             <div>
                                 <label for="nom">Prenom</label>
-                                <input type="text" name="prenom" id="prenom" required>
+                                <input class="champMoyen"  type="text" name="prenom" id="prenom" required>
                                 <p id="erreur_prenom" class="erreur_prenom texteCache"></p>
                             </div>
 
                             <div>
                                 <label for="email">Adresse courriel</label>
                                 <span class="texteExemple">EX:abcde@gmail.com</span>
-                                <input type="email" name="email" id="email" required>
+                                <input class="champLong" type="email" name="email" id="email" required>
                                 <p id="erreur_email" class="erreur_email texteCache"></p>
                             </div>
 
                             <div>
                                 <label for="telephone">Numéro de téléphone</label>
                                 <span class="texteExemple">Ex:4444444444</span>
-                                <input type="text" inputmode="numeric" name="telephone" id="telephone" maxlength="10"
+                                <input class="champLong" type="text" inputmode="numeric" name="telephone" id="telephone" maxlength="10"
                                     autocomplete="tel" required>
                                 <p id="erreur_telephone" class="erreur_telephone texteCache"></p>
                             </div>
@@ -219,53 +237,55 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>Informations postales</legend>
+                        <legend>
+                            <span>Informations postales</span>
+                            <span></span>
+                        </legend>
+                        <div class="informationsTextuelles">
 
-                        <h2 class="titreTaille2">Informations postales</h2>
+                            <div>
+                                <label for="adresse">Adresse</label>
+                                <span class="texteExemple">Ex:0101 rue de la prairie</span>
+                                <input class="champLong" type="text" name="adresse" id="adresse" autocomplete="address-line1" required>
+                                <p id="erreur_adresse" class="erreur_adresse texteCache"></p>
+                            </div>
+                            <div>
+                                <label for="numApp">Numéro d'appartement</label>
+                                <input class="champCourt" type="number" name="numApp" id="numApp" max="4444">
+                                <p id="erreur_numApp" class="erreur_numApp texteCache"></p>
+                            </div>
 
-                        <div>
-                            <label for="adresse">Adresse</label>
-                            <span class="texteExemple">Ex:0101 rue de la prairie</span>
-                            <input type="text" name="adresse" id="adresse" autocomplete="address-line1" required>
-                            <p id="erreur_adresse" class="erreur_adresse texteCache"></p>
-                        </div>
-                        <div>
-                            <label for="numApp">Numéro d'appartement</label>
-                            <input type="text" name="numApp" id="numApp" maxlength="4">
-                            <p id="erreur_numApp" class="erreur_numApp texteCache"></p>
-                        </div>
+                            <div>
+                                <label for="codePostal">Code postal</label>
+                                <span class="texteExemple">EX: A1A1A1 / A1A 1A1</span>
+                                <input class="champCourt" type="text" name="codePostal" id="codePostal" required>
+                                <p id="erreur_codePostal" class="erreur_codePostal texteCache"></p>
+                            </div>
 
-                        <div>
-                            <label for="codePostal">Code postal</label>
-                            <span class="texteExemple">EX: A1A1A1 / A1A 1A1</span>
-                            <input type="text" name="codePostal" id="codePostal" required>
-                            <p id="erreur_codePostal" class="erreur_codePostal texteCache"></p>
-                        </div>
+                            <div id="pays_conteneur">
+                                <label for="listePays">Pays</label>
+                                <input class="champLong" list="pays" id="listePays" name="pays" placeholder="Choisisez un pays" required>
+                                <datalist id="pays">
+                                </datalist>
+                                <p id="erreur_listePays" class="erreur_listePays texteCache"></p>
+                            </div>
 
-                        <div id="pays_conteneur">
-                            <label for="listePays">Pays</label>
-                            <input list="pays" id="listePays" name="pays" placeholder="Choisisez un pays" required>
-                            <datalist id="pays">
-                            </datalist>
-                            <p id="erreur_listePays" class="erreur_listePays texteCache"></p>
+                            <div id="province_conteneur">
+                                <label for="listeProvince">Province</label>
+                                <input class="champMoyen" list="province" id="listeProvince" name="province"
+                                    placeholder="Choisisez une province" required>
+                                <datalist id="province">
+                                </datalist>
+                                <p id="erreur_listeProvince" class="erreur_listeProvince texteCache"></p>
+                            </div>
+                            <div id="etat_conteneur">
+                                <label for="listeEtat">Etat</label>
+                                <input class="champMoyen" list="etat" id="listeEtat" name="etat" placeholder="Choisisez un état" required>
+                                <datalist id="etat">
+                                </datalist>
+                                <p id="erreur_listeEtat" class="erreur_listeEtat texteCache"></p>
+                            </div>
                         </div>
-
-                        <div id="province_conteneur">
-                            <label for="listeProvince">Province</label>
-                            <input list="province" id="listeProvince" name="province"
-                                placeholder="Choisisez une province" required>
-                            <datalist id="province">
-                            </datalist>
-                            <p id="erreur_listeProvince" class="erreur_listeProvince texteCache"></p>
-                        </div>
-                        <div id="etat_conteneur">
-                            <label for="listeEtat">Etat</label>
-                            <input list="etat" id="listeEtat" name="etat" placeholder="Choisisez un état" required>
-                            <datalist id="etat">
-                            </datalist>
-                            <p id="erreur_listeEtat" class="erreur_listeEtat texteCache"></p>
-                        </div>
-
 
                     </fieldset>
                 </section>
@@ -275,14 +295,14 @@
                     <div class="informationsTextuelles">
                         <div>
                             <label for="titulaireCarte">Titulaire de la carte de crédit</label>
-                            <input type="text" name="titulaireCarte" id="titulaireCarte" required>
+                            <input class="champLong" type="text" name="titulaireCarte" id="titulaireCarte" required>
                             <p id="erreur_titulaireCarte" class="erreur_titulaireCarte texteCache"></p>
                         </div>
 
                         <div>
                             <label for="numCarteCredit">Numéro de la carte de crédit</label>
                             <span class="texteExemple">Ex: 4444444444444444</span>
-                            <input type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit"
+                            <input class="champLong" type="text" inputmode="numeric" name="numCarteCredit" id="numCarteCredit"
                                 maxlength="19" required>
                             <p id="erreur_numCarteCredit"
                                 class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
@@ -292,14 +312,14 @@
                         <div>
                             <label for="dateExpiration">Date d'expiration</label>
                             <span class="texteExemple">Ex:MM/AA</span>
-                            <input type="text" name="dateExpiration" id="dateExpiration" required placeholder="MM/AAAA"
+                            <input class="champCourt" type="text" name="dateExpiration" id="dateExpiration" required placeholder="MM/AAAA"
                                 maxlength="7">
                             <p id="erreur_dateExpiration" class="erreur_dateExpiration texteCache"></p>
                         </div>
 
                         <div>
                             <label for="cvv">CVV/CVC</label>
-                            <input type="text" name="cvv" id="cvv" maxlength="4" required>
+                            <input class="champCourt" type="text" name="cvv" id="cvv" maxlength="4" required>
                             <p id="erreur_cvv" class="erreur_cvv texteCache"></p>
                         </div>
 
@@ -310,7 +330,10 @@
                     <p class="position">4/4</p>
                     <h2 class="titreTaille1">Résumé</h2>
                     <fieldset class="resumeDon">
-                        <legend>Votre don</legend>
+                        <legend>
+                            <span>Votre don</span>
+                            <span></span>
+                        </legend>
                         <div class="donneesTypeDon">
                             <p id="typeDeDon"></p>
                             <p id="valeurDuDon"></p>
@@ -322,7 +345,10 @@
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend>Renseignements sur le donneur</legend>
+                        <legend>
+                            <span>Renseignements sur le donneur</span>
+                            <span></span>
+                        </legend>
                         <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
                         <div class="donneesEntreprise">
                             <p id="reponseEntreprise"></p>
@@ -335,7 +361,10 @@
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend>Informations postales</legend>
+                        <legend>
+                            <span>Informations postales</span>
+                            <span></span>
+                        </legend>
                         <div class="donneesPostales">
                             <p id="donneesAdresse"></p>
                             <p id="donneesCodePostal"></p>
@@ -346,7 +375,11 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>Paiement</legend>
+
+                        <legend>
+                            <span>Paiement</span>
+                            <span></span>
+                        </legend>
                         <div class="resumeDonneesCarte">
                             <p id="donnesTitulaire"></p>
                             <p id="donnesNumeroCarte"></p>

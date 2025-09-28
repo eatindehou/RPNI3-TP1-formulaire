@@ -45,11 +45,12 @@
     },
     "cvv": {
         "vide": "Veuillez inscrire votre numéro de CVV !",
-        "pattern": "Veuillez entrez une numéro de cvv valide !"
+        "pattern": "Veuillez entrez une numéro de cvv valide ! Celui-ci doit compter 3 ou 4 chiffres"
     },
     "autreMontant": {
         "vide": "Veuillez inscrire un montant !",
-        "pattern": "Veuillez entrez uniquement des chiffres !"
+        "pattern": "Veuillez entrez uniquement des chiffres !",
+        "longeur": "Le montant que vous devez entrer ne doit pas exéder 4 chiffres !"
     },
     "ouiDedicace": {
         "vide": "Veuillez inscrire le nom de la dédicace!",
@@ -65,6 +66,7 @@
     },
     "numApp": {
         "vide": " ",
-        "pattern": "Votre numéro ne contenir que des chiffres !"
+        "pattern": "Votre numéro ne contenir que des chiffres !",
+        "longeur": "Le numéro que vous devez entrer ne doit pas exéder 5 chiffres !"
     }
 }
