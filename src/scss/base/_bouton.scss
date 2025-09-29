@@ -25,7 +25,7 @@
     }
 
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         width: 90%;
 
         &>li:first-of-type span {
@@ -155,19 +155,19 @@ input[name="genre"]:checked+span {
 
 /* BOUTONS */
 .boutonsDepage {
-    width: 100%;
+    width: 70%;
+    margin: 2rem auto;
     padding: 0 0.625rem;
     margin-top: 1.3rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: .8rem;
-    
-    
-    @media(min-width: 30rem) {
+
+
+    @media(min-width: variables.$desktop) {
         width: 55%;
         padding: 0;
-        margin: 2rem auto;
     }
 }
 
@@ -181,8 +181,8 @@ input[name="genre"]:checked+span {
     padding: 1rem 3rem;
     background-color: white;
     color: variables.$vert-fonce;
-    
-    @media(min-width: 30rem) {
+
+    @media(min-width: variables.$desktop) {
         padding: 1.2rem 3.8rem;
     }
 }
@@ -192,8 +192,8 @@ input[name="genre"]:checked+span {
     padding: 1rem 3.475rem;
     background-color: variables.$vert;
     color: white;
-    
-    @media(min-width: 30rem) {
+
+    @media(min-width: variables.$desktop) {
         padding: 1.2rem 4.8rem;
     }
 }
@@ -212,7 +212,7 @@ input[name="genre"]:checked+span {
 
 .etape2 .donEntreprise {
     width: 100%;
-    margin: 2rem 0 0 2rem;
+    margin: 2rem 0 2rem 0;
 
     &>label {
         display: flex;
@@ -235,4 +235,11 @@ input[name="genre"]:checked+span {
         margin-top: 1rem;
     }
 
+}
+
+
+label [for="listePays"]::before{
+    
+    content: ">";
+    border: 2rem solid red;
 }

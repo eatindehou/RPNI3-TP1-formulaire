@@ -1,17 +1,17 @@
 @use "../utilitaires/variables";
 
 .champLong{
-    @media(min-width: 30rem){
+    @media(min-width: variables.$desktop){
         width:90%;
     }
 }
 .champMoyen{
-    @media(min-width: 30rem){
+    @media(min-width: variables.$desktop){
         width:70%;
     }
 }
 .champCourt{
-    @media(min-width: 30rem){
+    @media(min-width: variables.$desktop){
         width:30%;
     }
 }

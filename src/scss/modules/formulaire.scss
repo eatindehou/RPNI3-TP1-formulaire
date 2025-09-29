@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+    width: 98%;
+    margin: 0 auto;
     padding: 1.5rem 1.5rem 3.5rem 1.5rem;
     margin: 2.5rem auto;
     height: 100%;
@@ -12,24 +13,26 @@
     background-color: variables.$vert-pale;
     box-shadow: variables.$ombreEffetFormulaire;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         width: 80%;
-        margin: 0 auto;
         padding: 3.5rem 3.5rem 7.5rem 3.5rem;
     }
 }
 
 .etapeDon {
     margin-bottom: 1.5rem;
+    width: 70%;
+    margin: 0 auto;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         width: 60%;
-        margin: 0 auto;
     }
 }
 
 .etape2,
 .etape4 {
+    width: 70%;
+    margin: 0 auto;
 
     & fieldset {
         border: none;
@@ -60,18 +63,17 @@
         }
     }
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         width: 60%;
-        margin: 0 auto;
     }
 }
 
 .etape3 {
-    width: 100%;
     padding: 1.5rem;
+    width: 60%;
+    margin: 0 auto;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         width: 60%;
-        margin: 0 auto;
     }
 }

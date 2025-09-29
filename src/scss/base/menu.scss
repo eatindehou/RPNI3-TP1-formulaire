@@ -23,7 +23,7 @@
     overflow: hidden;
     z-index: 10;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -49,7 +49,7 @@
     align-items: start;
     background-color: variables.$vert-pale;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         width: 25%;
     }
 
@@ -61,11 +61,11 @@
     right: 0;
     width: 100%;
     margin-top: 0;
-    transform: translateX(320px);
+    transform: translateX(720px);
     transition: transform 250ms ease-in-out;
     background: variables.$vert-pale;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         position: static;
         transform: none;
         transition: none;
@@ -78,7 +78,7 @@
     padding: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -92,7 +92,7 @@
     cursor: pointer;
     border-top: 3px solid variables.$vert-lime-pale;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         border: none;
     }
 }
@@ -114,7 +114,7 @@
 input[type="checkbox"]:checked~#menuSurCote {
     transform: translateX(0);
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         display: none;
     }
 }
@@ -124,7 +124,7 @@ input[type="checkbox"]:checked~#menuSurCote {
     box-sizing: border-box;
     display: none;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         display: none;
     }
 }
@@ -142,7 +142,7 @@ input[type="checkbox"]:checked~#menuSurCote {
     height: 30px;
     width: 30px;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         display: none;
     }
 }
@@ -155,7 +155,7 @@ input[type="checkbox"]:checked~#menuSurCote {
     width: 100%;
     background-color: variables.$vert-fonce;
 
-    @media(min-width: 30rem) {
+    @media(min-width: variables.$desktop) {
         display: none;
     }
 }
