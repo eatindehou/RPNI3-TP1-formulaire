@@ -760,10 +760,8 @@ function afficherEtape(lesEtapes) {
     const etatElement1 = document.getElementById('etat_etape1');
     const etatElement2 = document.getElementById('etat_etape2');
     const etatElement3 = document.getElementById('etat_etape3');
-    // const etatLiensElement0: any = document.querySelector('#etat_etape0 + a');
-    // const etatLiensElement1: any = document.querySelector('#etat_etape1 + a ');
-    // const etatLiensElement2: any = document.querySelector('#etat_etape2 + a');
-    // const etatLiensElement3: any = document.querySelector('#etat_etape3 + a');
+    const imageEnArrierePlan = document.querySelector('.imageDeFond1');
+    const imageEnAvantPlan = document.querySelector('.imagePetit1');
     cacherSections();
     if (lesEtapes >= 0 && lesEtapes < etapes.length) {
         etapes[lesEtapes].classList.remove('cache');
@@ -785,6 +783,14 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.add('menu__lien--inactive');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
+        imageEnArrierePlan.classList.add('imageDeFond1');
+        imageEnAvantPlan.classList.add('imagePetit1');
+        imageEnAvantPlan.classList.remove('imagePetit2');
+        imageEnArrierePlan.classList.remove('imageDeFond2');
+        imageEnAvantPlan.classList.remove('imagePetit3');
+        imageEnArrierePlan.classList.remove('imageDeFond3');
+        imageEnAvantPlan.classList.remove('imagePetit4');
+        imageEnArrierePlan.classList.remove('imageDeFond4');
     }
     else if (lesEtapes == 1) {
         boutonPrecedent.classList.remove('cache');
@@ -803,6 +809,12 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.add('menu__lien--inactive');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
+        imageEnArrierePlan.classList.add('imageDeFond2');
+        imageEnAvantPlan.classList.add('imagePetit2');
+        imageEnAvantPlan.classList.remove('imagePetit3');
+        imageEnArrierePlan.classList.remove('imageDeFond3');
+        imageEnAvantPlan.classList.remove('imagePetit4');
+        imageEnArrierePlan.classList.remove('imageDeFond4');
     }
     else if (lesEtapes == 2) {
         boutonPrecedent.classList.remove('cache');
@@ -818,6 +830,12 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.remove('menu__lien--inactive');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
+        imageEnArrierePlan.classList.add('imageDeFond3');
+        imageEnAvantPlan.classList.add('imagePetit3');
+        imageEnArrierePlan.classList.remove('imageDeFond2');
+        imageEnAvantPlan.classList.remove('imagePetit2');
+        imageEnAvantPlan.classList.remove('imagePetit4');
+        imageEnArrierePlan.classList.remove('imageDeFond4');
     }
     else if (lesEtapes == 3) {
         boutonPrecedent.classList.remove('cache');
@@ -832,6 +850,8 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.remove('menu__lien--inactive');
         etatElement3.classList.add('enCours');
         etatElement3.classList.remove('menu__lien--inactive');
+        imageEnArrierePlan.classList.add('imageDeFond4');
+        imageEnAvantPlan.classList.add('imagePetit4');
     }
 }
 // CACHE LES SECTIONS QUI NE S0NT PAS ENCORE ACTIVÉE

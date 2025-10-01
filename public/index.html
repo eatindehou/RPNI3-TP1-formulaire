@@ -18,414 +18,439 @@
 <body>
     <a href="#main" class="sauter screen-reader-only focusable">Aller au contenu</a>
     <!-- ENTENTE DE LA PAGE -->
-    <header class="entete">
-        <!-- NAVIGATION PRINCIPALE-->
-        <nav class="navigationPrincipale">
-            <picture class="conteneurLogo">
-                <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
-                <img class="logo_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
-            </picture>
-            <input type="checkbox" class="menuOuvert" id="menuOuvert" aria-label="Afficher le menu">
-            <label for="menuOuvert" class="iconeMenu">
-                <span class="animation diagonale partie-1"></span>
-                <span class="animation horizontale"></span>
-                <span class="animation diagonale partie-2"></span>
-            </label>
-            <!-- NAVIGATION PRINCIPALE SUR LE CÔTÉ-->
-            <div id="menuSurCote" role="navigation">
-                <ul class="menuSurCote__liste menuSurCoteUl">
-                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">À propos</a> </li>
-                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Contactez-nous</a></li>
-                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">Nos évenements</a> </li>
-                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Nos services</a></li>
-                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien lienEvidence"> Donner</a></li>
-                </ul>
-            </div>
-
-        </nav>
-    </header>
-    <!-- NAVIGATION DES ÉTAPES DU FORMULAIRE DU DON -->
-    <nav class="navigationEtapes" aria-label="Etapes du formulaire de don">
-        <ul class="menu">
-            <li aria-current="page" class="menu__etape etat-etape" data-etape="0">
-                <span class="menu__lien__span" id="etat_etape0"></span>
-                <a href="#" class="menu__lien ">
-                    <span class="hors-ecran">Don</span>
-                    Don
-                </a>
-            </li>
-            <li class="menu__etape etat-etape" data-etape="1">
-                <span class="menu__lien__span menu__lien--inactive" id="etat_etape1"></span>
-                <a href="#" class="menu__lien " aria-disabled="true">
-                    <span class="hors-ecran">Donneur</span>
-                    Donneur
-                </a>
-            </li>
-            <li class="menu__etape etat-etape" data-etape="2">
-                <span class="menu__lien__span menu__lien--inactive" id="etat_etape2"></span>
-                <a href="#" class="menu__lien " aria-disabled="true">
-                    Paiement
-                    <span class="hors-ecran">Paiement</span>
-                </a>
-            </li>
-            <li class="menu__etape etat-etape" data-etape="3">
-                <span class="menu__lien__span menu__lien--inactive" id="etat_etape3"></span>
-                <a href="#" class="menu__lien " aria-disabled="true">
-                    Résumé
-                    <span class="hors-ecran">Résumé</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <main id="main" class="contenuPrinciaple">
-        <!-- FORMULAIRE-->
-        <form action="merci.html" method="get">
-            <div class="formulaire">
-                <!-- ÉTAPE 1 -->
-                <!-- BOUTONS RADIOS TYPE DE DON -->
-                <section class="etapeDon" id="etapeDon">
-                    <h2 class="titreTaille1">Votre don</h2>
-                    <ul class="typeDeDons">
-                        <li>
-                            <label for="donUnique">
-                                <input class="hors-ecran" type="radio" name="don" id="donUnique" value="Don unique"
-                                    checked>
-                                <span>Don unique</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label for="donMensuel">
-                                <input class="hors-ecran" type="radio" name="don" id="donMensuel" value="Don mensuel">
-                                <span>Don mensuel</span>
-                            </label>
+    <div class="imageDeFond1">
+        <header class="entete">
+            <!-- NAVIGATION PRINCIPALE-->
+            <nav class="navigationPrincipale">
+                <picture class="conteneurLogo">
+                    <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
+                    <img class="logo_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
+                </picture>
+                <input type="checkbox" class="menuOuvert" id="menuOuvert" aria-label="Afficher le menu">
+                <label for="menuOuvert" class="iconeMenu">
+                    <span class="animation diagonale partie-1"></span>
+                    <span class="animation horizontale"></span>
+                    <span class="animation diagonale partie-2"></span>
+                </label>
+                <!-- NAVIGATION PRINCIPALE SUR LE CÔTÉ-->
+                <div id="menuSurCote" role="navigation">
+                    <ul class="menuSurCote__liste menuSurCoteUl">
+                        <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">À propos</a> </li>
+                        <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Contactez-nous</a></li>
+                        <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">Nos évenements</a> </li>
+                        <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Nos services</a></li>
+                        <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien lienEvidence"> Donner</a>
                         </li>
                     </ul>
-                    <!-- BOUTONS RADIOS VALEURS DES DONS -->
-                    <ul class="montantsdeDons btnRadios">
-                        <li>
-                            <label class="labelDon" for="donVingt">
-                                <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
-                                    id="donVingt" value="20" checked>
-                                <span>20</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="labelDon" for="donCinquante">
-                                <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
-                                    id="donCinquante" value="50">
-                                <span>50</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="labelDon" for="donQuatreVingtDix">
-                                <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
-                                    id="donQuatreVingtDix" value="90">
-                                <span>90</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="labelDon" for="donCent">
-                                <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
-                                    id="donCent" value="100">
-                                <span>100</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="labelDon" for="valeurDeuxCent">
-                                <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
-                                    id="valeurDeuxCent" value="200">
-                                <span>200</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="labelDon" for="donAutre">
-                                <input type="radio" class="hors-ecran choixMultiple donAutre" name="valeurDon"
-                                    id="donAutre" value="donAutre">
-                                <span>Autre</span>
-                            </label>
-                            <!-- CHAMP AUTRE DON CACHÉ -->
-                            <div class="donAutreCache cache cacher">
-                                <input type="number" name="valeurDon" id="autreMontant" value="" max="4444">
-                                <label for="autreMontant"></label>
-                                <p id="erreur_autreMontant" aria-live="polite" class="erreur_autreMontant texteCache"></p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="donDedicace">
-                        <label for="donADedicace">
-                            <input type="checkbox" class="checkboxDons hors-ecran" name="donADedicace" id="donADedicace"
-                                value="ouiDedicace">
-                            <span class="leCheck"></span>
-                            Je désire dédicacer mon don
-                        </label>
-                        <!-- CHAMP DÉDICACE CACHÉ -->
-                        <div class="cache cacher inputTexteFerme div_ouiDedicace">
-                            <label for="ouiDedicace">Don en l'honneur de :</label>
-                            <input class="champMoyen" type="text" name="ouiDedicace" id="ouiDedicace">
-                            <p id="erreur_ouiDedicace" aria-live="polite" class="erreur_ouiDedicace texteCache"></p>
-                        </div>
-                    </div>
-                </section>
-                <!-- ÉTAPE 2 -->
-                <section class="etape2" id="etapeDonneur">
-                    <h2 class="titreTaille1">Informations sur le donneur</h2>
-                    <fieldset>
-                        <legend>
-                            <span>Information personnelles</span>
-                            <span></span>
-                        </legend>
-                        <div class="donEntreprise">
-                            <label for="donPourEntreprise">
-                                <input type="checkbox" class="checkboxDons hors-ecran" name="donPourEntreprise"
-                                    id="donPourEntreprise" value="ouiNomEntreprise">
-                                <span class="leCheck"></span>
-                                Ce don est fait au nom d’une entreprise
-                            </label>
-                            <!-- CHAMP NOM ENTREPRISE CACHÉ -->
-                            <div class="cache cacher inputTexteFerme div_ouiNomEntreprise">
-                                <label for="ouiNomEntreprise">Nom de l'entreprise :</label>
-                                <input class="champMoyen" type="text" name="ouiNomEntreprise" id="ouiNomEntreprise">
-                                <p id="erreur_ouiNomEntreprise" aria-live="polite" class="erreur_ouiNomEntreprise texteCache"></p>
-                            </div>
-                        </div>
-                        <!-- BOUTONS RADIOS GENRE DU DONNEUR -->
-                        <ul class="genreDuDonneur btnRadios">
-                            <li>
-                                <label for="monsieur">
-                                    <input type="radio" class="hors-ecran choixMultiple" name="genre"
-                                        id="monsieur" value="monsieur" checked>
-                                    <span>M</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label for="madame">
-                                    <input type="radio" class="hors-ecran choixMultiple" name="genre"
-                                        id="madame" value="madame">
-                                    <span>Mme</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label for="mademoiselle">
-                                    <input type="radio" class="hors-ecran choixMultiple" name="genre"
-                                        id="mademoiselle" value="mademoiselle">
-                                    <span>Miss</span>
-                                </label>
-                            </li>
-                        </ul>
-
-                        <!-- INFORMATIONS PERSONNELLES DU DONNEUR -->
-                        <!-- NOM -->
-                        <!-- PRENOM -->
-                        <!-- ADRESSE COURRIEL -->
-                        <!-- TÉLÉPHONE -->
-                        <!-- ADRESSE -->
-                        <!-- NUMÉRO D'APPARTEMENT -->
-                        <!-- CODE POSTAL -->
-                        <!-- PAYS-->
-                        <!-- PROVINCE -->
-                        <!-- ÉTAT -->
-                        <div class="informationsTextuelles">
-                            <div>
-                                <label for="nom">Nom</label>
-                                <input class="champMoyen" type="text" name="nom" id="nom" required>
-                                <p id="erreur_nom" aria-live="polite" class="erreur_nom texteCache"></p>
-                            </div>
-
-                            <div>
-                                <label for="nom">Prenom</label>
-                                <input class="champMoyen" type="text" name="prenom" id="prenom" required>
-                                <p id="erreur_prenom" aria-live="polite" class="erreur_prenom texteCache"></p>
-                            </div>
-
-                            <div>
-                                <label for="email">Adresse courriel</label>
-                                <span class="texteExemple">EX:abcde@gmail.com</span>
-                                <input class="champLong" type="email" name="email" id="email" required>
-                                <p id="erreur_email" aria-live="polite" class="erreur_email texteCache"></p>
-                            </div>
-
-                            <div>
-                                <label for="telephone">Numéro de téléphone</label>
-                                <span class="texteExemple">Ex:4444444444</span>
-                                <input class="champLong" type="text" inputmode="numeric" name="telephone" id="telephone"
-                                    maxlength="10" autocomplete="tel" required>
-                                <p id="erreur_telephone" aria-live="polite" class="erreur_telephone texteCache"></p>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>
-                            <span>Informations postales</span>
-                            <span></span>
-                        </legend>
-                        <div class="informationsTextuelles">
-
-                            <div>
-                                <label for="adresse">Adresse</label>
-                                <span class="texteExemple">Ex:0101 rue de la prairie</span>
-                                <input class="champLong" type="text" name="adresse" id="adresse"
-                                    autocomplete="address-line1" required>
-                                <p id="erreur_adresse" aria-live="polite" class="erreur_adresse texteCache"></p>
-                            </div>
-                            <div>
-                                <label for="numApp">Numéro d'appartement</label>
-                                <input class="champCourt" type="number" name="numApp" id="numApp" max="4444">
-                                <p id="erreur_numApp" aria-live="polite" class="erreur_numApp texteCache"></p>
-                            </div>
-
-                            <div>
-                                <label for="codePostal">Code postal</label>
-                                <span class="texteExemple">EX: A1A1A1 / A1A 1A1</span>
-                                <input class="champCourt" type="text" name="codePostal" id="codePostal" required>
-                                <p id="erreur_codePostal" aria-live="polite" class="erreur_codePostal texteCache"></p>
-                            </div>
-
-                            <div id="pays_conteneur">
-                                <label for="listePays">Pays</label>
-                                <input class="champLong" list="pays" id="listePays" name="pays"
-                                    placeholder="Choisisez un pays" required>
-                                <datalist id="pays">
-                                </datalist>
-                                <p id="erreur_listePays" aria-live="polite" class="erreur_listePays texteCache"></p>
-                            </div>
-
-                            <div id="province_conteneur">
-                                <label for="listeProvince">Province</label>
-                                <input class="champMoyen" list="province" id="listeProvince" name="province"
-                                    placeholder="Choisisez une province" required>
-                                <datalist id="province">
-                                </datalist>
-                                <p id="erreur_listeProvince" aria-live="polite" class="erreur_listeProvince texteCache"></p>
-                            </div>
-                            <div id="etat_conteneur">
-                                <label for="listeEtat">Etat</label>
-                                <input class="champMoyen" list="etat" id="listeEtat" name="etat"
-                                    placeholder="Choisisez un état" required>
-                                <datalist id="etat">
-                                </datalist>
-                                <p id="erreur_listeEtat" aria-live="polite" class="erreur_listeEtat texteCache"></p>
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </section>
-                <!-- ÉTAPE 3 -->
-                <!-- INFORMATIONS DU PAIEMENT SUR LE DONNEUR -->
-                <!-- PAIEMENT -->
-                <!-- NUMÉRO DE CARTE DE CRÉDIT -->
-                <!-- DATE D'EXPIRATION -->
-                <!-- CVV-->
-                <section class="etape3" id="etapePaiement">
-                    <h2 class="titreTaille1">Paiement</h2>
-                    <div class="informationsTextuelles">
-                        <div>
-                            <label for="titulaireCarte">Titulaire de la carte de crédit</label>
-                            <input class="champLong" type="text" name="titulaireCarte" id="titulaireCarte" required>
-                            <p id="erreur_titulaireCarte" aria-live="polite" class="erreur_titulaireCarte texteCache"></p>
-                        </div>
-
-                        <div>
-                            <label for="numCarteCredit">Numéro de la carte de crédit</label>
-                            <span class="texteExemple">Ex: 4444444444444444</span>
-                            <input class="champLong" type="text" inputmode="numeric" name="numCarteCredit"
-                                id="numCarteCredit" maxlength="19" required>
-                            <p id="erreur_numCarteCredit" aria-live="polite"
-                                class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
-                            </p>
-                        </div>
-
-                        <div>
-                            <label for="dateExpiration">Date d'expiration</label>
-                            <span class="texteExemple">Ex:MM/AA</span>
-                            <input class="champCourt" type="text" name="dateExpiration" id="dateExpiration" required
-                                placeholder="MM/AAAA" maxlength="7">
-                            <p id="erreur_dateExpiration" aria-live="polite" class="erreur_dateExpiration texteCache"></p>
-                        </div>
-
-                        <div>
-                            <label for="cvv">CVV/CVC</label>
-                            <input class="champCourt" type="text" name="cvv" id="cvv" maxlength="4" required>
-                            <p id="erreur_cvv" aria-live="polite" class="erreur_cvv texteCache"></p>
-                        </div>
-
-                    </div>
-                </section>
-                <!-- ÉTAPE 4 -->
-                <!-- RÉSUMÉ DES INFORMATIONS ENTRÉES PAR LE DONNEUR -->
-                <section class="etape4" id="etapeResume">
-                    <p class="position">4/4</p>
-                    <h2 class="titreTaille1">Résumé</h2>
-                    <fieldset class="resumeDon">
-                        <legend>
-                            <span>Votre don</span>
-                            <span></span>
-                        </legend>
-                        <div class="donneesTypeDon">
-                            <p id="typeDeDon"></p>
-                            <p id="valeurDuDon"></p>
-                        </div>
-                        <h3 class="texteTaille3">Voulez-vous dédiez votre don ?</h3>
-                        <div class="donneesADedicacer">
-                            <p id="reponseDon"></p>
-                            <p id="nomDedicace">En l'honneur de </p>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            <span>Renseignements sur le donneur</span>
-                            <span></span>
-                        </legend>
-                        <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
-                        <div class="donneesEntreprise">
-                            <p id="reponseEntreprise"></p>
-                            <p id="nomEntreprise"></p>
-                            <p id="infosGenre"></p>
-                            <p id="donneesNom"></p>
-                            <p id="donneesPrenom"></p>
-                            <p id="donneesCourriel"></p>
-                            <p id="donneesTelephone"></p>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            <span>Informations postales</span>
-                            <span></span>
-                        </legend>
-                        <div class="donneesPostales">
-                            <p id="donneesAdresse"></p>
-                            <p id="donneesCodePostal"></p>
-                            <p id="donneesNumApp"></p>
-                            <p id="donneesPays"></p>
-                            <p id="donneesProvince"></p>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-
-                        <legend>
-                            <span>Paiement</span>
-                            <span></span>
-                        </legend>
-                        <div class="resumeDonneesCarte">
-                            <p id="donnesTitulaire"></p>
-                            <p id="donnesNumeroCarte"></p>
-                            <p id="donnesExpCarte"></p>
-                            <p id="donnesNumeroCvv"></p>
-                        </div>
-                    </fieldset>
-
-                </section>
-                <!-- BOUTONS DE NAVIGATION -->
-                <div class="boutonsDepage">
-                    <button type="button" class="btn btnRetour" id="btnRetour">Retour</button>
-                    <button type="button" class="btn btnSuivant" id="btnSuivant">Suivant</button>
-                    <button type="submit" class="btn btnDonner" id="btnDonner">Donner</button>
                 </div>
-            </div>
-        </form>
-    </main>
+
+            </nav>
+        </header>
+        <!-- NAVIGATION DES ÉTAPES DU FORMULAIRE DU DON -->
+        <nav class="navigationEtapes" aria-label="Etapes du formulaire de don">
+            <ul class="menu">
+                <li aria-current="page" class="menu__etape etat-etape" data-etape="0">
+                    <span class="menu__lien__span" id="etat_etape0"></span>
+                    <a href="#" class="menu__lien ">
+                        <span class="hors-ecran">Don</span>
+                        Don
+                    </a>
+                </li>
+                <li class="menu__etape etat-etape" data-etape="1">
+                    <span class="menu__lien__span menu__lien--inactive" id="etat_etape1"></span>
+                    <a href="#" class="menu__lien " aria-disabled="true">
+                        <span class="hors-ecran">Donneur</span>
+                        Donneur
+                    </a>
+                </li>
+                <li class="menu__etape etat-etape" data-etape="2">
+                    <span class="menu__lien__span menu__lien--inactive" id="etat_etape2"></span>
+                    <a href="#" class="menu__lien " aria-disabled="true">
+                        Paiement
+                        <span class="hors-ecran">Paiement</span>
+                    </a>
+                </li>
+                <li class="menu__etape etat-etape" data-etape="3">
+                    <span class="menu__lien__span menu__lien--inactive" id="etat_etape3"></span>
+                    <a href="#" class="menu__lien " aria-disabled="true">
+                        Résumé
+                        <span class="hors-ecran">Résumé</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main id="main" class="contenuPrinciaple">
+
+            <!-- FORMULAIRE-->
+            <form action="merci.html" method="get">
+                <div class="formulaire">
+                        <div class="imagePetit1">
+                        <!-- ÉTAPE 1 -->
+                        <!-- BOUTONS RADIOS TYPE DE DON -->
+                        <section class="etapeDon" id="etapeDon">
+                            <h2 class="titreTaille1">Votre don</h2>
+                            <ul class="typeDeDons">
+                                <li>
+                                    <label for="donUnique">
+                                        <input class="hors-ecran" type="radio" name="don" id="donUnique"
+                                            value="Don unique" checked>
+                                        <span>Don unique</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="donMensuel">
+                                        <input class="hors-ecran" type="radio" name="don" id="donMensuel"
+                                            value="Don mensuel">
+                                        <span>Don mensuel</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <!-- BOUTONS RADIOS VALEURS DES DONS -->
+                            <ul class="montantsdeDons btnRadios">
+                                <li>
+                                    <label class="labelDon" for="donVingt">
+                                        <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
+                                            id="donVingt" value="20" checked>
+                                        <span>20</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="labelDon" for="donCinquante">
+                                        <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
+                                            id="donCinquante" value="50">
+                                        <span>50</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="labelDon" for="donQuatreVingtDix">
+                                        <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
+                                            id="donQuatreVingtDix" value="90">
+                                        <span>90</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="labelDon" for="donCent">
+                                        <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
+                                            id="donCent" value="100">
+                                        <span>100</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="labelDon" for="valeurDeuxCent">
+                                        <input type="radio" class="hors-ecran choixMultiple" name="valeurDon"
+                                            id="valeurDeuxCent" value="200">
+                                        <span>200</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="labelDon" for="donAutre">
+                                        <input type="radio" class="hors-ecran choixMultiple donAutre" name="valeurDon"
+                                            id="donAutre" value="donAutre">
+                                        <span>Autre</span>
+                                    </label>
+                                    <!-- CHAMP AUTRE DON CACHÉ -->
+                                    <div class="donAutreCache cache cacher">
+                                        <input type="number" name="valeurDon" id="autreMontant" value="" max="4444">
+                                        <label for="autreMontant"></label>
+                                        <p id="erreur_autreMontant" aria-live="polite"
+                                            class="erreur_autreMontant texteCache">
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="donDedicace">
+                                <label for="donADedicace">
+                                    <input type="checkbox" class="checkboxDons hors-ecran" name="donADedicace"
+                                        id="donADedicace" value="ouiDedicace">
+                                    <span class="leCheck"></span>
+                                    Je désire dédicacer mon don
+                                </label>
+                                <!-- CHAMP DÉDICACE CACHÉ -->
+                                <div class="cache cacher inputTexteFerme div_ouiDedicace">
+                                    <label for="ouiDedicace">Don en l'honneur de :</label>
+                                    <input class="champMoyen" type="text" name="ouiDedicace" id="ouiDedicace">
+                                    <p id="erreur_ouiDedicace" aria-live="polite" class="erreur_ouiDedicace texteCache">
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- ÉTAPE 2 -->
+                        <section class="etape2" id="etapeDonneur">
+                            <h2 class="titreTaille1">Informations sur le donneur</h2>
+                            <fieldset>
+                                <legend>
+                                    <span>Information personnelles</span>
+                                    <span></span>
+                                </legend>
+                                <div class="donEntreprise">
+                                    <label for="donPourEntreprise">
+                                        <input type="checkbox" class="checkboxDons hors-ecran" name="donPourEntreprise"
+                                            id="donPourEntreprise" value="ouiNomEntreprise">
+                                        <span class="leCheck"></span>
+                                        Ce don est fait au nom d’une entreprise
+                                    </label>
+                                    <!-- CHAMP NOM ENTREPRISE CACHÉ -->
+                                    <div class="cache cacher inputTexteFerme div_ouiNomEntreprise">
+                                        <label for="ouiNomEntreprise">Nom de l'entreprise :</label>
+                                        <input class="champMoyen" type="text" name="ouiNomEntreprise"
+                                            id="ouiNomEntreprise">
+                                        <p id="erreur_ouiNomEntreprise" aria-live="polite"
+                                            class="erreur_ouiNomEntreprise texteCache"></p>
+                                    </div>
+                                </div>
+                                <!-- BOUTONS RADIOS GENRE DU DONNEUR -->
+                                <ul class="genreDuDonneur btnRadios">
+                                    <li>
+                                        <label for="monsieur">
+                                            <input type="radio" class="hors-ecran choixMultiple" name="genre"
+                                                id="monsieur" value="monsieur" checked>
+                                            <span>M</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="madame">
+                                            <input type="radio" class="hors-ecran choixMultiple" name="genre"
+                                                id="madame" value="madame">
+                                            <span>Mme</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="mademoiselle">
+                                            <input type="radio" class="hors-ecran choixMultiple" name="genre"
+                                                id="mademoiselle" value="mademoiselle">
+                                            <span>Miss</span>
+                                        </label>
+                                    </li>
+                                </ul>
+
+                                <!-- INFORMATIONS PERSONNELLES DU DONNEUR -->
+                                <!-- NOM -->
+                                <!-- PRENOM -->
+                                <!-- ADRESSE COURRIEL -->
+                                <!-- TÉLÉPHONE -->
+                                <!-- ADRESSE -->
+                                <!-- NUMÉRO D'APPARTEMENT -->
+                                <!-- CODE POSTAL -->
+                                <!-- PAYS-->
+                                <!-- PROVINCE -->
+                                <!-- ÉTAT -->
+                                <div class="informationsTextuelles">
+                                    <div>
+                                        <label for="nom">Nom</label>
+                                        <input class="champMoyen" type="text" name="nom" id="nom" required>
+                                        <p id="erreur_nom" aria-live="polite" class="erreur_nom texteCache"></p>
+                                    </div>
+
+                                    <div>
+                                        <label for="nom">Prenom</label>
+                                        <input class="champMoyen" type="text" name="prenom" id="prenom" required>
+                                        <p id="erreur_prenom" aria-live="polite" class="erreur_prenom texteCache"></p>
+                                    </div>
+
+                                    <div>
+                                        <label for="email">Adresse courriel</label>
+                                        <span class="texteExemple">EX:abcde@gmail.com</span>
+                                        <input class="champLong" type="email" name="email" id="email" required>
+                                        <p id="erreur_email" aria-live="polite" class="erreur_email texteCache"></p>
+                                    </div>
+
+                                    <div>
+                                        <label for="telephone">Numéro de téléphone</label>
+                                        <span class="texteExemple">Ex:4444444444</span>
+                                        <input class="champLong" type="text" inputmode="numeric" name="telephone"
+                                            id="telephone" maxlength="10" autocomplete="tel" required>
+                                        <p id="erreur_telephone" aria-live="polite" class="erreur_telephone texteCache">
+                                        </p>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>
+                                    <span>Informations postales</span>
+                                    <span></span>
+                                </legend>
+                                <div class="informationsTextuelles">
+
+                                    <div>
+                                        <label for="adresse">Adresse</label>
+                                        <span class="texteExemple">Ex:0101 rue de la prairie</span>
+                                        <input class="champLong" type="text" name="adresse" id="adresse"
+                                            autocomplete="address-line1" required>
+                                        <p id="erreur_adresse" aria-live="polite" class="erreur_adresse texteCache"></p>
+                                    </div>
+                                    <div>
+                                        <label for="numApp">Numéro d'appartement</label>
+                                        <input class="champCourt" type="number" name="numApp" id="numApp" max="4444">
+                                        <p id="erreur_numApp" aria-live="polite" class="erreur_numApp texteCache"></p>
+                                    </div>
+
+                                    <div>
+                                        <label for="codePostal">Code postal</label>
+                                        <span class="texteExemple">EX: A1A1A1 / A1A 1A1</span>
+                                        <input class="champCourt" type="text" name="codePostal" id="codePostal"
+                                            required>
+                                        <p id="erreur_codePostal" aria-live="polite"
+                                            class="erreur_codePostal texteCache">
+                                        </p>
+                                    </div>
+
+                                    <div id="pays_conteneur">
+                                        <label for="listePays">Pays</label>
+                                        <input class="champLong" list="pays" id="listePays" name="pays"
+                                            placeholder="Choisisez un pays" required>
+                                        <datalist id="pays">
+                                        </datalist>
+                                        <p id="erreur_listePays" aria-live="polite" class="erreur_listePays texteCache">
+                                        </p>
+                                    </div>
+
+                                    <div id="province_conteneur">
+                                        <label for="listeProvince">Province</label>
+                                        <input class="champMoyen" list="province" id="listeProvince" name="province"
+                                            placeholder="Choisisez une province" required>
+                                        <datalist id="province">
+                                        </datalist>
+                                        <p id="erreur_listeProvince" aria-live="polite"
+                                            class="erreur_listeProvince texteCache">
+                                        </p>
+                                    </div>
+                                    <div id="etat_conteneur">
+                                        <label for="listeEtat">Etat</label>
+                                        <input class="champMoyen" list="etat" id="listeEtat" name="etat"
+                                            placeholder="Choisisez un état" required>
+                                        <datalist id="etat">
+                                        </datalist>
+                                        <p id="erreur_listeEtat" aria-live="polite" class="erreur_listeEtat texteCache">
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </section>
+                        <!-- ÉTAPE 3 -->
+                        <!-- INFORMATIONS DU PAIEMENT SUR LE DONNEUR -->
+                        <!-- PAIEMENT -->
+                        <!-- NUMÉRO DE CARTE DE CRÉDIT -->
+                        <!-- DATE D'EXPIRATION -->
+                        <!-- CVV-->
+                        <section class="etape3" id="etapePaiement">
+                            <h2 class="titreTaille1">Paiement</h2>
+                            <div class="informationsTextuelles">
+                                <div>
+                                    <label for="titulaireCarte">Titulaire de la carte de crédit</label>
+                                    <input class="champLong" type="text" name="titulaireCarte" id="titulaireCarte"
+                                        required>
+                                    <p id="erreur_titulaireCarte" aria-live="polite"
+                                        class="erreur_titulaireCarte texteCache">
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <label for="numCarteCredit">Numéro de la carte de crédit</label>
+                                    <span class="texteExemple">Ex: 4444444444444444</span>
+                                    <input class="champLong" type="text" inputmode="numeric" name="numCarteCredit"
+                                        id="numCarteCredit" maxlength="19" required>
+                                    <p id="erreur_numCarteCredit" aria-live="polite"
+                                        class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <label for="dateExpiration">Date d'expiration</label>
+                                    <span class="texteExemple">Ex:MM/AA</span>
+                                    <input class="champCourt" type="text" name="dateExpiration" id="dateExpiration"
+                                        required placeholder="MM/AAAA" maxlength="7">
+                                    <p id="erreur_dateExpiration" aria-live="polite"
+                                        class="erreur_dateExpiration texteCache">
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <label for="cvv">CVV/CVC</label>
+                                    <input class="champCourt" type="text" name="cvv" id="cvv" maxlength="4" required>
+                                    <p id="erreur_cvv" aria-live="polite" class="erreur_cvv texteCache"></p>
+                                </div>
+
+                            </div>
+                        </section>
+                        <!-- ÉTAPE 4 -->
+                        <!-- RÉSUMÉ DES INFORMATIONS ENTRÉES PAR LE DONNEUR -->
+                        <section class="etape4" id="etapeResume">
+                            <p class="position">4/4</p>
+                            <h2 class="titreTaille1">Résumé</h2>
+                            <fieldset class="resumeDon">
+                                <legend>
+                                    <span>Votre don</span>
+                                    <span></span>
+                                </legend>
+                                <div class="donneesTypeDon">
+                                    <p id="typeDeDon"></p>
+                                    <p id="valeurDuDon"></p>
+                                </div>
+                                <h3 class="texteTaille3">Voulez-vous dédiez votre don ?</h3>
+                                <div class="donneesADedicacer">
+                                    <p id="reponseDon"></p>
+                                    <p id="nomDedicace">En l'honneur de </p>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>
+                                    <span>Renseignements sur le donneur</span>
+                                    <span></span>
+                                </legend>
+                                <h3 class="texteTaille3">Ce don est fait au nom d’une entreprise ?</h3>
+                                <div class="donneesEntreprise">
+                                    <p id="reponseEntreprise"></p>
+                                    <p id="nomEntreprise"></p>
+                                    <p id="infosGenre"></p>
+                                    <p id="donneesNom"></p>
+                                    <p id="donneesPrenom"></p>
+                                    <p id="donneesCourriel"></p>
+                                    <p id="donneesTelephone"></p>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>
+                                    <span>Informations postales</span>
+                                    <span></span>
+                                </legend>
+                                <div class="donneesPostales">
+                                    <p id="donneesAdresse"></p>
+                                    <p id="donneesCodePostal"></p>
+                                    <p id="donneesNumApp"></p>
+                                    <p id="donneesPays"></p>
+                                    <p id="donneesProvince"></p>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+
+                                <legend>
+                                    <span>Paiement</span>
+                                    <span></span>
+                                </legend>
+                                <div class="resumeDonneesCarte">
+                                    <p id="donnesTitulaire"></p>
+                                    <p id="donnesNumeroCarte"></p>
+                                    <p id="donnesExpCarte"></p>
+                                    <p id="donnesNumeroCvv"></p>
+                                </div>
+                            </fieldset>
+
+                        </section>
+                        <!-- BOUTONS DE NAVIGATION -->
+                        <div class="boutonsDepage">
+                            <button type="button" class="btn btnRetour" id="btnRetour">Retour</button>
+                            <button type="button" class="btn btnSuivant" id="btnSuivant">Suivant</button>
+                            <button type="submit" class="btn btnDonner" id="btnDonner">Donner</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
     <footer class="piedDePage">
 
     </footer>

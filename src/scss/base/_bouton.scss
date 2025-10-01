@@ -8,7 +8,6 @@
 /* BOUTONS RADIOS TYPES DE DONS */
 .typeDeDons {
     width: 90%;
-    margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -29,11 +28,11 @@
         width: 90%;
 
         &>li:first-of-type span {
-            width: 15rem;
+            width: 17rem;
         }
 
         &>li:last-of-type span {
-            width: 15rem;
+            width: 17rem;
         }
     }
 }
@@ -56,8 +55,7 @@ input[name="don"]:checked+span {
 
 /* BOUTONS RADIOS VALEURS DE DONS */
 .btnRadios {
-    width: 90%;
-    margin: 1.7rem auto 0 auto;
+    width: 96%;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -103,8 +101,7 @@ input[name="genre"]:checked+span {
  */
 .donDedicace,
 .donEntreprise {
-    width: 90%;
-    margin: 2rem auto 0 auto;
+    width: 100%;
 
     &>label {
         display: flex;
@@ -166,7 +163,7 @@ input[name="genre"]:checked+span {
 
 
     @media(min-width: variables.$desktop) {
-        width: 55%;
+        width: 60%;
         padding: 0;
     }
 }
