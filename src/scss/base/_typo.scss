@@ -16,11 +16,13 @@ html {
 
 body {
   font-family: variables.$fonteSecondaire;
-  font-size: 16px; /* 16px pour toutes les largeurs d'écran */
+  font-size: 16px;
+  /* 16px pour toutes les largeurs d'écran */
   font-size: 1.6rem;
-  line-height: 1.375; /* facteur multiplicateur de la taille de la police 1.375x16=22 */
-  @media (min-width: 601px) {
-  }
+  line-height: 1.375;
+
+  /* facteur multiplicateur de la taille de la police 1.375x16=22 */
+  @media (min-width: 601px) {}
 }
 
 h1,
@@ -33,15 +35,34 @@ h3,
   font-weight: 500;
 }
 
+.conteneurTitre {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+
+  &>span {
+    align-self: center;
+    width: 20%;
+    height: 45px;
+    background-image: url(../images/mobile/feuilles_titre_optim.svg);
+    background-repeat: no-repeat;
+    background-size: 30px;
+  }
+}
+
 h1,
-.titreNiveau1 {
+.titreTaille1 {
   @include mixins.fontSize(28px);
   margin: 0;
+
+
   &--desktop {
     font-size: 48px;
     font-size: 4.8rem;
     padding-bottom: 15px;
     position: relative;
+
     &:after {
       // background-color: variables.$bleuMoyen;
       content: "";
@@ -56,20 +77,23 @@ h1,
 }
 
 h2,
-.titreNiveau2{
+.titreNiveau2 {
   font-size: 20px;
   font-size: 2rem;
   text-transform: uppercase;
+
   &--desktop {
     font-size: 28px;
     font-size: 2.8rem;
   }
+
 }
 
 h3,
 .titreNiveau3 {
   font-size: 18px;
   font-size: 1.8rem;
+
   &--desktop {
     font-size: 22px;
     font-size: 2.2rem;
@@ -81,6 +105,7 @@ h3,
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1.375;
+
   &--desktop {
     line-height: 1.5;
   }
