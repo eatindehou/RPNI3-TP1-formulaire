@@ -41,6 +41,7 @@ input[name="don"]+span {
     display: block;
     padding: 1.5rem;
     width: 100%;
+    border: .3rem solid transparent;
     height: 50%;
     background-color: variables.$vert;
     color: white;
@@ -50,6 +51,7 @@ input[name="don"]+span {
 input[name="don"]:checked+span {
     background-color: variables.$vert-clair;
     border: .35rem solid variables.$vert-contour;
+        color: variables.$vert-fonce
 
 }
 
@@ -63,9 +65,14 @@ input[name="don"]:checked+span {
     align-content: space-between;
 
     &>li {
-        width: 60px;
+        width: calc(100%/4);
         text-align: center;
         margin: .5rem;
+
+        @media(min-width: variables.$desktop) {
+            width: calc(100%/7);
+
+        }
     }
 }
 
@@ -74,6 +81,7 @@ input[name="genre"]+span {
     display: block;
     text-align: center;
     color: white;
+    border: .3rem solid transparent;
     padding: 1rem;
     border-radius: .7rem;
     background-color: variables.$vert;
@@ -90,9 +98,32 @@ input[name="genre"]:checked+span {
 .donAutreCache {
     margin-top: .7rem;
     animation: glissement 300ms ease-in-out;
+    position: relative;
 
     &>#autreMontant {
-        width: 100%;
+        position: relative;
+        width: 13rem;
+        top: 0.5rem;
+        right: 6rem;
+
+        &~p {
+            position: relative;
+            width: 15rem;
+            right: 6rem;
+        }
+
+    }
+
+    @media(min-width: variables.$desktop) {
+        &>#autreMontant {
+            width: 17rem;
+            right: 8rem;
+
+            &~p {
+                width: 25rem;
+                right: 8rem;
+            }
+        }
     }
 }
 
@@ -106,6 +137,7 @@ input[name="genre"]:checked+span {
     &>label {
         display: flex;
         align-items: center;
+        gap: .7rem;
 
         & .leCheck {
             display: block;
@@ -121,13 +153,19 @@ input[name="genre"]:checked+span {
             &::after {
                 content: "";
                 position: absolute;
-                left: 0.45em;
-                top: 0.15em;
+                left: 0.37em;
+                top: 0.10em;
                 width: 0.45em;
                 height: .8em;
                 border: solid white;
                 border-width: 0 0.15em 0.15em 0;
                 transform: rotate(45deg);
+
+                @media(min-width: variables.$desktop) {
+                    left: 0.30em;
+                    top: 0.04em;
+                    width: 0.45em;
+                }
             }
 
         }
@@ -170,8 +208,13 @@ input[name="genre"]:checked+span {
 
 .btn {
     text-align: center;
+    font-size: 2rem;
     border: .2rem solid variables.$vert;
     border-radius: 0.4375rem;
+
+    @media(min-width: variables.$desktop) {
+        font-size: 2.3rem;
+    }
 }
 
 .btn.btnRetour {
@@ -181,6 +224,16 @@ input[name="genre"]:checked+span {
 
     @media(min-width: variables.$desktop) {
         padding: 1.2rem 3.8rem;
+    }
+}
+
+.btn.btnAccueil {
+    padding: 1.7rem 5.475rem;
+    background-color: variables.$vert;
+    color: white;
+
+    @media(min-width: variables.$desktop) {
+        padding: 1.5rem 7.8rem;
     }
 }
 
@@ -235,8 +288,8 @@ input[name="genre"]:checked+span {
 }
 
 
-label [for="listePays"]::before{
-    
+label [for="listePays"]::before {
+
     content: ">";
     border: 2rem solid red;
 }

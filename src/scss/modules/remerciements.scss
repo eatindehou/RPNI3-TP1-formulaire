@@ -1,1 +1,16 @@
 @use "../utilitaires/variables";
+
+.remerciements {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-evenly;
+    justify-content: center;
+
+    @media(min-width: variables.$desktop) {
+        margin: 0 auto;
+        width: 50%;
+    }
+}

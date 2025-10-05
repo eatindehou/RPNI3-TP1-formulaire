@@ -78,9 +78,9 @@
                     </a>
                 </li>
             </ul>
+            <span></span>
         </nav>
         <main id="main" class="contenuPrinciaple">
-
             <!-- FORMULAIRE-->
             <form action="merci.html" method="get">
                 <div class="formulaire">
@@ -156,7 +156,7 @@
                                         <input type="number" name="valeurDon" id="autreMontant" value="" max="4444">
                                         <label for="autreMontant"></label>
                                         <p id="erreur_autreMontant" aria-live="polite"
-                                            class="erreur_autreMontant texteCache">
+                                            class="erreur_autreMontant texteCacheErreur">
                                         </p>
                                     </div>
                                 </li>
@@ -173,7 +173,8 @@
                                 <div class="cache cacher inputTexteFerme div_ouiDedicace">
                                     <label for="ouiDedicace">Don en l'honneur de :</label>
                                     <input class="champMoyen" type="text" name="ouiDedicace" id="ouiDedicace">
-                                    <p id="erreur_ouiDedicace" aria-live="polite" class="erreur_ouiDedicace texteCache">
+                                    <p id="erreur_ouiDedicace" aria-live="polite"
+                                        class="erreur_ouiDedicace texteCacheErreur">
                                     </p>
                                 </div>
                             </div>
@@ -181,7 +182,7 @@
                         <!-- ÉTAPE 2 -->
                         <section class="etape2" id="etapeDonneur">
                             <div class="conteneurTitre">
-                                <h2 class="titreTaille1">Informations sur le donneur <span></span></h2>
+                                <h2 class="titreTaille1">Informations donateur<span></span></h2>
                                 <span></span>
                             </div>
                             <fieldset>
@@ -202,7 +203,7 @@
                                         <input class="champMoyen" type="text" name="ouiNomEntreprise"
                                             id="ouiNomEntreprise">
                                         <p id="erreur_ouiNomEntreprise" aria-live="polite"
-                                            class="erreur_ouiNomEntreprise texteCache"></p>
+                                            class="erreur_ouiNomEntreprise texteCacheErreur"></p>
                                     </div>
                                 </div>
                                 <!-- BOUTONS RADIOS GENRE DU DONNEUR -->
@@ -245,20 +246,22 @@
                                     <div>
                                         <label for="nom">Nom</label>
                                         <input class="champMoyen" type="text" name="nom" id="nom" required>
-                                        <p id="erreur_nom" aria-live="polite" class="erreur_nom texteCache"></p>
+                                        <p id="erreur_nom" aria-live="polite" class="erreur_nom texteCacheErreur"></p>
                                     </div>
 
                                     <div>
                                         <label for="nom">Prenom</label>
                                         <input class="champMoyen" type="text" name="prenom" id="prenom" required>
-                                        <p id="erreur_prenom" aria-live="polite" class="erreur_prenom texteCache"></p>
+                                        <p id="erreur_prenom" aria-live="polite" class="erreur_prenom texteCacheErreur">
+                                        </p>
                                     </div>
 
                                     <div>
                                         <label for="email">Adresse courriel</label>
                                         <span class="texteExemple">EX:abcde@gmail.com</span>
                                         <input class="champLong" type="email" name="email" id="email" required>
-                                        <p id="erreur_email" aria-live="polite" class="erreur_email texteCache"></p>
+                                        <p id="erreur_email" aria-live="polite" class="erreur_email texteCacheErreur">
+                                        </p>
                                     </div>
 
                                     <div>
@@ -266,7 +269,8 @@
                                         <span class="texteExemple">Ex:4444444444</span>
                                         <input class="champLong" type="text" inputmode="numeric" name="telephone"
                                             id="telephone" maxlength="10" autocomplete="tel" required>
-                                        <p id="erreur_telephone" aria-live="polite" class="erreur_telephone texteCache">
+                                        <p id="erreur_telephone" aria-live="polite"
+                                            class="erreur_telephone texteCacheErreur">
                                         </p>
                                     </div>
                                 </div>
@@ -284,12 +288,14 @@
                                         <span class="texteExemple">Ex:0101 rue de la prairie</span>
                                         <input class="champLong" type="text" name="adresse" id="adresse"
                                             autocomplete="address-line1" required>
-                                        <p id="erreur_adresse" aria-live="polite" class="erreur_adresse texteCache"></p>
+                                        <p id="erreur_adresse" aria-live="polite"
+                                            class="erreur_adresse texteCacheErreur"></p>
                                     </div>
                                     <div>
                                         <label for="numApp">Numéro d'appartement</label>
                                         <input class="champCourt" type="number" name="numApp" id="numApp" max="4444">
-                                        <p id="erreur_numApp" aria-live="polite" class="erreur_numApp texteCache"></p>
+                                        <p id="erreur_numApp" aria-live="polite" class="erreur_numApp texteCacheErreur">
+                                        </p>
                                     </div>
 
                                     <div>
@@ -298,7 +304,7 @@
                                         <input class="champCourt" type="text" name="codePostal" id="codePostal"
                                             required>
                                         <p id="erreur_codePostal" aria-live="polite"
-                                            class="erreur_codePostal texteCache">
+                                            class="erreur_codePostal texteCacheErreur">
                                         </p>
                                     </div>
 
@@ -308,7 +314,8 @@
                                             placeholder="Choisisez un pays" required>
                                         <datalist id="pays">
                                         </datalist>
-                                        <p id="erreur_listePays" aria-live="polite" class="erreur_listePays texteCache">
+                                        <p id="erreur_listePays" aria-live="polite"
+                                            class="erreur_listePays texteCacheErreur">
                                         </p>
                                     </div>
 
@@ -319,7 +326,7 @@
                                         <datalist id="province">
                                         </datalist>
                                         <p id="erreur_listeProvince" aria-live="polite"
-                                            class="erreur_listeProvince texteCache">
+                                            class="erreur_listeProvince texteCacheErreur">
                                         </p>
                                     </div>
                                     <div id="etat_conteneur">
@@ -328,7 +335,8 @@
                                             placeholder="Choisisez un état" required>
                                         <datalist id="etat">
                                         </datalist>
-                                        <p id="erreur_listeEtat" aria-live="polite" class="erreur_listeEtat texteCache">
+                                        <p id="erreur_listeEtat" aria-live="polite"
+                                            class="erreur_listeEtat texteCacheErreur">
                                         </p>
                                     </div>
                                 </div>
@@ -349,7 +357,7 @@
                                     <input class="champLong" type="text" name="titulaireCarte" id="titulaireCarte"
                                         required>
                                     <p id="erreur_titulaireCarte" aria-live="polite"
-                                        class="erreur_titulaireCarte texteCache">
+                                        class="erreur_titulaireCarte texteCacheErreur">
                                     </p>
                                 </div>
 
@@ -359,7 +367,7 @@
                                     <input class="champLong" type="text" inputmode="numeric" name="numCarteCredit"
                                         id="numCarteCredit" maxlength="19" required>
                                     <p id="erreur_numCarteCredit" aria-live="polite"
-                                        class="erreur_numCarteCredit texteCache numCarteCredit_invalide">
+                                        class="erreur_numCarteCredit texteCacheErreur numCarteCredit_invalide">
                                     </p>
                                 </div>
 
@@ -369,14 +377,14 @@
                                     <input class="champCourt" type="text" name="dateExpiration" id="dateExpiration"
                                         required placeholder="MM/AAAA" maxlength="7">
                                     <p id="erreur_dateExpiration" aria-live="polite"
-                                        class="erreur_dateExpiration texteCache">
+                                        class="erreur_dateExpiration texteCacheErreur">
                                     </p>
                                 </div>
 
                                 <div>
                                     <label for="cvv">CVV/CVC</label>
                                     <input class="champCourt" type="text" name="cvv" id="cvv" maxlength="4" required>
-                                    <p id="erreur_cvv" aria-live="polite" class="erreur_cvv texteCache"></p>
+                                    <p id="erreur_cvv" aria-live="polite" class="erreur_cvv texteCacheErreur"></p>
                                 </div>
 
                             </div>
@@ -457,7 +465,34 @@
             </form>
         </main>
     </div>
-    <footer class="piedDePage">
+  <footer class="piedDePage rangee cols_3_de_12">
+        <div>
+            <picture class="conteneurLogoFooter">
+                <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
+                <img class="logoFooter_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
+            </picture>
+            <p>Une Mante protégée, une nature respectée</p>
+        </div>
+        <div>
+            <p class="texteCourant"></p>Siège social de Mantura </p>
+            <p class="texteCourant"></p>550, avenue de prairie, bureau 300</p>
+            <p class="texteCourant"></p>Québec G3N 1Y1</p>
+        </div>
+        <div id="menuPiedDePage" role="navigation">
+            <ul class="menuPiedDePage__liste menuPiedDePageUl">
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien">À propos</a> </li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien"> Contactez-nous</a></li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien">Nos évenements</a> </li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien"> Nos services</a></li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien lienEvidence"> Donner</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p class="titreTaille2">Nous joindre</p>
+            <p class="texteCourant">t. 514 731-3696 ou 1 800 361-9643</p>
+            <p class="texteCourant">c. info@mantura.qc.ca</p>
+        </div>
 
     </footer>
 </body>

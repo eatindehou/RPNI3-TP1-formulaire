@@ -1,0 +1,99 @@
+@use "../utilitaires/mixins";
+@use "../utilitaires/variables";
+
+.divEntete {
+    position: relative;
+
+
+    &>.imageEntete {
+
+        &>img {
+            width: 100%;
+        }
+    }
+
+    &>.conteneurTitre {
+        &>.titreEntete {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            color: variables.$vert-pale;
+            text-transform: uppercase;
+            transform: translate(-55%, -10%);
+            text-align: center;
+            text-shadow: #000000bb 1px 1px 1px;
+            letter-spacing: .06em;
+            font-size: 14vw;
+            width: 100%;
+
+            @media (min-width: variables.$desktop) {
+                top: 57%;
+                left: 35%;
+                font-size: 8vw;
+            }
+        }
+
+        &>span {
+            position: absolute;
+            top: 78%;
+            left: 52%;
+            color: variables.$vert-pale;
+            transform: translate(-45%, -10%);
+            text-align: left;
+            text-shadow: #000000bb 1px 1px 1px;
+            letter-spacing: .06em;
+            font-size: 6vw;
+            width: 100%;
+
+            @media (min-width: variables.$desktop) {
+                font-size: 3.5vw;
+            }
+        }
+    }
+}
+
+.description,
+.description3 {
+    padding: 2rem;
+
+    @media (min-width: variables.$desktop) {
+        padding: 0;
+        width: 60%;
+        margin-top: 7rem;
+        margin-left: 30rem;
+    }
+
+}
+
+.description3 {
+    @media (min-width: variables.$desktop) {
+        padding-bottom: 10rem;
+    }
+}
+
+.sectionGeneral {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 7rem 0;
+    border-radius: 1rem;
+    background-color: variables.$vert-pale;
+    box-shadow: variables.$ombreEffetFormulaire;
+
+    @media(min-width: variables.$desktop) {
+        flex-direction: row;
+    }
+
+    &>.conteneurImageSection {
+        width: 100%;
+
+        &>img {
+            width: 100%;
+        }
+    }
+
+    &>div {
+        padding: 3rem;
+    }
+}

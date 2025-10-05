@@ -15,39 +15,58 @@ html {
 }
 
 body {
-  font-family: variables.$fonteSecondaire;
-  font-size: 16px;
+  font-family: variables.$fonteTexteRegulier;
   /* 16px pour toutes les largeurs d'écran */
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 1.375;
 
   /* facteur multiplicateur de la taille de la police 1.375x16=22 */
-  @media (min-width: 601px) {}
+  @media(min-width: variables.$desktop) {
+    font-size: 2rem;
+  }
 }
 
-h1,
-.titreNiveau1,
-h2,
-.titreNiveau2,
-h3,
-.titreNiveau3 {
-  font-family: variables.$fontePrimaire;
+.titreTaille1,
+.titreTaille2,
+.titreTaille3,
+.titreMerci {
+  font-family: variables.$fontTexteTitre;
   font-weight: 500;
+}
+
+.titreMerci {
+  text-align: center;
+  font-size: 4.5rem;
+
+
+  @media(min-width: variables.$desktop) {
+    font-size: 5rem;
+  }
+}
+
+.titreEntete {
+  font-family: variables.$fonteTitreEntete;
+}
+
+.titreEntete+span {
+  font-family: variables.$fonteTitreEntete;
 }
 
 .conteneurTitre {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
   gap: 1rem;
 
   &>span {
     align-self: center;
-    width: 20%;
-    height: 45px;
+    width: 100px;
+    height: 60px;
+    text-align: center;
     background-image: url(../images/mobile/feuilles_titre_optim.svg);
     background-repeat: no-repeat;
-    background-size: 30px;
+    background-size: 34px;
   }
 }
 
@@ -56,57 +75,65 @@ h1,
   @include mixins.fontSize(28px);
   margin: 0;
 
+  font-size: 3.5rem;
 
-  &--desktop {
-    font-size: 48px;
-    font-size: 4.8rem;
-    padding-bottom: 15px;
-    position: relative;
-
-    &:after {
-      // background-color: variables.$bleuMoyen;
-      content: "";
-      display: inline-block;
-      width: 150px;
-      height: 8px;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
+  @media(min-width: variables.$desktop) {
+    font-size: 3.7rem;
   }
+
 }
 
-h2,
-.titreNiveau2 {
-  font-size: 20px;
-  font-size: 2rem;
-  text-transform: uppercase;
 
-  &--desktop {
-    font-size: 28px;
+.titreTaille2 {
+  @include mixins.fontSize(28px);
+  margin: 0;
+
+  font-size: 2.5rem;
+
+  @media(min-width: variables.$desktop) {
     font-size: 2.8rem;
   }
 
 }
 
 h3,
-.titreNiveau3 {
+.titreTaille3 {
   font-size: 18px;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
 
-  &--desktop {
-    font-size: 22px;
-    font-size: 2.2rem;
+  @media(min-width: variables.$desktop) {
+    font-size: 3rem;
+  }
+
+}
+
+.texteCourant {
+  font-family: variables.$fonteTexteRegulier;
+  font-size: 2rem;
+
+  @media(min-width: variables.$desktop) {
+    font-size: 2.3rem;
+  }
+}
+.texteGras{
+  font-weight:bolder;
+}
+.texteExemple {
+  font-family: variables.$fonteTexteLeger;
+  font-size: 1.5rem;
+
+  @media(min-width: variables.$desktop) {
+    font-size: 1.8rem;
   }
 }
 
-.texte {
-  // font-family: $fonteSecondaire;
-  font-size: 16px;
+.texteCacheErreur {
+  font-family: variables.$fonteTexteSemiBold;
   font-size: 1.6rem;
-  line-height: 1.375;
+  color: variables.$rouge-erreur;
 
-  &--desktop {
-    line-height: 1.5;
+  @media(min-width: variables.$desktop) {
+    font-size: 1.9rem;
   }
+
 }

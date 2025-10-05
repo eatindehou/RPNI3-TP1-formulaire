@@ -1,8 +1,9 @@
    @use "../utilitaires/variables";
 
-   html{
-    height: 100%;
+   html {
+       height: 100%;
    }
+
    body {
        margin: 0;
        padding: 0;
@@ -15,10 +16,18 @@
        list-style: none;
    }
 
-   a {
+   a:link,
+   :hover,
+   :active,
+   :visited {
        text-decoration: none;
+       color: black;
    }
 
+   a.lienEvidence {
+       color: variables.$vert;
+       border-bottom: .3rem solid variables.$vert;
+   }
    /* Personnalisez vos couleurs et vos noms de classes CSS, ceci n'est qu'un exemple! */
    .etapes__item {
        color: black;
@@ -41,6 +50,43 @@
    .etapes__item--active {
        color: green;
    }
+
+   //    .cache.cacher {
+   //        display: none;
+   //    }
+   .cache.cacher,
+   .texteCacheErreur {
+       display: none;
+   }
+
+   .texteCacheErreur {
+       display: none;
+
+       &::before {
+           display: inline-block;
+           content: "";
+       }
+   }
+
+
+   .texteErreurAfficher {
+       color: variables.$rouge-erreur;
+       text-align: left;
+       margin-bottom: 0;
+
+       &::before {
+           display: inline-block;
+           content: url("../images/erreur_icone_optim.svg");
+           width: 20px;
+           height: 20px;
+           margin-right: .5rem;
+       }
+   }
+
+   .erreurInput {
+       border: .19rem solid variables.$rouge-erreur;
+   }
+
 
    /* 
      * HORS-ÉCRAN - cacher un élément tout en le gardant accessible 

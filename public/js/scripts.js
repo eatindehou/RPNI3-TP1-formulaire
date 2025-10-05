@@ -221,6 +221,7 @@ function validerChamp(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^[a-zA-ZÀ-ÿ\s\']+$/;
     const leTexte = champ.value;
     // Vérifie chaque type d'erreur de validation
@@ -228,15 +229,22 @@ function validerChamp(champ) {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
+        // console.log(erreurElementClass)
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else if (expresRegex.test(leTexte) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
-        erreurElement.innerText = messagesErreur[id].pattern;
+        erreurElement.innerHTML = messagesErreur[id].pattern;
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else {
         valide = true;
-        erreurElement.innerText = "";
+        erreurElementClass.classList.remove('texteErreurAfficher');
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElement.innerHTML = "";
     }
     return valide;
 }
@@ -246,6 +254,7 @@ function validerEmail(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const leEmail = champ.value;
     const expresRegex = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/;
     const tldSuspicieux = [
@@ -267,10 +276,14 @@ function validerEmail(champ) {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else if (expresRegex.test(leEmail) == false && messagesErreur[id].pattern) {
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else if (tldSuspicieux.some((tld) => {
         const contientSuspect = leEmail.toLowerCase().endsWith(tld);
@@ -278,6 +291,8 @@ function validerEmail(champ) {
     }) && messagesErreur[id].tldSuspicieux) {
         valide = false;
         erreurElement.innerText = messagesErreur[id].tldSuspicieux;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else {
         const valeursCles = Object.keys(erreursCommunes);
@@ -289,9 +304,13 @@ function validerEmail(champ) {
             const domaineCorrect = erreursCommunes[erreurCle];
             const monMessage = messagesErreur[id].erreursCommunes?.replace('{domaine}', domaineCorrect);
             erreurElement.innerText = monMessage;
+            erreurElementClass.classList.remove('texteCacheErreur');
+            erreurElementClass.classList.add('texteErreurAfficher');
         }
         else {
             valide = true;
+            erreurElementClass.classList.add('texteCacheErreur');
+            erreurElementClass.classList.remove('texteErreurAfficher');
             erreurElement.innerText = "";
         }
     }
@@ -303,6 +322,7 @@ function validerTelephone(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const leTelephone = champ.value;
     const expresRegex = /^\(?([0-9]{3})\)?[ ]?([0-9]{3})[-]?([0-9]{4})$/;
     // Vérifie chaque type d'erreur de validation
@@ -310,13 +330,19 @@ function validerTelephone(champ) {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else if (expresRegex.test(leTelephone) == false && messagesErreur[id].pattern) {
         erreurElement.innerText = messagesErreur[id].pattern;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         valide = false;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -327,6 +353,7 @@ function validerAdresse(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$/;
     const lAdresse = champ.value;
     // Vérifie chaque type d'erreur de validation
@@ -334,14 +361,20 @@ function validerAdresse(champ) {
         // Champ obligatoire vide (attribut required)
         valide = false;
         erreurElement.innerText = messagesErreur[id].vide;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
     }
     else if (expresRegex.test(lAdresse) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         valide = false;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -352,21 +385,28 @@ function validerCodePostal(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]$/;
     const leCodePostal = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].vide;
     }
     else if (expresRegex.test(leCodePostal) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         valide = false;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -377,14 +417,19 @@ function validerListeDeSelection(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].vide;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -395,21 +440,28 @@ function validerCarteCredit(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$/;
     const leNumDeCarte = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].vide;
     }
     else if (expresRegex.test(leNumDeCarte) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -420,6 +472,7 @@ function validerChampDate(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^(0[1-9]|1[0-2])\/?([0-9]{4})$/;
     const laDate = champ.value;
     const dateAujourdhui = new Date();
@@ -440,6 +493,8 @@ function validerChampDate(champ) {
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].vide;
     }
     else if (expresRegex.test(laDate) == false && messagesErreur[id].pattern) {
@@ -450,19 +505,27 @@ function validerChampDate(champ) {
         else {
             erreurElement.innerText = messagesErreur[id].pattern;
         }
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         valide = false;
     }
     else {
         if (annee < lAnneeActuelle) {
+            erreurElementClass.classList.remove('texteCacheErreur');
+            erreurElementClass.classList.add('texteErreurAfficher');
             erreurElement.innerText = messagesErreur[id].duree;
             valide = false;
         }
         else if (annee == lAnneeActuelle && mois <= leMoisActuelle) {
+            erreurElementClass.classList.remove('texteCacheErreur');
+            erreurElementClass.classList.add('texteErreurAfficher');
             erreurElement.innerText = messagesErreur[id].duree;
             valide = false;
         }
         else {
             valide = true;
+            erreurElementClass.classList.add('texteCacheErreur');
+            erreurElementClass.classList.remove('texteErreurAfficher');
             erreurElement.innerText = "";
         }
     }
@@ -473,21 +536,28 @@ function validerChampCvv(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^[0-9]{3,4}$/;
     const leNumDeCvv = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].vide;
     }
     else if (expresRegex.test(leNumDeCvv) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
         erreurElement.innerText = messagesErreur[id].pattern;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         valide = false;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -497,26 +567,35 @@ function validerChampNumerique(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^\d+$/;
     const leMontantEntre = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (champ.validity.valueMissing && messagesErreur[id].vide) {
         // Champ obligatoire vide (attribut required)
         valide = false;
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].vide;
     }
     else if (expresRegex.test(leMontantEntre) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
     }
     else if (champ.validity.rangeOverflow && messagesErreur[id].longeur) {
         // Valeur numérique supérieure à max
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].longeur;
         valide = false;
     }
     else {
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     console.log(valide);
@@ -527,22 +606,29 @@ function validerChampNumApp(champ) {
     const id = champ.id;
     const idMessageErreur = "erreur_" + id;
     const erreurElement = document.getElementById(idMessageErreur);
+    const erreurElementClass = document.querySelector("." + idMessageErreur);
     const expresRegex = /^\d+$/;
     const leNumApp = champ.value;
     // Vérifie chaque type d'erreur de validation
     if (expresRegex.test(leNumApp) == false && messagesErreur[id].pattern) {
         // Ne correspond pas au pattern regex défini
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].pattern;
         valide = false;
     }
     else if (champ.validity.rangeOverflow && messagesErreur[id].longeur) {
         // Valeur numérique supérieure à max
+        erreurElementClass.classList.remove('texteCacheErreur');
+        erreurElementClass.classList.add('texteErreurAfficher');
         erreurElement.innerText = messagesErreur[id].longeur;
         valide = false;
     }
     else {
         // Champ obligatoire vide (attribut required)
         valide = true;
+        erreurElementClass.classList.add('texteCacheErreur');
+        erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
     return valide;
@@ -555,6 +641,15 @@ function afficherLesChampsCache() {
                 champAffiche = false;
                 divAutreMontant.classList.add("cache");
                 divAutreMontant.classList.add("cacher");
+                const champAssocie = divAutreMontant.querySelector("p");
+                const champInputAssocie = divAutreMontant.querySelector("input");
+                console.log(champAssocie);
+                // Enlever les messages d'erreur:
+                champAssocie.classList.remove('texteErreurAfficher');
+                champAssocie.classList.add('texteCacheErreur');
+                // 2. Vider le contenu du champ et enlever la classe erreur
+                champInputAssocie.innerHTML = "";
+                champInputAssocie.classList.remove('erreurInput');
             }
             else {
                 champAffiche = true;
@@ -578,9 +673,17 @@ function afficherChampCheckbox(checkBoxCheck) {
         laDivCache.classList.remove('cache');
         laDivCache.classList.remove('cacher');
     }
-    else {
+    else { // Lorsque le champ est décoché...
         laDivCache.classList.add('cache');
         laDivCache.classList.add('cacher');
+        const champAssocie = document.querySelector('.div_' + checkBoxCheck.value + ">p");
+        const champInputAssocie = document.querySelector('.div_' + checkBoxCheck.value + ">input");
+        // Enlever les messages d'erreur:
+        champAssocie.classList.remove('texteErreurAfficher');
+        champAssocie.classList.add('texteCacheErreur');
+        // 2. Vider le contenu du champ et enlever la classe erreur
+        champInputAssocie.innerHTML = "";
+        champInputAssocie.classList.remove('erreurInput');
     }
     return laDivCache;
 }
@@ -603,15 +706,20 @@ function validerEtape(etape) {
                 const montantValide = validerChampNumerique(montantElement);
                 if (!montantValide) {
                     etapeValide = false;
+                    montantElement.classList.add('erreurInput');
                 }
                 else {
                     // attribution de la valeur de don
+                    montantElement.classList.remove('erreurInput');
                     leChampEstValide = true;
                     valeurDonAEntree.innerText = montantElement.value;
                 }
             }
             else {
+                let champErreur = document.getElementById('erreur_autreMontant');
+                champErreur.innerText = "";
                 leChampEstValide = true;
+                montantElement.classList.remove('erreurInput');
                 montantElement.required = false;
             }
             if (dedicaceEstCheck) {
@@ -620,9 +728,12 @@ function validerEtape(etape) {
                 estDedicaceAEntree.innerText = "oui";
                 if (!nomDedicaceValide) {
                     etapeValide = false;
+                    console.log(nomDedicaceElement);
+                    nomDedicaceElement.classList.add('erreurInput');
                 }
                 else {
                     leCheckEstValide = true;
+                    nomDedicaceElement.classList.remove('erreurInput');
                     nomDedicaceAEntree.classList.remove('cache');
                     nomDedicaceAEntree.classList.remove('cacher');
                     nomDedicaceAEntree.innerText = `En l'honneur de ${nomDedicaceElement.value}`;
@@ -630,6 +741,9 @@ function validerEtape(etape) {
             }
             else {
                 leCheckEstValide = true;
+                let champErreur = document.getElementById('erreur_ouiDedicace');
+                champErreur.innerText = "";
+                nomDedicaceElement.classList.remove('erreurInput');
                 nomDedicaceElement.required = false;
                 estDedicaceAEntree.innerText = "non";
                 nomDedicaceAEntree.classList.add('cache');
@@ -663,9 +777,27 @@ function validerEtape(etape) {
             const nomEntrepriseElement = document.getElementById('ouiNomEntreprise');
             if (!nomValide || !prenomValide || !emailValide || !telephoneValide || !adresseValide || !codePostalValide || !listePaysValide || !listeProvinceValide) {
                 etapeValide = false;
+                nomElement.classList.add('erreurInput');
+                prenomElement.classList.add('erreurInput');
+                genreDonneur.classList.add('erreurInput');
+                emailElement.classList.add('erreurInput');
+                telephoneElement.classList.add('erreurInput');
+                adresseElement.classList.add('erreurInput');
+                codePostalElement.classList.add('erreurInput');
+                listePaysElement.classList.add('erreurInput');
+                listeProvinceElement.classList.add('erreurInput');
             }
             else {
                 etapeValide = true;
+                nomElement.classList.remove('erreurInput');
+                prenomElement.classList.remove('erreurInput');
+                genreDonneur.classList.remove('erreurInput');
+                emailElement.classList.remove('erreurInput');
+                telephoneElement.classList.remove('erreurInput');
+                adresseElement.classList.remove('erreurInput');
+                codePostalElement.classList.remove('erreurInput');
+                listePaysElement.classList.remove('erreurInput');
+                listeProvinceElement.classList.remove('erreurInput');
                 genreAEntree.innerText = genreDonneur.value;
                 nomAEntree.innerText = nomElement.value;
                 prenomAEntree.innerText = prenomElement.value;
@@ -687,8 +819,10 @@ function validerEtape(etape) {
                 const numAppValide = validerChampNumApp(leNumeroDapp);
                 if (!numAppValide) {
                     etapeValide = false;
+                    leNumeroDapp.classList.add('erreurInput');
                 }
                 else {
+                    leNumeroDapp.classList.remove('erreurInput');
                     numAppAEntre.innerText = `Votre numéro d'appartement ${leNumeroDapp.value}`;
                 }
             }
@@ -699,8 +833,10 @@ function validerEtape(etape) {
                 if (!nomEntrepriseValide) {
                     etapeValide = false;
                     console.log('echec encore');
+                    nomEntrepriseElement.classList.add('erreurInput');
                 }
                 else {
+                    nomEntrepriseElement.classList.remove('erreurInput');
                     nomEntrepriseAEntree.classList.remove('cache');
                     nomEntrepriseAEntree.classList.remove('cacher');
                     nomEntrepriseAEntree.innerText = `Nom de l'entreprise ${nomEntrepriseElement.value}`;
@@ -725,9 +861,17 @@ function validerEtape(etape) {
             // const listeEtatValide = validerListeDeSelection(listeEtatElement);
             if (!numCarteValide || !titulaireCarteValide || !dateExpValide || !cvvValide) {
                 etapeValide = false;
+                titulaireCarteElement.classList.add('erreurInput');
+                numCarteElement.classList.add('erreurInput');
+                dateExpElement.classList.add('erreurInput');
+                cvvElement.classList.add('erreurInput');
             }
             else {
                 etapeValide = true;
+                titulaireCarteElement.classList.remove('erreurInput');
+                numCarteElement.classList.remove('erreurInput');
+                dateExpElement.classList.remove('erreurInput');
+                cvvElement.classList.remove('erreurInput');
                 nomTitulaireAEntree.innerText = titulaireCarteElement.value.toLocaleUpperCase();
                 let leNumeroAAfficher = numCarteElement.value.substring(12, 16);
                 let leNumeroACacher = numCarteElement.value.substring(0, 11).replace(numCarteElement.value.substring(0, 11), "************");
@@ -778,11 +922,14 @@ function afficherEtape(lesEtapes) {
         etatElement1.classList.remove('enCours');
         etatElement1.classList.remove('menu__lien--active');
         etatElement1.classList.add('menu__lien--inactive');
+        etatElement1.setAttribute('aria-disabled', 'true');
         etatElement2.classList.remove('enCours');
         etatElement2.classList.remove('menu__lien--active');
         etatElement2.classList.add('menu__lien--inactive');
+        etatElement2.setAttribute('aria-disabled', 'true');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
+        etatElement3.setAttribute('aria-disabled', 'true');
         imageEnArrierePlan.classList.add('imageDeFond1');
         imageEnAvantPlan.classList.add('imagePetit1');
         imageEnAvantPlan.classList.remove('imagePetit2');
@@ -807,8 +954,10 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.remove('enCours');
         etatElement2.classList.remove('menu__lien--active');
         etatElement2.classList.add('menu__lien--inactive');
+        etatElement2.setAttribute('aria-disabled', 'true');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
+        etatElement3.setAttribute('aria-disabled', 'true');
         imageEnArrierePlan.classList.add('imageDeFond2');
         imageEnAvantPlan.classList.add('imagePetit2');
         imageEnAvantPlan.classList.remove('imagePetit3');
@@ -828,8 +977,10 @@ function afficherEtape(lesEtapes) {
         etatElement1.classList.remove('menu__lien--inactive');
         etatElement2.classList.add('enCours');
         etatElement2.classList.remove('menu__lien--inactive');
+        etatElement2.setAttribute('aria-disabled', 'false');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
+        etatElement3.setAttribute('aria-disabled', 'true');
         imageEnArrierePlan.classList.add('imageDeFond3');
         imageEnAvantPlan.classList.add('imagePetit3');
         imageEnArrierePlan.classList.remove('imageDeFond2');
@@ -850,6 +1001,7 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.remove('menu__lien--inactive');
         etatElement3.classList.add('enCours');
         etatElement3.classList.remove('menu__lien--inactive');
+        etatElement3.setAttribute('aria-disabled', 'false');
         imageEnArrierePlan.classList.add('imageDeFond4');
         imageEnAvantPlan.classList.add('imagePetit4');
     }

@@ -2,6 +2,7 @@
 
 .menu {
     width: 100%;
+    font-size:1.6rem;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -58,6 +59,10 @@
             }
         }
     }
+    &__lien:link, &__lien:hover, &__lien:active, &__lien:visited{
+        color:black;
+        font-size: 1.9rem;
+    }
 
 }
 
@@ -67,11 +72,28 @@
 
 .navigationEtapes {
     padding: 0 1rem;
-    border-bottom: 1rem solid variables.$vert;
+    // border-bottom: 1rem solid variables.$vert;
+
+    & > span{
+        display: block;
+        width: 100%;
+        height : 10px;
+        background-color: variables.$vert-fonce;
+        position: relative;
+        bottom: 4px;
+        left: -10px;
+        z-index: -1;
+    }
 
     @media(min-width: variables.$desktop) {
         padding: 2rem 1rem 2rem 1rem;
         width: 70%;
         margin: 0 auto 4rem auto;
+
+
+    & > span{
+        bottom: -16px;
+        left: -10px;
+    }
     }
 }

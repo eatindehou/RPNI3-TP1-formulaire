@@ -81,4 +81,5 @@
     font-size: $size;
     font-size: calculateRem($size);
 }
+
 //Pour utiliser la fonction : @include fontSize(15px);

@@ -43,14 +43,16 @@
 @use "base/hyperlien";
 @use "base/typo";
 @use "base/grille";
-@use "base/menu.scss";
+@use "base/menu";
 @use "base/navigationSecondaire";
-@use "base/champInput.scss";
-@use "base/images.scss";
+@use "base/champInput";
+@use "base/images";
+@use "base/footer";
 
 /** MODULES **/
-@use"modules/page";
 @use "modules/formulaire";
+@use "modules/remerciements";
+@use "modules/accueil";
 
 /** LAYOUT **/
 @use "layout/general"

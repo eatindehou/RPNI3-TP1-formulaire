@@ -11,12 +11,34 @@
 /** Polices de caractères **/
 
 @font-face {
-  font-family: Futura, sans-serif;
-  src: 	url('../fonts/Futura.ttc') format('truetype');
+  font-family: Alegreya;
+  src: 	url('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Varta-semibold;
+  src: 	url('../fonts/Varta/Varta-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: Varta-regular;
+  src: 	url('../fonts/Varta/Varta-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Varta-light;
+  src: 	url('../fonts/Varta/Varta-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: Marcellus;
+  src: 	url('../fonts/Marcellus/Marcellus-Regular.ttf') format('truetype');
 }
 
-$fontePrimaire : Futura, sans-serif;
-$fonteSecondaire : Arial, sans-serif;
+// $fontePrimaire : Futura, sans-serif;
+$fonteTexteSemiBold :Varta-semibold;
+$fonteTexteRegulier :Varta-regular;
+$fonteTexteLeger :Varta-light;
+$fontTexteTitre : Alegreya;
+$fonteTitreEntete : Marcellus;
+
+
 
 /** Palette de couleurs **/
 // Utiliser http://chir.ag/projects/name-that-color pour obtenir des noms uniques et mémorisables

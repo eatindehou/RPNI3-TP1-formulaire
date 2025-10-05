@@ -91,7 +91,7 @@
     padding: 20px;
     cursor: pointer;
     border-top: 3px solid variables.$vert-lime-pale;
-
+    
     @media(min-width: variables.$desktop) {
         border: none;
     }
@@ -104,13 +104,16 @@
 }
 
 .menuSurCoteUl li a {
+    font-size: 2rem;
     color: variables.$vert-fonce;
     cursor: pointer;
 }
-.menuSurCote__lien.lienEvidence{
-    color : variables.$vert;
+
+.menuSurCote__lien.lienEvidence {
+    color: variables.$vert;
     border-bottom: .3rem solid variables.$vert;
 }
+
 input[type="checkbox"]:checked~#menuSurCote {
     transform: translateX(0);
 

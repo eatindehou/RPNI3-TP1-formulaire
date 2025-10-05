@@ -3,15 +3,87 @@
 
 <head>
     <meta charset="utf-8">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Mantura est un organisme dédié à la protection et à la préservation des mantes religieuses en voie de disparition. À travers la sensibilisation, la recherche et des actions concrètes sur le terrain, nous œuvrons pour sauvegarder la biodiversité et soutenir un avenir durable.">
+    <meta name="keywords"
+        content="mante religieuse, mantes religieuses en voie de disparition, conservation faune, protection animale, agir pour la biodiversité, insecte mante religieuse">
+    <meta name="author" content="Atindehou Elma">
+    <title>Merci pour votre don !</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/logo_mantura_clair_optim.svg">
+    <script defer src="js/scripts.js"></script>
 </head>
 
 <body>
-    <div class="formulaire">
-        <h1 class="titreTaille1">Merci pour votre don !</h1>
-        <a href="index.html" class="btn btnAccueil">Retour à l’accueil</a>
+    <header class="entete">
+        <!-- NAVIGATION PRINCIPALE-->
+        <nav class="navigationPrincipale">
+            <picture class="conteneurLogo">
+                <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
+                <img class="logo_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
+            </picture>
+            <input type="checkbox" class="menuOuvert" id="menuOuvert" aria-label="Afficher le menu">
+            <label for="menuOuvert" class="iconeMenu">
+                <span class="animation diagonale partie-1"></span>
+                <span class="animation horizontale"></span>
+                <span class="animation diagonale partie-2"></span>
+            </label>
+            <!-- NAVIGATION PRINCIPALE SUR LE CÔTÉ-->
+            <div id="menuSurCote" role="navigation">
+                <ul class="menuSurCote__liste menuSurCoteUl">
+                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">À propos</a> </li>
+                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Contactez-nous</a></li>
+                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien">Nos évenements</a> </li>
+                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien"> Nos services</a></li>
+                    <li class="menuSurCote__item"><a href="#" class="menuSurCote__lien lienEvidence"> Donner</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+    <div class="formulaire imageFond5" role="main">
+        <div class="imagePetit5">
+            <section class="remerciements">
+                <h1 class="titreMerci">Merci pour votre don !</h1>
+                <a href="index.html" class="btn btnAccueil">Retour à l’accueil</a>
+            </section>
+
+        </div>
     </div>
+
+      <footer class="piedDePage rangee cols_3_de_12">
+        <div>
+            <picture class="conteneurLogoFooter">
+                <source srcset="images/logo_mantura_optim.svg" media="(max-width:600px)">
+                <img class="logoFooter_mantura" src="images/logo_mantura_optim.svg" alt="logo_mantura">
+            </picture>
+            <p>Une Mante protégée, une nature respectée</p>
+        </div>
+        <div>
+            <p class="texteCourant"></p>Siège social de Mantura </p>
+            <p class="texteCourant"></p>550, avenue de prairie, bureau 300</p>
+            <p class="texteCourant"></p>Québec G3N 1Y1</p>
+        </div>
+        <div id="menuPiedDePage" role="navigation">
+            <ul class="menuPiedDePage__liste menuPiedDePageUl">
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien">À propos</a> </li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien"> Contactez-nous</a></li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien">Nos évenements</a> </li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien"> Nos services</a></li>
+                <li class="menuPiedDePage__item"><a href="#" class="menuPiedDePage__lien lienEvidence"> Donner</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p class="titreTaille2">Nous joindre</p>
+            <p class="texteCourant">t. 514 731-3696 ou 1 800 361-9643</p>
+            <p class="texteCourant">c. info@mantura.qc.ca</p>
+        </div>
+
+    </footer>
 </body>
 
 </html>
