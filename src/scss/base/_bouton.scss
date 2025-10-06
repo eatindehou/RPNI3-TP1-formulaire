@@ -1,10 +1,22 @@
-// @use "sass:color";
 @use "../utilitaires/variables";
 
 /**
-* @author Prenom Nom courriel
-* @todo Compléter selon l'énoncé de l'exercice
+* @author Elma Atindehoue - 2233755@csfoy.ca
+* @todo Styliser les boutons du formulaire (radios, checkbox, boutons de navigation)
 */
+
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - BOUTONS
+ * ----------------------------
+ *  BOUTONS RADIOS TYPES DE DONS
+ ** BOUTONS RADIOS VALEURS DE DONS
+ ** CHAMP AUTRE MONTANT CACHÉ
+ * CHAMP DE DÉDIACE
+ * BOUTONS
+ */
+
+
 /* BOUTONS RADIOS TYPES DE DONS */
 .typeDeDons {
     width: 90%;
@@ -51,8 +63,7 @@ input[name="don"]+span {
 input[name="don"]:checked+span {
     background-color: variables.$vert-clair;
     border: .35rem solid variables.$vert-contour;
-        color: variables.$vert-fonce
-
+    color: variables.$vert-fonce
 }
 
 /* BOUTONS RADIOS VALEURS DE DONS */

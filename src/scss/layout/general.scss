@@ -1,5 +1,23 @@
    @use "../utilitaires/variables";
 
+
+   /**
+* @author Elma Atindehoue - 2233755@csfoy.ca
+* @todo Styliser le style général commun à toutes les pages
+*/
+   /**
+ * ----------------------------
+ * TABLE DES MATIERES - STYLE GÉNÉRAL
+ * ----------------------------
+ *  LIENS
+ ** ÉTATS (INACTIF, ACTIF) DES ÉTAPES
+ ** ÉLÉMENTS ET TEXTE CACHÉS
+ * TEXTE D'ERREUR
+ * CHAMP INPUT ERREUR
+ * HORS-ÉCRAN
+ */
+
+
    html {
        height: 100%;
    }
@@ -16,6 +34,7 @@
        list-style: none;
    }
 
+   // LIENS
    a:link,
    :hover,
    :active,
@@ -28,6 +47,12 @@
        color: variables.$vert;
        border-bottom: .3rem solid variables.$vert;
    }
+
+   [aria-disabled="true"] {
+       cursor: not-allowed;
+   }
+
+   // ÉTATS (INACTIF, ACTIF) DES ÉTAPES
    /* Personnalisez vos couleurs et vos noms de classes CSS, ceci n'est qu'un exemple! */
    .etapes__item {
        color: black;
@@ -35,30 +60,29 @@
        /* L'ancre est soulignée par défaut */
        cursor: pointer;
        /* C'est la valeur par défaut */
+
+       &--inactive {
+           color: black;
+           pointer-events: none;
+           /* Les événements de pointeurs et de curseurs ne seront pas honorés */
+           cursor: not-allowed;
+           /* Autre option - cursor: default; */
+           text-decoration: none;
+           /* On désactive l'effet surligné */
+       }
+
+       &--active {
+           color: green;
+       }
    }
 
-   .etapes__item--inactive {
-       color: black;
-       pointer-events: none;
-       /* Les événements de pointeurs et de curseurs ne seront pas honorés */
-       cursor: not-allowed;
-       /* Autre option - cursor: default; */
-       text-decoration: none;
-       /* On désactive l'effet surligné */
-   }
-
-   .etapes__item--active {
-       color: green;
-   }
-
-   //    .cache.cacher {
-   //        display: none;
-   //    }
+   // ÉLÉMENTS ET TEXTE CACHÉS
    .cache.cacher,
    .texteCacheErreur {
        display: none;
    }
 
+   // TEXTE D'ERREUR
    .texteCacheErreur {
        display: none;
 
@@ -81,6 +105,16 @@
            height: 20px;
            margin-right: .5rem;
        }
+   }
+
+   // CHAMP INPUT ERREUR
+
+   /* Styler tous les inputs */
+   input {
+       border: .19rem solid variables.$vert-fonce;
+       border-radius: .5rem;
+       padding: .7rem;
+       background-color: transparent;
    }
 
    .erreurInput {
@@ -119,13 +153,4 @@
        /* Empêche les bris de ligne pour éviter que le texte de l'élément ne pousse d'autre contenu */
        border-width: 0;
        /* On annule aussi les bordures */
-   }
-
-   /* Styler tous les inputs */
-
-   input {
-       border: .19rem solid variables.$vert-fonce;
-       border-radius: .5rem;
-       padding: .7rem;
-       background-color: transparent;
    }

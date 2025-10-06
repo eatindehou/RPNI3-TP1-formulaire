@@ -1,35 +1,43 @@
-/**
- * Author CodePen Home / Jelena Jovanovic / https://codepen.io/plavookac/pen/qomrMw
-**/
 @use "../utilitaires/variables";
 /**
- * TABLE DES MATIÈRES
- 
+* Author CodePen Home / Jelena Jovanovic / https://codepen.io/plavookac/pen/qomrMw
+* @author Elma Atindehoue - 2233755@csfoy.ca
+* @todo Styliser le menu (navigation principale)
+*/
+
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - MENU (NAVIGATION PRINCIPALE)
+ * ----------------------------
  */
+
 
 .entete {
     box-shadow: variables.$ombreEffetHeader;
 }
 
-.navigationPrincipale {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    box-shadow: none;
-    background-color: variables.$vert-pale;
-    position: relative;
-    height: 60px;
-    overflow: hidden;
-    z-index: 10;
+.navigation {
 
-    @media(min-width: variables.$desktop) {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        align-content: space-between;
-        justify-content: center;
-        height: 80px;
+    &--Principale{
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none;
+        background-color: variables.$vert-pale;
+        position: relative;
+        height: 60px;
+        overflow: hidden;
+        z-index: 10;
+    
+        @media(min-width: variables.$desktop) {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: space-between;
+            justify-content: center;
+            height: 80px;
+        }
     }
 }
 

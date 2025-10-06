@@ -1,5 +1,18 @@
 @use "../utilitaires/variables";
 
+/**
+* @author Elma Atindehoue - 2233755@csfoy.ca
+* @todo Styliser le formulaire
+*/
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - FORMULAIRE
+ * ----------------------------
+ *  FORMULAIRE GÉNÉRAL
+ ** ÉTAPES DU FORMULAIRE
+ */
+
+//  FORMULAIRE GÉNÉRAL
 .formulaire {
     display: flex;
     flex-direction: column;
@@ -19,6 +32,7 @@
     }
 }
 
+// ÉTAPES DU FORMULAIRE
 .etapeDon {
     width: 70%;
     margin: 0 auto;

@@ -1,37 +1,40 @@
 @use "sass:color";
 /**
-* @author Prenom Nom courriel
-* @todo Importer la fonte Futura
-* @todo Personnaliser les variables selon les spécifications du guide visuel
-*       Certaines variables devront être définies par une fonction de coloration
-* @todo Compléter selon l'énoncé de l'exercice
-* @todo Utiliser le sélecteur & pour les sélecteurs des différentes couleurs
-*/
+* @author Elma Atindehoue - 2233755@csfoy.ca
+* @todo Importer la fonte Varta
+* @todo Importer la fonte Alegreya
+* @todo Importer la fonte Marcellus
+
+* @todo Créer les variables de la palette de couleurs
+* @todo Création du point de rupture 
 
 /** Polices de caractères **/
 
 @font-face {
   font-family: Alegreya;
-  src: 	url('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: Varta-semibold;
-  src: 	url('../fonts/Varta/Varta-SemiBold.ttf') format('truetype');
-}
-@font-face {
-  font-family: Varta-regular;
-  src: 	url('../fonts/Varta/Varta-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: Varta-light;
-  src: 	url('../fonts/Varta/Varta-Light.ttf') format('truetype');
-}
-@font-face {
-  font-family: Marcellus;
-  src: 	url('../fonts/Marcellus/Marcellus-Regular.ttf') format('truetype');
+  src: url('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf') format('truetype');
 }
 
-// $fontePrimaire : Futura, sans-serif;
+@font-face {
+  font-family: Varta-semibold;
+  src: url('../fonts/Varta/Varta-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Varta-regular;
+  src: url('../fonts/Varta/Varta-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Varta-light;
+  src: url('../fonts/Varta/Varta-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Marcellus;
+  src: url('../fonts/Marcellus/Marcellus-Regular.ttf') format('truetype');
+}
+
 $fonteTexteSemiBold :Varta-semibold;
 $fonteTexteRegulier :Varta-regular;
 $fonteTexteLeger :Varta-light;
@@ -55,13 +58,10 @@ $turquoise-pale : #BFDDC3;
 $vert-lime-pale : #F3F7F0;
 $rouge-erreur : #AF0323;
 
-$ombreEffetFormulaire :  3px -12px 19.7px -15px $turquoise-pale, 0 10px 41.5px -23px $turquoise-pale; 
-$ombreEffetHeader:  0 -4px 11.2px 0 $turquoise-pale; 
+$ombreEffetFormulaire : 3px -12px 19.7px -15px $turquoise-pale,
+0 10px 41.5px -23px $turquoise-pale;
+$ombreEffetHeader: 0 -4px 11.2px 0 $turquoise-pale;
 
-// $bleuMoyenTransparent : color.adjust($bleuMoyen, $alpha: -0.50);
-
-/* Autres couleurs */
-// $hyperlien: $bleuMarin;
 
 /** Points de rupture **/
 $desktop : 40rem;

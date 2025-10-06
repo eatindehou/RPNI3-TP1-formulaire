@@ -88,13 +88,12 @@ function initaliser() {
     });
     divAutreMontant = document.querySelector('.donAutreCache');
     checkboxDons = document.querySelectorAll(".checkboxDons");
-    console.log(checkboxDons);
+    // console.log(checkboxDons);
     checkboxDons.forEach((unCheckboxDon) => {
         unCheckboxDon.addEventListener('click', (event) => {
             const leCheckboxClique = event.currentTarget;
             afficherChampCheckbox(leCheckboxClique);
         });
-        // afficherChampCheckbox)
     });
     /*
     ÉTAPE 2 --> INFORMATIONS SUR LE DONNEUR
@@ -200,6 +199,9 @@ async function obtenirPays() {
     });
 }
 // CONNAITRE LA VALEUR DES BOUTON RADIOS CLIQUÉS
+/* leBoutonClique: valeur du bouton qui vient d'être cliqué
+* Retourne la valeur du bouton cliqué
+*/
 function connaitreValeur(leBoutonClique) {
     if (leBoutonClique.checked == true) {
         return leBoutonClique.value;
@@ -216,6 +218,9 @@ function faireValiderNumCarte(event) {
     validerCarteCredit(monInput);
 }
 // VALIDATION D'UN CHAMP
+/* champ: le champ dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerChamp(champ) {
     let valide = false;
     const id = champ.id;
@@ -249,6 +254,9 @@ function validerChamp(champ) {
     return valide;
 }
 // VALIDATION DU CHAMP EMAIL
+/* champ: le champ email dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerEmail(champ) {
     let valide = false;
     const id = champ.id;
@@ -317,6 +325,9 @@ function validerEmail(champ) {
     return valide;
 }
 //VALIDATION DU CHAMP TELEPHONE
+/* champ: le champ du telephone dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerTelephone(champ) {
     let valide = false;
     const id = champ.id;
@@ -348,6 +359,9 @@ function validerTelephone(champ) {
     return valide;
 }
 //VALIDATION DU CHAMP ADRESSE
+/* champ: le champ adresse dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerAdresse(champ) {
     let valide = false;
     const id = champ.id;
@@ -380,6 +394,9 @@ function validerAdresse(champ) {
     return valide;
 }
 //VALIDATION DU CHAMP CODE POSTAL
+/* champ: le champ du code postal dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerCodePostal(champ) {
     let valide = false;
     const id = champ.id;
@@ -412,6 +429,9 @@ function validerCodePostal(champ) {
     return valide;
 }
 //VALIDATION DU CHAMP DATALIST
+/* champ: le champ datalist (pays, province ou état) dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerListeDeSelection(champ) {
     let valide = false;
     const id = champ.id;
@@ -434,7 +454,10 @@ function validerListeDeSelection(champ) {
     }
     return valide;
 }
-//VALIDATION DU CHAMP CODE POSTAL
+//VALIDATION DU CHAMP CARTE DE CRÉDIT
+/* champ: le champ de carte de crédit dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerCarteCredit(champ) {
     let valide = false;
     const id = champ.id;
@@ -467,6 +490,9 @@ function validerCarteCredit(champ) {
     return valide;
 }
 // VALIDATION DU CHAMP DE DATE D'EXPIRATION
+/* champ: le champ de la date d'expiration dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerChampDate(champ) {
     let valide = false;
     const id = champ.id;
@@ -481,10 +507,16 @@ function validerChampDate(champ) {
     let mois;
     let annee;
     const nbMoisMaximum = 12;
+    // Si la longueur du texte entré est égale à 7
+    // Convertir le mois en int et recupérer les deux premiers caratères
+    // Convertir l'année en int et recupérer les quatres derniers caratères
     if (laDate.length == 7) {
         mois = parseInt(laDate.substring(0, 2));
         annee = parseInt(laDate.substring(3, 7));
     }
+    // Sinon si la longueur du texte entré est égale à 7
+    // Convertir le mois en int et recupérer les deux premiers caratères
+    // Convertir l'année en int et recupérer les quatres derniers caratères
     else if (laDate.length == 6) {
         mois = parseInt(laDate.substring(0, 2));
         annee = parseInt(laDate.substring(2, 6));
@@ -510,18 +542,23 @@ function validerChampDate(champ) {
         valide = false;
     }
     else {
+        // Si l'année entrée est inférieur à l'année en cours
+        // valide est false
         if (annee < lAnneeActuelle) {
             erreurElementClass.classList.remove('texteCacheErreur');
             erreurElementClass.classList.add('texteErreurAfficher');
             erreurElement.innerText = messagesErreur[id].duree;
             valide = false;
         }
+        // Sinon si l'année entrée est égale à l'année en cours et que le mois entré entré est inférieur ou égal au mois en cours
+        // valide est false
         else if (annee == lAnneeActuelle && mois <= leMoisActuelle) {
             erreurElementClass.classList.remove('texteCacheErreur');
             erreurElementClass.classList.add('texteErreurAfficher');
             erreurElement.innerText = messagesErreur[id].duree;
             valide = false;
         }
+        // Sinon l'étape est valide
         else {
             valide = true;
             erreurElementClass.classList.add('texteCacheErreur');
@@ -531,6 +568,9 @@ function validerChampDate(champ) {
     }
     return valide;
 }
+/* champ: le champ de cvv/cvc dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerChampCvv(champ) {
     let valide = false;
     const id = champ.id;
@@ -562,6 +602,9 @@ function validerChampCvv(champ) {
     }
     return valide;
 }
+/* champ: le champ numérique dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerChampNumerique(champ) {
     let valide = false;
     const id = champ.id;
@@ -598,9 +641,12 @@ function validerChampNumerique(champ) {
         erreurElementClass.classList.remove('texteErreurAfficher');
         erreurElement.innerText = "";
     }
-    console.log(valide);
+    // console.log(valide)
     return valide;
 }
+/* champ: le champ du numéro d'appartement dans lequel l'utilisateur a inscrit les informations
+* Retourne si ce que l'utilsateur a inscrit est valide (true) ou non (false)
+*/
 function validerChampNumApp(champ) {
     let valide = false;
     const id = champ.id;
@@ -634,8 +680,13 @@ function validerChampNumApp(champ) {
     return valide;
 }
 //AFFICHAGE DES CHAMPS CACHÉ
+// Retourne si les champs sont cachés (true) ou non (false)
 function afficherLesChampsCache() {
     btnRadiosValeurDon.forEach((btnChoisi) => {
+        /* Si un bouton est coché
+        * Vérifier si la valeur du bouton est 'donAutre'
+        * Sinon afficher les champs cachés
+        */
         if (btnChoisi.checked == true) {
             if (btnChoisi.value !== 'donAutre') {
                 champAffiche = false;
@@ -643,7 +694,6 @@ function afficherLesChampsCache() {
                 divAutreMontant.classList.add("cacher");
                 const champAssocie = divAutreMontant.querySelector("p");
                 const champInputAssocie = divAutreMontant.querySelector("input");
-                console.log(champAssocie);
                 // Enlever les messages d'erreur:
                 champAssocie.classList.remove('texteErreurAfficher');
                 champAssocie.classList.add('texteCacheErreur');
@@ -661,14 +711,23 @@ function afficherLesChampsCache() {
     return champAffiche;
 }
 // AFFICHAGE DES CHAMPS SI CHECKBOX EST ACTIVE
+// Retourne si les champs checkbox sont cachés (true) ou non (false)
 function afficherChampCheckbox(checkBoxCheck) {
     let laDivCache = document.querySelector('.div_' + checkBoxCheck.value);
+    /* Si la valeur du bouton est 'ouiDedicace'
+    * la dedicace est check
+    * Sinon si la valeur du bouton est 'ouiNomEntreprise'
+    * l'entreprise est check
+    */
     if (checkBoxCheck.value == "ouiDedicace") {
         dedicaceEstCheck = checkBoxCheck.checked;
     }
     else if ((checkBoxCheck.value == "ouiNomEntreprise")) {
         entrepriseEstCheck = checkBoxCheck.checked;
     }
+    /* Si un bouton checkbox est coché
+    * afficher les champs cachés
+    */
     if (checkBoxCheck.checked == true) {
         laDivCache.classList.remove('cache');
         laDivCache.classList.remove('cacher');
@@ -688,6 +747,9 @@ function afficherChampCheckbox(checkBoxCheck) {
     return laDivCache;
 }
 // VALIDATION DES ÉTAPES
+/* etape: l'étape actuelle de l'utilisateur'
+* Retourne si toute les étapes sont valides (true) ou non (false)
+*/
 function validerEtape(etape) {
     let etapeValide = false;
     switch (etape) {
@@ -728,7 +790,6 @@ function validerEtape(etape) {
                 estDedicaceAEntree.innerText = "oui";
                 if (!nomDedicaceValide) {
                     etapeValide = false;
-                    console.log(nomDedicaceElement);
                     nomDedicaceElement.classList.add('erreurInput');
                 }
                 else {
@@ -808,12 +869,14 @@ function validerEtape(etape) {
                 paysAEntree.innerText = listePaysElement.value;
                 provinceAEntree.innerText = listeProvinceElement.value;
             }
+            // Si le champ de numéro d'appartement est vide le champ n'est pas requis
             if (leNumeroDapp.value.trim() == "") {
                 leNumeroDapp.required = false;
                 numAppAEntre.innerText = "Aucun numéro d'appartement";
                 let champErreur = document.getElementById('erreur_numApp');
                 champErreur.innerText = "";
             }
+            // Sinon procéder à la validation
             else {
                 leNumeroDapp.required = true;
                 const numAppValide = validerChampNumApp(leNumeroDapp);
@@ -832,7 +895,6 @@ function validerEtape(etape) {
                 estEntrepriseAEntree.innerText = "oui";
                 if (!nomEntrepriseValide) {
                     etapeValide = false;
-                    console.log('echec encore');
                     nomEntrepriseElement.classList.add('erreurInput');
                 }
                 else {
@@ -886,6 +948,8 @@ function validerEtape(etape) {
     return etapeValide;
 }
 // FAIRE LA NAVIGATION DES ÉTAPES PAR LES LIENS DE NAVIGATION
+/* leNumeroDEtape: l'étape à laquelle l'utilisateur veut se rendre'
+*/
 function naviguerParLiensNav(event, leNumeroDEtape) {
     event.preventDefault();
     if (leNumeroDEtape <= numEtape) {
@@ -893,17 +957,23 @@ function naviguerParLiensNav(event, leNumeroDEtape) {
         afficherEtape(numEtape);
     }
     else {
-        console.log('Ne peux pas avancer !');
+        // console.log('Ne peux pas avancer !');
     }
 }
 // AFFICHAGE DES ÉTAPES
+/* lesEtapes: toutes les étapes du formulaire'
+* Afficher les sections à venir et cacher les sections précédente
+*/
 function afficherEtape(lesEtapes) {
-    console.log("Voici l'étape : " + lesEtapes);
+    // console.log("Voici l'étape : " + lesEtapes);
     const etapes = document.querySelectorAll('section');
     const etatElement0 = document.getElementById('etat_etape0');
     const etatElement1 = document.getElementById('etat_etape1');
     const etatElement2 = document.getElementById('etat_etape2');
     const etatElement3 = document.getElementById('etat_etape3');
+    const etatLienElement1 = document.querySelector('#etat_etape1 + a');
+    const etatLienElement2 = document.querySelector('#etat_etape2 + a');
+    const etatLienElement3 = document.querySelector('#etat_etape3 + a');
     const imageEnArrierePlan = document.querySelector('.imageDeFond1');
     const imageEnAvantPlan = document.querySelector('.imagePetit1');
     cacherSections();
@@ -922,14 +992,14 @@ function afficherEtape(lesEtapes) {
         etatElement1.classList.remove('enCours');
         etatElement1.classList.remove('menu__lien--active');
         etatElement1.classList.add('menu__lien--inactive');
-        etatElement1.setAttribute('aria-disabled', 'true');
+        etatLienElement1.setAttribute('aria-disabled', 'true');
         etatElement2.classList.remove('enCours');
         etatElement2.classList.remove('menu__lien--active');
         etatElement2.classList.add('menu__lien--inactive');
-        etatElement2.setAttribute('aria-disabled', 'true');
+        etatLienElement2.setAttribute('aria-disabled', 'true');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
-        etatElement3.setAttribute('aria-disabled', 'true');
+        etatLienElement3.setAttribute('aria-disabled', 'true');
         imageEnArrierePlan.classList.add('imageDeFond1');
         imageEnAvantPlan.classList.add('imagePetit1');
         imageEnAvantPlan.classList.remove('imagePetit2');
@@ -950,14 +1020,14 @@ function afficherEtape(lesEtapes) {
         etatElement0.classList.add('menu__lien--active');
         etatElement1.classList.add('enCours');
         etatElement1.classList.remove('menu__lien--inactive');
-        etatElement1.setAttribute('aria-disabled', 'false');
+        etatLienElement1.setAttribute('aria-disabled', 'false');
         etatElement2.classList.remove('enCours');
         etatElement2.classList.remove('menu__lien--active');
         etatElement2.classList.add('menu__lien--inactive');
-        etatElement2.setAttribute('aria-disabled', 'true');
+        etatLienElement2.setAttribute('aria-disabled', 'true');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
-        etatElement3.setAttribute('aria-disabled', 'true');
+        etatLienElement3.setAttribute('aria-disabled', 'true');
         imageEnArrierePlan.classList.add('imageDeFond2');
         imageEnAvantPlan.classList.add('imagePetit2');
         imageEnAvantPlan.classList.remove('imagePetit3');
@@ -977,10 +1047,10 @@ function afficherEtape(lesEtapes) {
         etatElement1.classList.remove('menu__lien--inactive');
         etatElement2.classList.add('enCours');
         etatElement2.classList.remove('menu__lien--inactive');
-        etatElement2.setAttribute('aria-disabled', 'false');
+        etatLienElement2.setAttribute('aria-disabled', 'false');
         etatElement3.classList.remove('enCours');
         etatElement3.classList.add('menu__lien--inactive');
-        etatElement3.setAttribute('aria-disabled', 'true');
+        etatLienElement3.setAttribute('aria-disabled', 'true');
         imageEnArrierePlan.classList.add('imageDeFond3');
         imageEnAvantPlan.classList.add('imagePetit3');
         imageEnArrierePlan.classList.remove('imageDeFond2');
@@ -1001,7 +1071,7 @@ function afficherEtape(lesEtapes) {
         etatElement2.classList.remove('menu__lien--inactive');
         etatElement3.classList.add('enCours');
         etatElement3.classList.remove('menu__lien--inactive');
-        etatElement3.setAttribute('aria-disabled', 'false');
+        etatLienElement3.setAttribute('aria-disabled', 'false');
         imageEnArrierePlan.classList.add('imageDeFond4');
         imageEnAvantPlan.classList.add('imagePetit4');
     }

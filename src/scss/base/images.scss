@@ -1,5 +1,17 @@
 @use "../utilitaires/variables";
 
+/**
+* @author Elma Atindehoue - 2233755@csfoy.ca
+* @todo Styliser les images de décorations
+*/
+
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - IMAGES DE DÉCORATIONS
+ * ----------------------------
+ */
+
+
 .imageDeFond1 {
     @media(min-width: variables.$desktop) {
         background-image: url(../images/table/table_feuilles1_optim.svg);
