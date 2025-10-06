@@ -88,7 +88,13 @@ h1,
 
 }
 
+legend>span{
+    font-size: 2.2rem;
 
+  @media(min-width: variables.$desktop) {
+    font-size: 2.5rem;
+  }
+}
 .titreTaille2 {
   @include mixins.fontSize(28px);
   margin: 0;
